@@ -8,7 +8,7 @@ export default createGlobalStyle`
   font-family: "Roboto,  Helvetica, sans-serif";
   margin: 0;
   padding: 0;
-  background: linear-gradient(180deg, #2A2A2A 0%, #0D0D0D 100%);
+  background: linear-gradient(0deg, rgba(63, 76, 92, 0.7), rgba(63, 76, 92, 0.7)), #0D0D0D;
  }
   .visually-hidden {
     position: absolute;
