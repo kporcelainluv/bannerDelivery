@@ -6,8 +6,10 @@ export default createGlobalStyle`
   }
   html {
   font-family: "Roboto,  Helvetica, sans-serif";
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(180deg, #2A2A2A 0%, #0D0D0D 100%);
  }
-
   .visually-hidden {
     position: absolute;
     overflow: hidden;
@@ -18,8 +20,4 @@ export default createGlobalStyle`
     padding: 0;
     border: 0;
   }
-  
- 
-  
-  
 `;
