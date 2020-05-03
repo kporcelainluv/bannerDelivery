@@ -1,9 +1,10 @@
-import React from "react";
-import { Text, Flex, Heading, Button } from "rebass/styled-components";
+import React, { useState } from "react";
+import { Text, Flex, Heading, Button, Box } from "rebass/styled-components";
 import { Label, Input } from "@rebass/forms";
 import { useTheme } from "styled-components";
 
-export const Popup = () => {
+export const Popup = ({ handleClose, addCustomer }) => {
+  const [name, setName] = useState("");
   const theme = useTheme();
   return (
     <Flex
@@ -30,6 +31,7 @@ export const Popup = () => {
         <Button
           variant="none"
           sx={{ background: "none", border: "none", color: "#FFFFFE" }}
+          onClick={handleClose}
         >
           X
         </Button>
@@ -57,16 +59,24 @@ export const Popup = () => {
           name="name"
           width="536px"
           height="48px"
+          value={name}
           sx={{
             border: "1px solid #43414D",
             backgroundColor: "transparent",
             color: theme.colors.grey000,
             fontSize: theme.fontSizes[2]
           }}
+          onChange={e => {
+            setName(e.target.value);
+          }}
         />
-        <Text color="red100" margin="4px 20px 0 0" fontSize={0}>
-          Name shouldn’t be empty
-        </Text>
+        <Box height="20px">
+          {!name && (
+            <Text color="red100" margin="4px 20px 0 0" fontSize={0}>
+              Name shouldn’t be empty
+            </Text>
+          )}
+        </Box>
         <Flex flexDirection="row" margin="40px 0 0 auto">
           <Button
             variant="secondary"
@@ -74,6 +84,7 @@ export const Popup = () => {
               backgroundColor: theme.colors.grey500,
               marginRight: "16px"
             }}
+            onClick={handleClose}
           >
             Cancel
           </Button>
@@ -81,6 +92,10 @@ export const Popup = () => {
             variant="secondary"
             sx={{
               backgroundColor: theme.colors.orange200
+            }}
+            onClick={() => {
+              addCustomer(name);
+              handleClose();
             }}
           >
             Save
