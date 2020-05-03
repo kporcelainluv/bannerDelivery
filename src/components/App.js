@@ -4,6 +4,7 @@ import { ThemeProvider } from "styled-components";
 
 import { darkTheme } from "../theme/dark";
 import { Header } from "./Header";
+import { Dashboard } from "./Dashboard";
 
 export const App = () => {
   return (
@@ -11,6 +12,7 @@ export const App = () => {
       <GlobalTheme />
       <ThemeProvider theme={darkTheme}>
         <Header />
+        <Dashboard />
       </ThemeProvider>
     </div>
   );
