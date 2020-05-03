@@ -1,15 +1,17 @@
 import React from "react";
-import { Box, Card, Image, Heading, Text } from "rebass";
-
 import GlobalTheme from "../theme/GlobalTheme";
+import { ThemeProvider } from "styled-components";
+
+import { darkTheme } from "../theme/dark";
+import { Header } from "./Header";
 
 export const App = () => {
   return (
     <div className="App">
       <GlobalTheme />
-      <Box width={"100%"}>
-        <Heading as="h1">{"Banner delivery"}</Heading>
-      </Box>
+      <ThemeProvider theme={darkTheme}>
+        <Header />
+      </ThemeProvider>
     </div>
   );
 };
