@@ -1,9 +1,8 @@
 import React, { useState } from "react";
-import { Button, Text, Box } from "rebass/styled-components";
+import { Button, Text, Box, Flex } from "rebass/styled-components";
 import { Popup } from "./Popup";
 import { PageName } from "./PageName";
 import { Plus } from "@styled-icons/boxicons-regular/Plus";
-import { Wrapper } from "./Wrapper";
 
 export const DashboardEmpty = ({ addCustomer }) => {
   const handleClose = () => {
@@ -13,7 +12,21 @@ export const DashboardEmpty = ({ addCustomer }) => {
   return (
     <Box sx={{ position: "relative" }}>
       <PageName name={"Dashboard"} />
-      <Wrapper height="146px">
+      <Flex
+        justifyContent="center"
+        flexDirection="column"
+        alignItems="center"
+        width="100%"
+        maxWidth="1136px"
+        height="146px"
+        m="40px auto 0"
+        p="20px 0 0"
+        backgroundColor="grey700"
+        sx={{
+          borderRadius: "16px",
+          boxShadow: "large"
+        }}
+      >
         <Button
           variant="primary"
           onClick={() => {
@@ -29,7 +42,7 @@ export const DashboardEmpty = ({ addCustomer }) => {
         <Text margin="16px 0 0" color="grey300" fontSize={1}>
           List of your customers will be here
         </Text>
-      </Wrapper>
+      </Flex>
       {popup && <Popup handleClose={handleClose} addCustomer={addCustomer} />}
     </Box>
   );
