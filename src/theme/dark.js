@@ -20,5 +20,20 @@ export const darkTheme = {
   fonts: {
     body: "Roboto,  Helvetica, sans-serif",
     heading: "inherit"
+  },
+  buttons: {
+    primary: {
+      height: "48px",
+      width: "232px",
+      backgroundColor: "#D67935",
+      borderRadius: "24px",
+      letterSpacing: "0.3px",
+      fontWeight: "500",
+      fontSize: "18px",
+      lineHeight: "24px",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center"
+    }
   }
 };
