@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { Flex, Heading, Button, Text } from "rebass/styled-components";
-import { useTheme } from "styled-components";
 import { Popup } from "./Popup";
 
-export const Dashboard = () => {
-  const theme = useTheme();
+export const Dashboard = ({ addCustomer }) => {
+  const handleClose = () => {
+    setPopup(false);
+  };
+  const [popup, setPopup] = useState(false);
   return (
     <Flex
       justifyContent="flex-start"
@@ -34,7 +36,7 @@ export const Dashboard = () => {
         <Button
           variant="primary"
           onClick={() => {
-            console.log("clicked");
+            setPopup(true);
           }}
         >
           Add First Customer
@@ -43,7 +45,7 @@ export const Dashboard = () => {
           List of your customers will be here
         </Text>
       </Flex>
-      <Popup />
+      {popup && <Popup handleClose={handleClose} addCustomer={addCustomer} />}
     </Flex>
   );
 };
