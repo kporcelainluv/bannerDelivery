@@ -1,16 +1,18 @@
 import { Flex, Heading } from "rebass/styled-components";
 import React from "react";
 
-import styled from "styled-components";
-const Wrapper = styled(Flex)`
-  background: ${p => p.theme.colors.gradient1};
-  align-items: center;
-  justify-content: center;
-`;
+import { useTheme } from "styled-components";
 
 export const Header = () => {
+  const theme = useTheme();
   return (
-    <Wrapper>
+    <Flex
+      alignItems="center"
+      justifyContent={"center"}
+      sx={{
+        background: theme.colors.gradient1
+      }}
+    >
       <Flex
         alignItems="center"
         width={"100%"}
@@ -22,6 +24,6 @@ export const Header = () => {
           Banner Delivery
         </Heading>
       </Flex>
-    </Wrapper>
+    </Flex>
   );
 };
