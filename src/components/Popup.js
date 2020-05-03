@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { Text, Flex, Heading, Button, Box } from "rebass/styled-components";
+import { Flex, Heading, Button } from "rebass/styled-components";
 import { Label, Input } from "@rebass/forms";
 import { useTheme } from "styled-components";
+import { CloseOutline } from "@styled-icons/evaicons-outline/CloseOutline";
 
 export const Popup = ({ handleClose, addCustomer }) => {
   const [name, setName] = useState("");
@@ -14,7 +15,11 @@ export const Popup = ({ handleClose, addCustomer }) => {
       width="584px"
       backgroundColor="grey700"
       flexDirection="column"
-      margin="40px auto 0"
+      sx={{
+        position: "absolute",
+        top: "50px",
+        left: "30%"
+      }}
     >
       <Flex
         height="56px"
@@ -32,8 +37,9 @@ export const Popup = ({ handleClose, addCustomer }) => {
           variant="none"
           sx={{ background: "none", border: "none", color: "#FFFFFE" }}
           onClick={handleClose}
+          padding="0"
         >
-          X
+          <CloseOutline height="25px" width="25px" cursor="pointer" />
         </Button>
       </Flex>
       <Flex
@@ -64,24 +70,20 @@ export const Popup = ({ handleClose, addCustomer }) => {
             border: "1px solid #43414D",
             backgroundColor: "transparent",
             color: theme.colors.grey000,
-            fontSize: theme.fontSizes[2]
+            fontSize: theme.fontSizes[2],
+            ":hover": { backgroundColor: "#3F4C5C", transition: "1s" }
           }}
           onChange={e => {
             setName(e.target.value);
           }}
         />
-        <Box height="20px">
-          {!name && (
-            <Text color="red100" margin="4px 20px 0 0" fontSize={0}>
-              Name shouldn’t be empty
-            </Text>
-          )}
-        </Box>
+
         <Flex flexDirection="row" margin="40px 0 0 auto">
           <Button
             variant="secondary"
             sx={{
               backgroundColor: theme.colors.grey500,
+              ":hover": { backgroundColor: "#97999E" },
               marginRight: "16px"
             }}
             onClick={handleClose}
@@ -91,7 +93,8 @@ export const Popup = ({ handleClose, addCustomer }) => {
           <Button
             variant="secondary"
             sx={{
-              backgroundColor: theme.colors.orange200
+              backgroundColor: theme.colors.orange200,
+              ":hover": { backgroundColor: "#DB7124" }
             }}
             onClick={() => {
               addCustomer(name);
