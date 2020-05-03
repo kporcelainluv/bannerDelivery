@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import GlobalTheme from "../theme/GlobalTheme";
 import { ThemeProvider } from "styled-components";
+import { nanoid } from "nanoid";
 
 import { darkTheme } from "../theme/dark";
 import { Header } from "./Header";
@@ -10,7 +11,7 @@ export const App = () => {
   const [customers, setCustomers] = useState([]);
 
   const addCustomer = name => {
-    setCustomers([...customers, { name: name }]);
+    setCustomers([...customers, { name: name, id: nanoid() }]);
   };
   console.log({ customers });
   return (
