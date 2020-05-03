@@ -26,7 +26,6 @@ export const darkTheme = {
       height: "48px",
       width: "232px",
       backgroundColor: "#D67935",
-      borderRadius: "24px",
       letterSpacing: "0.3px",
       fontWeight: "500",
       fontSize: "18px",
@@ -34,7 +33,14 @@ export const darkTheme = {
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
-      color: "#FFFFFE"
+      color: "#FFFFFE",
+      cursor: "pointer",
+      "&:hover": {
+        backgroundColor: "#DB7124"
+      },
+      "&:focus": {
+        backgroundColor: "#DB7124"
+      }
     },
     secondary: {
       height: "48px",
@@ -48,7 +54,8 @@ export const darkTheme = {
       alignItems: "center",
       justifyContent: "center",
       color: "#FFFFFE",
-      outline: "none"
+      border: "none",
+      cursor: "pointer"
     }
   },
   shadows: {
