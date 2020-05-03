@@ -5,7 +5,7 @@ import { nanoid } from "nanoid";
 
 import { darkTheme } from "../theme/dark";
 import { Header } from "./Header";
-import { Dashboard } from "./Dashboard";
+import { DashboardEmpty } from "./DashboardEmpty";
 
 export const App = () => {
   const [customers, setCustomers] = useState([]);
@@ -19,7 +19,7 @@ export const App = () => {
       <GlobalTheme />
       <ThemeProvider theme={darkTheme}>
         <Header />
-        <Dashboard addCustomer={addCustomer} />
+        <DashboardEmpty addCustomer={addCustomer} />
       </ThemeProvider>
     </div>
   );

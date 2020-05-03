@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Flex, Heading, Button, Text } from "rebass/styled-components";
 import { Popup } from "./Popup";
 
-export const Dashboard = ({ addCustomer }) => {
+export const DashboardEmpty = ({ addCustomer }) => {
   const handleClose = () => {
     setPopup(false);
   };
