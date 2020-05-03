@@ -1,5 +1,3 @@
-import { createMuiTheme } from "@material-ui/core/styles";
-
 export const darkTheme = {
   colors: {
     grey000: "#FFFFFE",
@@ -17,10 +15,10 @@ export const darkTheme = {
     gradient2:
       "linear-gradient(0deg, rgba(63, 76, 92, 0.7), rgba(63, 76, 92, 0.7)), #0D0D0D"
   },
+
+  fontSizes: [14, 16, 18, 32],
   fonts: {
-    xs: "14px",
-    s: "16px",
-    m: "18px",
-    l: "32px"
+    body: "Roboto,  Helvetica, sans-serif",
+    heading: "inherit"
   }
 };
