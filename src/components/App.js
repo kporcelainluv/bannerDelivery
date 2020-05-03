@@ -10,10 +10,9 @@ export const App = () => {
   const [customers, setCustomers] = useState([]);
 
   const addCustomer = name => {
-    console.log(name);
     setCustomers([...customers, { name: name }]);
   };
-
+  console.log({ customers });
   return (
     <div className="App">
       <GlobalTheme />
