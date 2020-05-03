@@ -11,7 +11,7 @@ export const App = () => {
   const [customers, setCustomers] = useState([]);
 
   const addCustomer = name => {
-    setCustomers([...customers, { name: name, id: nanoid() }]);
+    setCustomers(c => [...c, { name: name, id: nanoid() }]);
   };
   console.log({ customers });
   return (
