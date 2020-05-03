@@ -24,10 +24,11 @@ export const Dashboard = () => {
         maxWidth="1136px"
         height="146px"
         m="40px auto 0"
+        p="20px 0 0"
         backgroundColor="grey700"
         sx={{
           borderRadius: "16px",
-          boxShadow: " 0px 0px 25px rgba(13, 13, 13, 0.05)"
+          boxShadow: "large"
         }}
       >
         <Button
