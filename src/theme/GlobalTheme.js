@@ -4,12 +4,17 @@ export default createGlobalStyle`
   * {
     box-sizing: border-box;
   }
+  
   html {
-  font-family: "Roboto,  Helvetica, sans-serif";
-  margin: 0;
-  padding: 0;
-  background: linear-gradient(0deg, rgba(63, 76, 92, 0.7), rgba(63, 76, 92, 0.7)), #0D0D0D;
- }
+    font-family: Roboto,  Helvetica, sans-serif;
+    background: linear-gradient(0deg, rgba(63, 76, 92, 0.7), rgba(63, 76, 92, 0.7)), #0D0D0D;
+  }
+ 
+   body{
+    margin: 0;
+    padding: 0;
+   }
+ 
   .visually-hidden {
     position: absolute;
     overflow: hidden;
