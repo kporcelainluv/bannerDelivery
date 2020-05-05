@@ -34,6 +34,17 @@ export const App = () => {
       })
     );
   };
+
+  const markActive = customer => {
+    setCustomers(
+      customers.map(c => {
+        if (c.id === customer.id) {
+          return { ...c, status: "active" };
+        }
+        return c;
+      })
+    );
+  };
   return (
     <div className="App">
       <GlobalTheme />
@@ -43,6 +54,7 @@ export const App = () => {
           addCustomer={addCustomer}
           removeCustomer={removeCustomer}
           markCompleted={markCompleted}
+          markActive={markActive}
           customers={customers}
         />
       </ThemeProvider>
