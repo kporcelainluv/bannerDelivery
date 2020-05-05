@@ -31,6 +31,27 @@ const ActionButton = styled(Button)`
   cursor: pointer;
 `;
 
+const Wrapper = styled(Flex)`
+  flex-direction: column;
+  width: 100%;
+  max-width: 1136px;
+  margin: 40px auto 0;
+  background-color: ${p => p.theme.colors.grey700};
+  border-radius: 16px;
+  box-shadow: ${p => p.theme.shadows.large};
+  justify-content: ${({ Size }) =>
+    (Size === "active" && "flex-start") || (Size === "empty" && "center")};
+
+  align-items: ${({ Size }) =>
+    (Size === "active" && "") || (Size === "empty" && "center")};
+
+  padding: ${({ Size }) =>
+    (Size === "active" && "0") || (Size === "empty" && "20 0 0")};
+
+  height: ${({ Size }) =>
+    (Size === "active" && "660px") || (Size === "empty" && "146px")};
+`;
+
 export const Dashboard = ({
   addCustomer,
   removeCustomer,
@@ -41,25 +62,13 @@ export const Dashboard = ({
   const handleClose = () => {
     setPopup(false);
   };
+
+  const wrapperSize = customers.length > 0 ? "active" : "empty";
   const [popup, setPopup] = useState(false);
   return (
     <Box sx={{ position: "relative" }}>
       <PageName name="Dashboard" />
-      <Flex
-        justifyContent={customers.length >= 1 ? "flex-start" : "center"}
-        flexDirection="column"
-        alignItems={customers.length >= 1 ? "" : "center"}
-        width="100%"
-        maxWidth="1136px"
-        height={customers.length >= 1 ? "660px" : "146px"}
-        m="40px auto 0"
-        p={customers.length > 1 ? "0" : "20 0 0"}
-        backgroundColor="grey700"
-        sx={{
-          borderRadius: "16px",
-          boxShadow: "large"
-        }}
-      >
+      <Wrapper size={wrapperSize}>
         {customers.length < 1 && <DashboardEmpty setPopup={setPopup} />}
         {customers.length > 0 && (
           <DashboardActive
@@ -70,7 +79,7 @@ export const Dashboard = ({
             markActive={markActive}
           />
         )}
-      </Flex>
+      </Wrapper>
       {popup && <Popup handleClose={handleClose} addCustomer={addCustomer} />}
     </Box>
   );
