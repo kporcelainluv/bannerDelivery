@@ -69,8 +69,7 @@ export const Dashboard = ({
     <Box sx={{ position: "relative" }}>
       <PageName name="Dashboard" />
       <Wrapper size={wrapperSize}>
-        {customers.length < 1 && <DashboardEmpty setPopup={setPopup} />}
-        {customers.length > 0 && (
+        {customers.length > 0 ? (
           <DashboardActive
             customers={customers}
             setPopup={setPopup}
@@ -78,6 +77,8 @@ export const Dashboard = ({
             markCompleted={markCompleted}
             markActive={markActive}
           />
+        ) : (
+          <DashboardEmpty setPopup={setPopup} />
         )}
       </Wrapper>
       {popup && <Popup handleClose={handleClose} addCustomer={addCustomer} />}
