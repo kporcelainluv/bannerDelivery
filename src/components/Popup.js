@@ -17,7 +17,7 @@ export const Popup = ({ handleClose, addCustomer }) => {
       flexDirection="column"
       sx={{
         position: "absolute",
-        top: "50px",
+        top: "25%",
         left: "30%"
       }}
     >

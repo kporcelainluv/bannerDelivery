@@ -66,7 +66,7 @@ export const Dashboard = ({
   const wrapperSize = customers.length > 0 ? "active" : "empty";
   const [popup, setPopup] = useState(false);
   return (
-    <Box sx={{ position: "relative" }}>
+    <Box sx={{ position: "relative" }} width="100%" height="100%">
       <PageName name="Dashboard" />
       <Wrapper size={wrapperSize}>
         {customers.length > 0 ? (
