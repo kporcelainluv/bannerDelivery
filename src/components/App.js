@@ -6,6 +6,7 @@ import { nanoid } from "nanoid";
 import { darkTheme } from "../theme/dark";
 import { Header } from "./Header";
 import { Dashboard } from "./Dashboard";
+import { STATUS } from "../utils/utils";
 
 export const App = () => {
   const [customers, setCustomers] = useState([
@@ -16,7 +17,10 @@ export const App = () => {
   ]);
 
   const addCustomer = name => {
-    setCustomers(c => [...c, { name: name, id: nanoid(), status: "active" }]);
+    setCustomers(c => [
+      ...c,
+      { name: name, id: nanoid(), status: STATUS.ACTIVE }
+    ]);
   };
 
   const removeCustomer = customer => {
@@ -28,7 +32,7 @@ export const App = () => {
     setCustomers(
       customers.map(c => {
         if (c.id === customer.id) {
-          return { ...c, status: "completed" };
+          return { ...c, status: STATUS.COMPLETED };
         }
         return c;
       })
@@ -39,7 +43,7 @@ export const App = () => {
     setCustomers(
       customers.map(c => {
         if (c.id === customer.id) {
-          return { ...c, status: "active" };
+          return { ...c, status: STATUS.ACTIVE };
         }
         return c;
       })

@@ -11,6 +11,7 @@ import styled, { useTheme } from "styled-components";
 
 import { Popup } from "./Popup";
 import { PageName } from "./PageName";
+import { STATUS } from "../utils/utils";
 
 const StyledSearch = styled(SearchIcon)`
   position: absolute;
@@ -33,14 +34,14 @@ const ActionButton = styled(Button)`
 const ActionButtons = ({ status, removeCustomer, customer }) => {
   const theme = useTheme();
   const color =
-    status === "active" ? theme.colors.orange200 : theme.colors.grey300;
+    status === STATUS.ACTIVE ? theme.colors.orange200 : theme.colors.grey300;
 
   return (
     <Box display="flex" flexDirection="row" marginLeft="30px">
       <ActionButton
         variant="none"
         onClick={() => removeCustomer(customer)}
-        disabled={status !== "active"}
+        disabled={status !== STATUS.ACTIVE}
       >
         <BinIcon height="14px" width="14px" fill={color} />
         <Text display="inline-block" padding="0 10px" color={color}>
@@ -73,7 +74,7 @@ const CustomersList = ({
         <Heading
           as="h3"
           fontSize={1}
-          color={status === "active" ? "grey000" : "grey300"}
+          color={status === STATUS.ACTIVE ? "grey000" : "grey300"}
           fontWeight="bold"
           padding="0 74px"
         >
@@ -88,7 +89,7 @@ const CustomersList = ({
                 p="12px 0 12px 24px"
                 alignItems="center"
                 sx={
-                  status === "active"
+                  status === STATUS.ACTIVE
                     ? {
                         ":hover": {
                           backgroundColor: "grey500"
@@ -97,7 +98,7 @@ const CustomersList = ({
                     : {}
                 }
               >
-                {status === "active" ? (
+                {status === STATUS.ACTIVE ? (
                   <OutlineIcon
                     height="24px"
                     width="24px"
@@ -120,7 +121,7 @@ const CustomersList = ({
                 <Heading
                   as="h4"
                   fontSize={1}
-                  color={status === "active" ? "grey000" : "grey300"}
+                  color={status === STATUS.ACTIVE ? "grey000" : "grey300"}
                   fontWeight="normal"
                   padding="0 0 0 24px"
                 >
@@ -136,7 +137,7 @@ const CustomersList = ({
           })}
         </Flex>
       </Box>
-      {status === "active" && <hr />}
+      {status === STATUS.ACTIVE && <hr />}
     </Fragment>
   );
 };
@@ -172,18 +173,22 @@ const DashboardActive = ({
   const theme = useTheme();
 
   const activeCustomers = customers.filter(
-    customer => customer.status === "active"
+    customer => customer.status === STATUS.ACTIVE
   );
 
   const completedCustomers = customers.filter(
-    customer => customer.status === "completed"
+    customer => customer.status === STATUS.COMPLETED
   );
 
   const customersTypes = [
-    { name: "Active customers", status: "active", customers: activeCustomers },
+    {
+      name: "Active customers",
+      status: STATUS.ACTIVE,
+      customers: activeCustomers
+    },
     {
       name: "Completed customers",
-      status: "completed",
+      status: STATUS.COMPLETED,
       customers: completedCustomers
     }
   ];
