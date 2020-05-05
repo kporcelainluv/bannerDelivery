@@ -83,7 +83,7 @@ const CustomersList = ({
           {customers.map(customer => {
             return (
               <Flex
-                key={customer.name}
+                key={customer.id}
                 margin="10px 0 0"
                 p="12px 0 12px 24px"
                 alignItems="center"
