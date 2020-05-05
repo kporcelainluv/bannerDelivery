@@ -70,8 +70,7 @@ export const Popup = ({ handleClose, addCustomer }) => {
             border: "1px solid #43414D",
             backgroundColor: "transparent",
             color: theme.colors.grey000,
-            fontSize: theme.fontSizes[2],
-            ":hover": { backgroundColor: "#3F4C5C", transition: "1s" }
+            fontSize: theme.fontSizes[2]
           }}
           onChange={e => {
             setName(e.target.value);
