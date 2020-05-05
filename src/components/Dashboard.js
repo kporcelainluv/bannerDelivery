@@ -30,13 +30,10 @@ const ActionButton = styled(Button)`
   cursor: pointer;
 `;
 
-const ActionText = styled(Text)`
-  display: inline-block;
-  padding: 0 10px;
-  color: ${p => p.theme.colors.orange200};
-`;
-
 const ActionButtons = ({ theme, status, removeCustomer, customer }) => {
+  const getColor = () => {
+    return status === "active" ? theme.colors.orange200 : theme.colors.grey300;
+  };
   return (
     <Box display="flex" flexDirection="row" marginLeft="30px">
       <ActionButton
@@ -44,12 +41,16 @@ const ActionButtons = ({ theme, status, removeCustomer, customer }) => {
         onClick={() => removeCustomer(customer)}
         disabled={status !== "active"}
       >
-        <Bin height="14px" width="14px" fill={theme.colors.orange200} />
-        <ActionText>Delete</ActionText>
+        <Bin height="14px" width="14px" fill={getColor()} />
+        <Text display="inline-block" padding="0 10px" color={getColor()}>
+          Delete
+        </Text>
       </ActionButton>
       <ActionButton variant="none">
-        <Edit height="16px" width="16px" fill={theme.colors.orange200} />
-        <ActionText>Edit</ActionText>
+        <Edit height="16px" width="16px" fill={getColor()} />
+        <Text display="inline-block" padding="0 10px" color={getColor()}>
+          Edit
+        </Text>
       </ActionButton>
     </Box>
   );
@@ -61,7 +62,8 @@ const CustomersList = ({
   listName,
   status,
   removeCustomer,
-  markCompleted
+  markCompleted,
+  markActive
 }) => {
   return (
     <Fragment>
@@ -81,7 +83,7 @@ const CustomersList = ({
               <Flex
                 key={customer.name}
                 margin="10px 0 0"
-                p="12px 0 12px 52px"
+                p="12px 0 12px 24px"
                 alignItems="center"
                 sx={
                   status === "active"
@@ -107,6 +109,9 @@ const CustomersList = ({
                     height="24px"
                     width="24px"
                     fill={theme.colors.grey300}
+                    onClick={() => {
+                      markActive(customer);
+                    }}
                   />
                 )}
 
@@ -161,7 +166,8 @@ const DashboardActive = ({
   customers,
   setPopup,
   removeCustomer,
-  markCompleted
+  markCompleted,
+  markActive
 }) => {
   const activeCustomers = customers.filter(
     customer => customer.status === "active"
@@ -221,6 +227,7 @@ const DashboardActive = ({
             theme={theme}
             removeCustomer={removeCustomer}
             markCompleted={markCompleted}
+            markActive={markActive}
           />
         );
       })}
@@ -232,6 +239,7 @@ export const Dashboard = ({
   addCustomer,
   removeCustomer,
   markCompleted,
+  markActive,
   customers
 }) => {
   const theme = useTheme();
@@ -265,6 +273,7 @@ export const Dashboard = ({
             setPopup={setPopup}
             removeCustomer={removeCustomer}
             markCompleted={markCompleted}
+            markActive={markActive}
           />
         )}
       </Flex>
