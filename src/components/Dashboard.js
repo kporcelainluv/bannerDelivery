@@ -254,11 +254,13 @@ const CustomersList = ({
                 >
                   {customer.name}
                 </Heading>
-                <ActionButtons
-                  status={status}
-                  removeCustomer={removeCustomer}
-                  customer={customer}
-                />
+                {status === STATUS.ACTIVE && (
+                  <ActionButtons
+                    status={status}
+                    removeCustomer={removeCustomer}
+                    customer={customer}
+                  />
+                )}
               </Flex>
             );
           })}
