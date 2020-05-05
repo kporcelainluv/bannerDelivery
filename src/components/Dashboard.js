@@ -1,18 +1,18 @@
 import React, { useState, Fragment } from "react";
 import { Button, Text, Box, Flex, Heading } from "rebass/styled-components";
-import { Plus } from "@styled-icons/boxicons-regular/Plus";
-import { Search } from "@styled-icons/evaicons-solid/Search";
-import { CheckBoxOutlineBlank } from "@styled-icons/material-outlined/CheckBoxOutlineBlank";
-import { CheckBox } from "@styled-icons/material-outlined/CheckBox";
-import { Bin } from "@styled-icons/icomoon/Bin";
-import { Edit } from "@styled-icons/material/Edit";
+import { Plus as PlusIcon } from "@styled-icons/boxicons-regular/Plus";
+import { Search as SearchIcon } from "@styled-icons/evaicons-solid/Search";
+import { CheckBoxOutlineBlank as OutlineIcon } from "@styled-icons/material-outlined/CheckBoxOutlineBlank";
+import { CheckBox as CheckboxIcon } from "@styled-icons/material-outlined/CheckBox";
+import { Bin as BinIcon } from "@styled-icons/icomoon/Bin";
+import { Edit as EditIcon } from "@styled-icons/material/Edit";
 import { Input } from "@rebass/forms";
 import styled, { useTheme } from "styled-components";
 
 import { Popup } from "./Popup";
 import { PageName } from "./PageName";
 
-const StyledSearch = styled(Search)`
+const StyledSearch = styled(SearchIcon)`
   position: absolute;
   height: 24px;
   width: 24px;
@@ -41,13 +41,13 @@ const ActionButtons = ({ theme, status, removeCustomer, customer }) => {
         onClick={() => removeCustomer(customer)}
         disabled={status !== "active"}
       >
-        <Bin height="14px" width="14px" fill={getColor()} />
+        <BinIcon height="14px" width="14px" fill={getColor()} />
         <Text display="inline-block" padding="0 10px" color={getColor()}>
           Delete
         </Text>
       </ActionButton>
       <ActionButton variant="none">
-        <Edit height="16px" width="16px" fill={getColor()} />
+        <EditIcon height="16px" width="16px" fill={getColor()} />
         <Text display="inline-block" padding="0 10px" color={getColor()}>
           Edit
         </Text>
@@ -96,7 +96,7 @@ const CustomersList = ({
                 }
               >
                 {status === "active" ? (
-                  <CheckBoxOutlineBlank
+                  <OutlineIcon
                     height="24px"
                     width="24px"
                     fill={theme.colors.orange200}
@@ -105,7 +105,7 @@ const CustomersList = ({
                     }}
                   />
                 ) : (
-                  <CheckBox
+                  <CheckboxIcon
                     height="24px"
                     width="24px"
                     fill={theme.colors.grey300}
@@ -151,7 +151,7 @@ const DashboardEmpty = ({ setPopup }) => {
           borderRadius: "24px"
         }}
       >
-        <Plus height="25px" width="25px" />
+        <PlusIcon height="25px" width="25px" />
         Add First Customer
       </Button>
       <Text margin="16px 0 0" color="grey300" fontSize={1}>
@@ -213,7 +213,7 @@ const DashboardActive = ({
             setPopup(true);
           }}
         >
-          <Plus height="24px" width="24px" />
+          <PlusIcon height="24px" width="24px" />
           <Text p="0 0 0 10px">Add customer</Text>
         </Button>
       </Flex>
