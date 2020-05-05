@@ -31,114 +31,48 @@ const ActionButton = styled(Button)`
   cursor: pointer;
 `;
 
-const ActionButtons = ({ status, removeCustomer, customer }) => {
-  const theme = useTheme();
-  const color =
-    status === STATUS.ACTIVE ? theme.colors.orange200 : theme.colors.grey300;
-
-  return (
-    <Box display="flex" flexDirection="row" marginLeft="30px">
-      <ActionButton
-        variant="none"
-        onClick={() => removeCustomer(customer)}
-        disabled={status !== STATUS.ACTIVE}
-      >
-        <BinIcon height="14px" width="14px" fill={color} />
-        <Text display="inline-block" padding="0 10px" color={color}>
-          Delete
-        </Text>
-      </ActionButton>
-      <ActionButton variant="none">
-        <EditIcon height="16px" width="16px" fill={color} />
-        <Text display="inline-block" padding="0 10px" color={color}>
-          Edit
-        </Text>
-      </ActionButton>
-    </Box>
-  );
-};
-
-const CustomersList = ({
-  customers,
-  listName,
-  status,
+export const Dashboard = ({
+  addCustomer,
   removeCustomer,
   markCompleted,
-  markActive
+  markActive,
+  customers
 }) => {
-  const theme = useTheme();
-
+  const handleClose = () => {
+    setPopup(false);
+  };
+  const [popup, setPopup] = useState(false);
   return (
-    <Fragment>
-      <Box padding="30px 0">
-        <Heading
-          as="h3"
-          fontSize={1}
-          color={status === STATUS.ACTIVE ? "grey000" : "grey300"}
-          fontWeight="bold"
-          padding="0 74px"
-        >
-          {listName}
-        </Heading>
-        <Flex flexDirection="column">
-          {customers.map(customer => {
-            return (
-              <Flex
-                key={customer.id}
-                margin="10px 0 0"
-                p="12px 0 12px 24px"
-                alignItems="center"
-                sx={
-                  status === STATUS.ACTIVE
-                    ? {
-                        ":hover": {
-                          backgroundColor: "grey500"
-                        }
-                      }
-                    : {}
-                }
-              >
-                {status === STATUS.ACTIVE ? (
-                  <OutlineIcon
-                    height="24px"
-                    width="24px"
-                    fill={theme.colors.orange200}
-                    onClick={() => {
-                      markCompleted(customer);
-                    }}
-                  />
-                ) : (
-                  <CheckboxIcon
-                    height="24px"
-                    width="24px"
-                    fill={theme.colors.grey300}
-                    onClick={() => {
-                      markActive(customer);
-                    }}
-                  />
-                )}
-
-                <Heading
-                  as="h4"
-                  fontSize={1}
-                  color={status === STATUS.ACTIVE ? "grey000" : "grey300"}
-                  fontWeight="normal"
-                  padding="0 0 0 24px"
-                >
-                  {customer.name}
-                </Heading>
-                <ActionButtons
-                  status={status}
-                  removeCustomer={removeCustomer}
-                  customer={customer}
-                />
-              </Flex>
-            );
-          })}
-        </Flex>
-      </Box>
-      {status === STATUS.ACTIVE && <hr />}
-    </Fragment>
+    <Box sx={{ position: "relative" }}>
+      <PageName name="Dashboard" />
+      <Flex
+        justifyContent={customers.length >= 1 ? "flex-start" : "center"}
+        flexDirection="column"
+        alignItems={customers.length >= 1 ? "" : "center"}
+        width="100%"
+        maxWidth="1136px"
+        height={customers.length >= 1 ? "660px" : "146px"}
+        m="40px auto 0"
+        p={customers.length > 1 ? "0" : "20 0 0"}
+        backgroundColor="grey700"
+        sx={{
+          borderRadius: "16px",
+          boxShadow: "large"
+        }}
+      >
+        {customers.length < 1 && <DashboardEmpty setPopup={setPopup} />}
+        {customers.length > 0 && (
+          <DashboardActive
+            customers={customers}
+            setPopup={setPopup}
+            removeCustomer={removeCustomer}
+            markCompleted={markCompleted}
+            markActive={markActive}
+          />
+        )}
+      </Flex>
+      {popup && <Popup handleClose={handleClose} addCustomer={addCustomer} />}
+    </Box>
   );
 };
 const DashboardEmpty = ({ setPopup }) => {
@@ -241,47 +175,112 @@ const DashboardActive = ({
   );
 };
 
-export const Dashboard = ({
-  addCustomer,
+const CustomersList = ({
+  customers,
+  listName,
+  status,
   removeCustomer,
   markCompleted,
-  markActive,
-  customers
+  markActive
 }) => {
-  const handleClose = () => {
-    setPopup(false);
-  };
-  const [popup, setPopup] = useState(false);
+  const theme = useTheme();
+
   return (
-    <Box sx={{ position: "relative" }}>
-      <PageName name="Dashboard" />
-      <Flex
-        justifyContent={customers.length >= 1 ? "flex-start" : "center"}
-        flexDirection="column"
-        alignItems={customers.length >= 1 ? "" : "center"}
-        width="100%"
-        maxWidth="1136px"
-        height={customers.length >= 1 ? "660px" : "146px"}
-        m="40px auto 0"
-        p={customers.length > 1 ? "0" : "20 0 0"}
-        backgroundColor="grey700"
-        sx={{
-          borderRadius: "16px",
-          boxShadow: "large"
-        }}
+    <Fragment>
+      <Box padding="30px 0">
+        <Heading
+          as="h3"
+          fontSize={1}
+          color={status === STATUS.ACTIVE ? "grey000" : "grey300"}
+          fontWeight="bold"
+          padding="0 74px"
+        >
+          {listName}
+        </Heading>
+        <Flex flexDirection="column">
+          {customers.map(customer => {
+            return (
+              <Flex
+                key={customer.id}
+                margin="10px 0 0"
+                p="12px 0 12px 24px"
+                alignItems="center"
+                sx={
+                  status === STATUS.ACTIVE
+                    ? {
+                        ":hover": {
+                          backgroundColor: "grey500"
+                        }
+                      }
+                    : {}
+                }
+              >
+                {status === STATUS.ACTIVE ? (
+                  <OutlineIcon
+                    height="24px"
+                    width="24px"
+                    fill={theme.colors.orange200}
+                    onClick={() => {
+                      markCompleted(customer);
+                    }}
+                  />
+                ) : (
+                  <CheckboxIcon
+                    height="24px"
+                    width="24px"
+                    fill={theme.colors.grey300}
+                    onClick={() => {
+                      markActive(customer);
+                    }}
+                  />
+                )}
+
+                <Heading
+                  as="h4"
+                  fontSize={1}
+                  color={status === STATUS.ACTIVE ? "grey000" : "grey300"}
+                  fontWeight="normal"
+                  padding="0 0 0 24px"
+                >
+                  {customer.name}
+                </Heading>
+                <ActionButtons
+                  status={status}
+                  removeCustomer={removeCustomer}
+                  customer={customer}
+                />
+              </Flex>
+            );
+          })}
+        </Flex>
+      </Box>
+      {status === STATUS.ACTIVE && <hr />}
+    </Fragment>
+  );
+};
+const ActionButtons = ({ status, removeCustomer, customer }) => {
+  const theme = useTheme();
+  const color =
+    status === STATUS.ACTIVE ? theme.colors.orange200 : theme.colors.grey300;
+
+  return (
+    <Box display="flex" flexDirection="row" marginLeft="30px">
+      <ActionButton
+        variant="none"
+        onClick={() => removeCustomer(customer)}
+        disabled={status !== STATUS.ACTIVE}
       >
-        {customers.length < 1 && <DashboardEmpty setPopup={setPopup} />}
-        {customers.length > 0 && (
-          <DashboardActive
-            customers={customers}
-            setPopup={setPopup}
-            removeCustomer={removeCustomer}
-            markCompleted={markCompleted}
-            markActive={markActive}
-          />
-        )}
-      </Flex>
-      {popup && <Popup handleClose={handleClose} addCustomer={addCustomer} />}
+        <BinIcon height="14px" width="14px" fill={color} />
+        <Text display="inline-block" padding="0 10px" color={color}>
+          Delete
+        </Text>
+      </ActionButton>
+      <ActionButton variant="none">
+        <EditIcon height="16px" width="16px" fill={color} />
+        <Text display="inline-block" padding="0 10px" color={color}>
+          Edit
+        </Text>
+      </ActionButton>
     </Box>
   );
 };
