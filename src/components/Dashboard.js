@@ -30,7 +30,8 @@ const ActionButton = styled(Button)`
   cursor: pointer;
 `;
 
-const ActionButtons = ({ theme, status, removeCustomer, customer }) => {
+const ActionButtons = ({ status, removeCustomer, customer }) => {
+  const theme = useTheme();
   const getColor = () => {
     return status === "active" ? theme.colors.orange200 : theme.colors.grey300;
   };
@@ -57,7 +58,6 @@ const ActionButtons = ({ theme, status, removeCustomer, customer }) => {
 };
 
 const CustomersList = ({
-  theme,
   customers,
   listName,
   status,
@@ -65,6 +65,8 @@ const CustomersList = ({
   markCompleted,
   markActive
 }) => {
+  const theme = useTheme();
+
   return (
     <Fragment>
       <Box padding="30px 0">
@@ -126,7 +128,6 @@ const CustomersList = ({
                 </Heading>
                 <ActionButtons
                   status={status}
-                  theme={theme}
                   removeCustomer={removeCustomer}
                   customer={customer}
                 />
@@ -162,13 +163,14 @@ const DashboardEmpty = ({ setPopup }) => {
 };
 
 const DashboardActive = ({
-  theme,
   customers,
   setPopup,
   removeCustomer,
   markCompleted,
   markActive
 }) => {
+  const theme = useTheme();
+
   const activeCustomers = customers.filter(
     customer => customer.status === "active"
   );
@@ -224,7 +226,6 @@ const DashboardActive = ({
             customers={type.customers}
             listName={type.name}
             status={type.status}
-            theme={theme}
             removeCustomer={removeCustomer}
             markCompleted={markCompleted}
             markActive={markActive}
@@ -242,7 +243,6 @@ export const Dashboard = ({
   markActive,
   customers
 }) => {
-  const theme = useTheme();
   const handleClose = () => {
     setPopup(false);
   };
@@ -268,7 +268,6 @@ export const Dashboard = ({
         {customers.length < 1 && <DashboardEmpty setPopup={setPopup} />}
         {customers.length > 0 && (
           <DashboardActive
-            theme={theme}
             customers={customers}
             setPopup={setPopup}
             removeCustomer={removeCustomer}
