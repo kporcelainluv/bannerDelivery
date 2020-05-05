@@ -2,7 +2,8 @@ import React, { useState, Fragment } from "react";
 import { Button, Text, Box, Flex, Heading } from "rebass/styled-components";
 import { Plus } from "@styled-icons/boxicons-regular/Plus";
 import { Search } from "@styled-icons/evaicons-solid/Search";
-import { CheckmarkOutline } from "@styled-icons/evaicons-outline/CheckmarkOutline";
+import { CheckBoxOutlineBlank } from "@styled-icons/material-outlined/CheckBoxOutlineBlank";
+import { CheckBox } from "@styled-icons/material-outlined/CheckBox";
 import { Bin } from "@styled-icons/icomoon/Bin";
 import { Edit } from "@styled-icons/material/Edit";
 import { Input } from "@rebass/forms";
@@ -92,19 +93,23 @@ const CustomersList = ({
                     : {}
                 }
               >
-                <CheckmarkOutline
-                  height="24px"
-                  width="24px"
-                  fill={
-                    status === "active"
-                      ? theme.colors.orange200
-                      : theme.colors.grey300
-                  }
-                  onClick={() => {
-                    console.log("clicked");
-                    markCompleted(customer);
-                  }}
-                />
+                {status === "active" ? (
+                  <CheckBoxOutlineBlank
+                    height="24px"
+                    width="24px"
+                    fill={theme.colors.orange200}
+                    onClick={() => {
+                      markCompleted(customer);
+                    }}
+                  />
+                ) : (
+                  <CheckBox
+                    height="24px"
+                    width="24px"
+                    fill={theme.colors.grey300}
+                  />
+                )}
+
                 <Heading
                   as="h4"
                   fontSize={1}
