@@ -32,9 +32,9 @@ const ActionButton = styled(Button)`
 
 const ActionButtons = ({ status, removeCustomer, customer }) => {
   const theme = useTheme();
-  const getColor = () => {
-    return status === "active" ? theme.colors.orange200 : theme.colors.grey300;
-  };
+  const color =
+    status === "active" ? theme.colors.orange200 : theme.colors.grey300;
+
   return (
     <Box display="flex" flexDirection="row" marginLeft="30px">
       <ActionButton
@@ -42,14 +42,14 @@ const ActionButtons = ({ status, removeCustomer, customer }) => {
         onClick={() => removeCustomer(customer)}
         disabled={status !== "active"}
       >
-        <BinIcon height="14px" width="14px" fill={getColor()} />
-        <Text display="inline-block" padding="0 10px" color={getColor()}>
+        <BinIcon height="14px" width="14px" fill={color} />
+        <Text display="inline-block" padding="0 10px" color={color}>
           Delete
         </Text>
       </ActionButton>
       <ActionButton variant="none">
-        <EditIcon height="16px" width="16px" fill={getColor()} />
-        <Text display="inline-block" padding="0 10px" color={getColor()}>
+        <EditIcon height="16px" width="16px" fill={color} />
+        <Text display="inline-block" padding="0 10px" color={color}>
           Edit
         </Text>
       </ActionButton>
