@@ -9,7 +9,7 @@ import { Header } from "./Header";
 import { Dashboard } from "./Dashboard";
 import { STATUS } from "../utils/consts";
 import { Campaigns } from "./Campaigns";
-import { Campaign } from "./Campaign";
+import { Campaign } from "./campaign/Campaign";
 
 const customersList = [
   {
