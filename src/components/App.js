@@ -86,19 +86,26 @@ const customersList = [
         id: nanoid(),
         name: "Mother's day",
         date: "30 Sep 2019",
-        status: "completed"
+        status: "completed",
+        attachments: [
+          { name: "Specifications.js", id: nanoid() },
+          { name: "Prototype.png", id: nanoid() }
+        ],
+        description: "Implement HTML and PNG banners"
       },
       {
         id: nanoid(),
         name: "Campaign 10.19",
         date: "20 Nov 2019",
-        status: "active"
+        status: "active",
+        attachments: []
       },
       {
         id: nanoid(),
         name: "New Year campaign",
         date: "31 Dec 2019",
-        status: "active"
+        status: "active",
+        attachments: []
       }
     ]
   }
@@ -174,6 +181,104 @@ export const App = () => {
       })
     );
   };
+
+  const addAttachment = (name, customer, campaign) => {
+    const updatedCampaigns = customer.campaigns.map(c => {
+      if (c.id === campaign.id) {
+        return {
+          ...c,
+          attachments: [
+            ...c.attachments,
+            {
+              name: name,
+              id: nanoid()
+            }
+          ]
+        };
+      }
+      return c;
+    });
+
+    setCustomers(
+      customers.map(c => {
+        if (c.id === customer.id) {
+          return {
+            ...c,
+            campaigns: updatedCampaigns
+          };
+        }
+        return c;
+      })
+    );
+  };
+
+  const deleteAttachment = (attachmentId, customer, campaign) => {
+    const updatedAttachments = campaign.attachments.filter(
+      c => c.id !== attachmentId
+    );
+    const updatedCampaigns = customer.campaigns.map(c => {
+      if (c.id === campaign.id) {
+        return { ...c, attachments: updatedAttachments };
+      }
+      return c;
+    });
+
+    setCustomers(
+      customers.map(c => {
+        if (c.id === customer.id) {
+          return {
+            ...c,
+            campaigns: updatedCampaigns
+          };
+        }
+        return c;
+      })
+    );
+  };
+
+  const updateDescription = (campaign, customer, newDescription) => {
+    const updatedCampaigns = customer.campaigns.map(c => {
+      if (c.id === campaign.id) {
+        return { ...c, description: newDescription };
+      }
+      return c;
+    });
+
+    setCustomers(
+      customers.map(c => {
+        if (c.id === customer.id) {
+          return {
+            ...c,
+            campaigns: updatedCampaigns
+          };
+        }
+        return c;
+      })
+    );
+  };
+
+  const updateCampaignName = (campaign, customer, newName) => {
+    const updatedCampaigns = customer.campaigns.map(c => {
+      if (c.id === campaign.id) {
+        return { ...c, name: newName };
+      }
+      return c;
+    });
+
+    setCustomers(
+      customers.map(c => {
+        if (c.id === customer.id) {
+          return {
+            ...c,
+            campaigns: updatedCampaigns
+          };
+        }
+        return c;
+      })
+    );
+  };
+
+  console.log({ customers });
   return (
     <div className="App">
       <GlobalTheme />
@@ -191,7 +296,14 @@ export const App = () => {
         {/*  markCampaignActive={markCampaignActive}*/}
         {/*  markCampaignCompleted={markCampaignCompleted}*/}
         {/*/>*/}
-        <Campaign campaign={customers[3]["campaigns"][0]} />
+        <Campaign
+          customer={customers[3]}
+          addAttachment={addAttachment}
+          campaign={customers[3]["campaigns"][0]}
+          deleteAttachment={deleteAttachment}
+          updateDescription={updateDescription}
+          updateCampaignName={updateCampaignName}
+        />
       </ThemeProvider>
     </div>
   );
