@@ -50,7 +50,7 @@ export const Campaigns = ({
 
   const getBorderColor = status => {
     return displayedCampaigns === status
-      ? "2px solid #FF8E3C"
+      ? `2px solid ${theme.colors.orange100}`
       : "2px transparent";
   };
 
