@@ -20,5 +20,45 @@ export const darkTheme = {
   fonts: {
     body: "Roboto,  Helvetica, sans-serif",
     heading: "inherit"
+  },
+  buttons: {
+    primary: {
+      height: "48px",
+      width: "232px",
+      backgroundColor: "#D67935",
+      letterSpacing: "0.3px",
+      fontWeight: "500",
+      fontSize: "18px",
+      lineHeight: "24px",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      color: "#FFFFFE",
+      cursor: "pointer",
+      "&:hover": {
+        backgroundColor: "#DB7124"
+      },
+      "&:focus": {
+        backgroundColor: "#DB7124"
+      }
+    },
+    secondary: {
+      height: "48px",
+      width: "92px",
+      borderRadius: "4px",
+      letterSpacing: "0.3px",
+      fontWeight: "500",
+      fontSize: "18px",
+      lineHeight: "24px",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      color: "#FFFFFE",
+      border: "none",
+      cursor: "pointer"
+    }
+  },
+  shadows: {
+    large: "0px 0px 25px rgba(13, 13, 13, 0.05)"
   }
 };
