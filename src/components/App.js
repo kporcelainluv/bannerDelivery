@@ -6,7 +6,7 @@ import { nanoid } from "nanoid";
 import { darkTheme } from "../theme/dark";
 import { Header } from "./Header";
 import { Dashboard } from "./Dashboard";
-import { STATUS } from "../utils/utils";
+import { STATUS } from "../utils/consts";
 import { Campaigns } from "./Campaigns";
 
 const customersList = [

@@ -12,7 +12,7 @@ import styled, { useTheme } from "styled-components";
 import { Wrapper } from "./Wrapper";
 import { Popup } from "./Popup";
 import { PageName } from "./PageName";
-import { STATUS } from "../utils/utils";
+import { STATUS } from "../utils/consts";
 
 const StyledSearch = styled(SearchIcon)`
   position: absolute;

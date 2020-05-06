@@ -10,7 +10,7 @@ import styled, { useTheme } from "styled-components";
 import { nanoid } from "nanoid";
 import { PageName } from "./PageName";
 import { Wrapper } from "./Wrapper";
-import { STATUS } from "../utils/utils";
+import { STATUS } from "../utils/consts";
 
 const StyledSearch = styled(SearchIcon)`
   position: absolute;
