@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import GlobalTheme from "../theme/GlobalTheme";
 import { ThemeProvider } from "styled-components";
 import { nanoid } from "nanoid";
+import u from "updeep";
 
 import { darkTheme } from "../theme/dark";
 import { Header } from "./Header";
@@ -278,7 +279,6 @@ export const App = () => {
     );
   };
 
-  console.log({ customers });
   return (
     <div className="App">
       <GlobalTheme />
