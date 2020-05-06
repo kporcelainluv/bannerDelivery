@@ -9,7 +9,7 @@ import styled, { useTheme } from "styled-components";
 
 import { nanoid } from "nanoid";
 import { PageName } from "./PageName";
-import { Wrapper } from "./Wrapper";
+import { Paper } from "./Paper";
 import { STATUS } from "../utils/consts";
 
 const StyledSearch = styled(SearchIcon)`
@@ -61,7 +61,7 @@ export const Campaigns = ({
     <Box sx={{ position: "relative" }} width="100%" height="100%">
       <PageName name={customer.name} />
       <ReturnToDashboard />
-      <Wrapper>
+      <Paper>
         <Flex justifyContent="space-between" margin="24px">
           <Flex as="form" sx={{ position: "relative" }}>
             <StyledSearch />
@@ -168,7 +168,7 @@ export const Campaigns = ({
             );
           })}
         </Box>
-      </Wrapper>
+      </Paper>
     </Box>
   );
 };
