@@ -8,6 +8,7 @@ import { Header } from "./Header";
 import { Dashboard } from "./Dashboard";
 import { STATUS } from "../utils/consts";
 import { Campaigns } from "./Campaigns";
+import { Campaign } from "./Campaign";
 
 const customersList = [
   {
@@ -185,11 +186,12 @@ export const App = () => {
         {/*  markActive={markActive}*/}
         {/*  customers={customers}*/}
         {/*/>*/}
-        <Campaigns
-          customer={customers[3]}
-          markCampaignActive={markCampaignActive}
-          markCampaignCompleted={markCampaignCompleted}
-        />
+        {/*<Campaigns*/}
+        {/*  customer={customers[3]}*/}
+        {/*  markCampaignActive={markCampaignActive}*/}
+        {/*  markCampaignCompleted={markCampaignCompleted}*/}
+        {/*/>*/}
+        <Campaign campaign={customers[3]["campaigns"][0]} />
       </ThemeProvider>
     </div>
   );
