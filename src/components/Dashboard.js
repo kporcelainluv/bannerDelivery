@@ -273,7 +273,7 @@ const ActionButtons = ({ status, removeCustomer, customer }) => {
     status === STATUS.ACTIVE ? theme.colors.orange200 : theme.colors.grey300;
 
   return (
-    <Box display="flex" flexDirection="row" marginLeft="30px">
+    <Flex flexDirection="row" marginLeft="30px">
       <ActionButton
         variant="none"
         onClick={() => removeCustomer(customer)}
@@ -290,6 +290,6 @@ const ActionButtons = ({ status, removeCustomer, customer }) => {
           Edit
         </Text>
       </ActionButton>
-    </Box>
+    </Flex>
   );
 };
