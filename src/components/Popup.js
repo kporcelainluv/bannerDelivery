@@ -17,8 +17,9 @@ export const Popup = ({ handleClose, addCustomer }) => {
       flexDirection="column"
       sx={{
         position: "absolute",
-        top: "25%",
-        left: "30%"
+        top: "50%",
+        left: "50%",
+        transform: "translate(-50%, -50%)"
       }}
     >
       <Flex
