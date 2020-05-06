@@ -1,0 +1,29 @@
+import { Flex, Heading } from "rebass/styled-components";
+import React from "react";
+
+import { useTheme } from "styled-components";
+
+export const Header = () => {
+  const theme = useTheme();
+  return (
+    <Flex
+      alignItems="center"
+      justifyContent={"center"}
+      sx={{
+        background: theme.colors.gradient1
+      }}
+    >
+      <Flex
+        alignItems="center"
+        width={"100%"}
+        maxWidth={"1136px"}
+        height={"56px"}
+        m={"0 auto"}
+      >
+        <Heading as="h3" fontSize={2} color={"grey000"}>
+          Banner Delivery
+        </Heading>
+      </Flex>
+    </Flex>
+  );
+};
