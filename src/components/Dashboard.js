@@ -9,7 +9,7 @@ import { Edit as EditIcon } from "@styled-icons/material/Edit";
 import { Input } from "@rebass/forms";
 import styled, { useTheme } from "styled-components";
 
-import { Wrapper } from "./Wrapper";
+import { Paper } from "./Paper";
 import { Popup } from "./Popup";
 import { PageName } from "./PageName";
 import { STATUS } from "../utils/utils";
@@ -32,7 +32,7 @@ const ActionButton = styled(Button)`
   cursor: pointer;
 `;
 
-const EmptyWrapper = styled(Flex)`
+const EmptyPaper = styled(Flex)`
   flex-direction: column;
   width: 100%;
   max-width: 1136px;
@@ -63,7 +63,7 @@ export const Dashboard = ({
       <PageName name="Dashboard" />
 
       {customers.length > 0 ? (
-        <Wrapper>
+        <Paper>
           <DashboardActive
             customers={customers}
             setPopup={setPopup}
@@ -71,11 +71,11 @@ export const Dashboard = ({
             markCompleted={markCompleted}
             markActive={markActive}
           />
-        </Wrapper>
+        </Paper>
       ) : (
-        <EmptyWrapper>
+        <EmptyPaper>
           <DashboardEmpty setPopup={setPopup} />
-        </EmptyWrapper>
+        </EmptyPaper>
       )}
 
       {popup && <Popup handleClose={handleClose} addCustomer={addCustomer} />}

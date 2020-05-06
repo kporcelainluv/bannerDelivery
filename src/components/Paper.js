@@ -2,7 +2,7 @@ import React from "react";
 import { Flex } from "rebass/styled-components";
 import { useTheme } from "styled-components";
 
-export const Wrapper = ({ children }) => {
+export const Paper = ({ children }) => {
   const theme = useTheme();
   return (
     <Flex
