@@ -9,6 +9,7 @@ import { Edit as EditIcon } from "@styled-icons/material/Edit";
 import { Input } from "@rebass/forms";
 import styled, { useTheme } from "styled-components";
 
+import { Wrapper } from "./Wrapper";
 import { Popup } from "./Popup";
 import { PageName } from "./PageName";
 import { STATUS } from "../utils/utils";
@@ -31,7 +32,7 @@ const ActionButton = styled(Button)`
   cursor: pointer;
 `;
 
-const Wrapper = styled(Flex)`
+const EmptyWrapper = styled(Flex)`
   flex-direction: column;
   width: 100%;
   max-width: 1136px;
@@ -39,17 +40,10 @@ const Wrapper = styled(Flex)`
   background-color: ${p => p.theme.colors.grey700};
   border-radius: 16px;
   box-shadow: ${p => p.theme.shadows.large};
-  justify-content: ${({ Size }) =>
-    (Size === "active" && "flex-start") || (Size === "empty" && "center")};
-
-  align-items: ${({ Size }) =>
-    (Size === "active" && "") || (Size === "empty" && "center")};
-
-  padding: ${({ Size }) =>
-    (Size === "active" && "0") || (Size === "empty" && "20 0 0")};
-
-  height: ${({ Size }) =>
-    (Size === "active" && "660px") || (Size === "empty" && "146px")};
+  justify-content: center;
+  align-items: center;
+  padding: 20px 0 0;
+  height: 146px;
 `;
 
 export const Dashboard = ({
@@ -63,13 +57,13 @@ export const Dashboard = ({
     setPopup(false);
   };
 
-  const wrapperSize = customers.length > 0 ? "active" : "empty";
   const [popup, setPopup] = useState(false);
   return (
     <Box sx={{ position: "relative" }} width="100%" height="100%">
       <PageName name="Dashboard" />
-      <Wrapper size={wrapperSize}>
-        {customers.length > 0 ? (
+
+      {customers.length > 0 ? (
+        <Wrapper>
           <DashboardActive
             customers={customers}
             setPopup={setPopup}
@@ -77,10 +71,13 @@ export const Dashboard = ({
             markCompleted={markCompleted}
             markActive={markActive}
           />
-        ) : (
+        </Wrapper>
+      ) : (
+        <EmptyWrapper>
           <DashboardEmpty setPopup={setPopup} />
-        )}
-      </Wrapper>
+        </EmptyWrapper>
+      )}
+
       {popup && <Popup handleClose={handleClose} addCustomer={addCustomer} />}
     </Box>
   );
