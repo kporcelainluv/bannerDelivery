@@ -24,7 +24,7 @@ const buttons = [
   { id: nanoid(), name: "Refresh", size: "18px" }
 ];
 
-export const AccessPopup = () => {
+export const AccessPopup = ({ closePopup }) => {
   const theme = useTheme();
   const [accessList, setAccessList] = useState([
     { id: nanoid(), name: "Production Access Link", checked: true },
@@ -43,7 +43,7 @@ export const AccessPopup = () => {
   };
 
   return (
-    <PopupPaper heading={"Manage Access"}>
+    <PopupPaper heading={"Manage Access"} closePopup={closePopup}>
       {accessList.map(field => {
         const color = field.checked
           ? theme.colors.orange200
