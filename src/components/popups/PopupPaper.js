@@ -1,21 +1,20 @@
 import React from "react";
-import { Button, Flex, Heading } from "rebass/styled-components";
+import { Button, Flex, Heading, Box } from "rebass/styled-components";
 import { CloseOutline } from "@styled-icons/evaicons-outline/CloseOutline";
 
 import { useTheme } from "styled-components";
 
-export const PopupPaper = ({ heading, children }) => {
+export const PopupPaper = ({ heading, children, height }) => {
   const theme = useTheme();
   return (
     <Flex
       as="form"
       onSubmit={e => e.preventDefault()}
-      height="300px"
       width="584px"
       backgroundColor="grey700"
       flexDirection="column"
       sx={{
-        position: "absolute",
+        position: "fixed",
         top: "50%",
         left: "50%",
         transform: "translate(-50%, -50%)"
