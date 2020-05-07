@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Button,
   Flex,
@@ -23,6 +23,7 @@ import { DeleteOutline as DeleteIcon } from "@styled-icons/material-twotone/Dele
 import { DoneAll as DoneIcon } from "@styled-icons/evaicons-solid/DoneAll";
 
 import { BoxContainer } from "../Box";
+import { AccessPopup } from "../popups/AcessPopup";
 const StyledUploadIcon = styled(UploadIcon)`
   height: 24px;
   width: 24px;
@@ -35,10 +36,35 @@ const StyledButton = styled(Button)`
   margin-left: 10px;
 `;
 
+const StyledTab = styled(Button)`
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  margin-right: 15px;
+  border-radius: 0;
+  position: relative;
+  display: flex;
+  align-items: center;
+  &&:after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    bottom: -8px;
+    left: -3px;
+    border-bottom: ${({ selected }) =>
+      (selected && `2px solid #D67935`) || (!selected && "none")};
+  }
+`;
+
 const BUTTON_STATUS_TEXT = {
   PENDING: "Accept",
   ACCEPTED: "Release",
   RELEASED: "Cancel"
+};
+
+const TABS = {
+  HTML: "HTML",
+  JPEG: "JPEG"
 };
 
 const materialsList = [
@@ -54,10 +80,17 @@ const materialsList = [
 
 export const Materials = () => {
   const theme = useTheme();
+  const [tab, setTab] = useState("JPEG");
+  const [accessPopup, setAccessPopup] = useState(false);
+
+  const closePopup = () => {
+    setAccessPopup(false);
+  };
+
   return (
     <Box>
       <Header />
-      <Tabs />
+      <Tabs tab={tab} setTab={setTab} />
       <Box as="hr" m={"0"} color={theme.colors.grey400} />
       <BoxContainer
         buttonText={"Upload Banner"}
@@ -67,7 +100,11 @@ export const Materials = () => {
       >
         {<StyledUploadIcon />}
       </BoxContainer>
-      <MaterialsContainer />
+      <MaterialsContainer
+        accessPopup={accessPopup}
+        setAccessPopup={setAccessPopup}
+      />
+      {accessPopup && <AccessPopup closePopup={closePopup} />}
     </Box>
   );
 };
@@ -75,7 +112,7 @@ export const Materials = () => {
 const Header = () => {
   const theme = useTheme();
   return (
-    <Flex padding="24px" justifyContent="space-between">
+    <Flex padding="30px 24px 0px" justifyContent="space-between">
       <Heading as="h2" fontSize={2} color="grey000" mb="24px">
         Materials
       </Heading>
@@ -110,31 +147,29 @@ const Header = () => {
   );
 };
 
-const Tabs = () => {
+const Tabs = ({ tab, setTab }) => {
   const theme = useTheme();
   return (
     <Flex p={"0 24px"} alignItems="center">
-      <Button
+      <StyledTab
         variant="none"
-        backgroundColor="transparent"
-        border="none"
-        p={"0"}
-        mr={"15px"}
+        selected={tab === TABS.JPEG}
+        onClick={() => {
+          setTab(TABS.JPEG);
+        }}
       >
-        <Text as="span">JPEG</Text>
+        <Text as="span">{TABS.JPEG}</Text>
 
         <MoreIcon height="15px" width="15px" />
-      </Button>
-      <Button
+      </StyledTab>
+      <StyledTab
         variant="none"
-        backgroundColor="transparent"
-        border="none"
-        p={"0"}
-        mr={"15px"}
-        display="flex"
-        alignItems="center"
+        selected={tab === TABS.HTML}
+        onClick={() => {
+          setTab(TABS.HTML);
+        }}
       >
-        <Text as="span">HTML</Text>
+        <Text as="span">{TABS.HTML}</Text>
         <Box
           ml={"5px"}
           p={"0 4px"}
@@ -143,7 +178,7 @@ const Tabs = () => {
         >
           1
         </Box>
-      </Button>
+      </StyledTab>
       <Button
         variant="none"
         backgroundColor="transparent"
@@ -178,7 +213,7 @@ const MaterialDescription = ({ element }) => {
   );
 };
 
-const ActionButtons = () => {
+const ActionButtons = ({ accessPopup, setAccessPopup }) => {
   const theme = useTheme();
   return (
     <Flex>
@@ -192,7 +227,12 @@ const ActionButtons = () => {
           fill={theme.colors.grey000}
         />
       </StyledButton>
-      <StyledButton variant="none">
+      <StyledButton
+        variant="none"
+        onClick={() => {
+          setAccessPopup(!accessPopup);
+        }}
+      >
         <Text as="span" className="visually-hidden">
           Upload
         </Text>
@@ -219,7 +259,7 @@ const ActionButtons = () => {
   );
 };
 
-const MaterialsContainer = () => {
+const MaterialsContainer = ({ accessPopup, setAccessPopup }) => {
   return (
     <Box>
       {materialsList.map(element => {
@@ -237,7 +277,10 @@ const MaterialsContainer = () => {
               alignItems="flex-end"
             >
               <CTAButton element={element} />
-              <ActionButtons />
+              <ActionButtons
+                accessPopup={accessPopup}
+                setAccessPopup={setAccessPopup}
+              />
             </Flex>
           </Flex>
         );
