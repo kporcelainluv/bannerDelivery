@@ -9,6 +9,7 @@ import styled, { useTheme } from "styled-components";
 import { Paper } from "../Paper";
 import { Task } from "./Task";
 import { CampaignName } from "./CampaignName";
+import { Materials } from "./Materials";
 
 export const Campaign = ({
   customer,
@@ -31,13 +32,14 @@ export const Campaign = ({
         updateCampaignName={updateCampaignName}
       />
       <Paper>
-        <Task
-          campaign={campaign}
-          addAttachment={addAttachment}
-          customer={customer}
-          deleteAttachment={deleteAttachment}
-          updateDescription={updateDescription}
-        />
+        {/*<Task*/}
+        {/*  campaign={campaign}*/}
+        {/*  addAttachment={addAttachment}*/}
+        {/*  customer={customer}*/}
+        {/*  deleteAttachment={deleteAttachment}*/}
+        {/*  updateDescription={updateDescription}*/}
+        {/*/>*/}
+        <Materials />
       </Paper>
     </Box>
   );
