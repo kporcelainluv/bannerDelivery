@@ -297,15 +297,15 @@ export const App = () => {
         {/*  markCampaignActive={markCampaignActive}*/}
         {/*  markCampaignCompleted={markCampaignCompleted}*/}
         {/*/>*/}
-        {/*<Campaign*/}
-        {/*  customer={customers[3]}*/}
-        {/*  addAttachment={addAttachment}*/}
-        {/*  campaign={customers[3]["campaigns"][0]}*/}
-        {/*  deleteAttachment={deleteAttachment}*/}
-        {/*  updateDescription={updateDescription}*/}
-        {/*  updateCampaignName={updateCampaignName}*/}
-        {/*/>*/}
-        <AccessPopup />
+        <Campaign
+          customer={customers[3]}
+          addAttachment={addAttachment}
+          campaign={customers[3]["campaigns"][0]}
+          deleteAttachment={deleteAttachment}
+          updateDescription={updateDescription}
+          updateCampaignName={updateCampaignName}
+        />
+        {/*<AccessPopup />*/}
       </ThemeProvider>
     </div>
   );
