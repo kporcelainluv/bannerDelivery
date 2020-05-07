@@ -10,7 +10,7 @@ import { Dashboard } from "./Dashboard";
 import { STATUS } from "../utils/consts";
 import { Campaigns } from "./Campaigns";
 import { Campaign } from "./campaign/Campaign";
-import { AccessPopup } from "./AcessPopup";
+import { AccessPopup } from "./popups/AcessPopup";
 
 const customersList = [
   {

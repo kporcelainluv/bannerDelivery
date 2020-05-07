@@ -7,43 +7,12 @@ import { Input, Label } from "@rebass/forms";
 import { Copy as CopyIcon } from "@styled-icons/feather/Copy";
 import { useTheme } from "styled-components";
 
+import { PopupPaper } from "./PopupPaper";
+
 export const AccessPopup = () => {
   const theme = useTheme();
   return (
-    <Flex
-      as="form"
-      onSubmit={e => e.preventDefault()}
-      height="300px"
-      width="584px"
-      backgroundColor="grey700"
-      flexDirection="column"
-      sx={{
-        position: "absolute",
-        top: "50%",
-        left: "50%",
-        transform: "translate(-50%, -50%)"
-      }}
-    >
-      <Flex
-        height="56px"
-        sx={{ background: theme.colors.gradient1 }}
-        flexDirection="row"
-        width="100%"
-        alignItems="center"
-        justifyContent="space-between"
-        padding="0 20px 0 25px"
-      >
-        <Heading as="h3" fontSize={2} color="grey000">
-          Manage Access
-        </Heading>
-        <Button
-          variant="none"
-          sx={{ background: "none", border: "none", color: "#FFFFFE" }}
-          padding="0"
-        >
-          <CloseOutline height="25px" width="25px" cursor="pointer" />
-        </Button>
-      </Flex>
+    <PopupPaper heading={'Manage Access'}>
       <Box m="35px 25px">
         <Flex justifyContent="space-between">
           <Heading as="h3" fontSize={2} color="grey000" fontWeight="bold">
@@ -70,6 +39,6 @@ export const AccessPopup = () => {
           </Button>
         </Flex>
       </Box>
-    </Flex>
+    </PopupPaper>
   );
 };

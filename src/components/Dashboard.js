@@ -10,7 +10,7 @@ import { Input } from "@rebass/forms";
 import styled, { useTheme } from "styled-components";
 
 import { Paper } from "./Paper";
-import { Popup } from "./Popup";
+import { Popup } from "./popups/Popup";
 import { PageName } from "./PageName";
 import { STATUS } from "../utils/consts";
 
