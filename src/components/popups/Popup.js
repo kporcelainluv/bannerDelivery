@@ -3,46 +3,13 @@ import { Flex, Heading, Button } from "rebass/styled-components";
 import { Label, Input } from "@rebass/forms";
 import { useTheme } from "styled-components";
 import { CloseOutline } from "@styled-icons/evaicons-outline/CloseOutline";
+import { PopupPaper } from "./PopupPaper";
 
 export const Popup = ({ handleClose, addCustomer }) => {
   const [name, setName] = useState("");
   const theme = useTheme();
   return (
-    <Flex
-      as="form"
-      onSubmit={e => e.preventDefault()}
-      height="300px"
-      width="584px"
-      backgroundColor="grey700"
-      flexDirection="column"
-      sx={{
-        position: "absolute",
-        top: "50%",
-        left: "50%",
-        transform: "translate(-50%, -50%)"
-      }}
-    >
-      <Flex
-        height="56px"
-        sx={{ background: theme.colors.gradient1 }}
-        flexDirection="row"
-        width="100%"
-        alignItems="center"
-        justifyContent="space-between"
-        padding="0 20px 0 25px"
-      >
-        <Heading as="h3" fontSize={2} color="grey000">
-          Add customer
-        </Heading>
-        <Button
-          variant="none"
-          sx={{ background: "none", border: "none", color: "#FFFFFE" }}
-          onClick={handleClose}
-          padding="0"
-        >
-          <CloseOutline height="25px" width="25px" cursor="pointer" />
-        </Button>
-      </Flex>
+    <PopupPaper heading={"Add Customer"}>
       <Flex
         alignItems="flex-start"
         justifyContent="center"
@@ -105,6 +72,6 @@ export const Popup = ({ handleClose, addCustomer }) => {
           </Button>
         </Flex>
       </Flex>
-    </Flex>
+    </PopupPaper>
   );
 };
