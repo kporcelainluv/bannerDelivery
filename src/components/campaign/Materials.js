@@ -28,6 +28,12 @@ const StyledUploadIcon = styled(UploadIcon)`
   width: 24px;
   margin: 0 10px 0 0;
 `;
+const StyledButton = styled(Button)`
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  margin-left: 10px;
+`;
 
 const BUTTON_STATUS_TEXT = {
   PENDING: "Accept",
@@ -47,11 +53,12 @@ const materialsList = [
 ];
 
 export const Materials = () => {
+  const theme = useTheme();
   return (
     <Box>
       <Header />
       <Tabs />
-      <Box as="hr" m={"0"} />
+      <Box as="hr" m={"0"} color={theme.colors.grey400} />
       <BoxContainer
         buttonText={"Upload Banner"}
         additionalText={"or drop file here"}
@@ -81,6 +88,14 @@ const Header = () => {
         onClick={() => {}}
         display="flex"
         alignItems="center"
+        sx={{
+          ":hover": {
+            backgroundColor: "grey500"
+          },
+          ":focus": {
+            backgroundColor: "grey500"
+          }
+        }}
       >
         <DownloadIcon
           height="15px"
@@ -98,25 +113,44 @@ const Header = () => {
 const Tabs = () => {
   const theme = useTheme();
   return (
-    <Flex>
-      <Button variant="none" backgroundColor="transparent" border="none">
+    <Flex p={"0 24px"} alignItems="center">
+      <Button
+        variant="none"
+        backgroundColor="transparent"
+        border="none"
+        p={"0"}
+        mr={"15px"}
+      >
         <Text as="span">JPEG</Text>
 
-        <MoreIcon height="24px" width="24px" />
+        <MoreIcon height="15px" width="15px" />
       </Button>
-      <Button variant="none" backgroundColor="transparent" border="none">
+      <Button
+        variant="none"
+        backgroundColor="transparent"
+        border="none"
+        p={"0"}
+        mr={"15px"}
+        display="flex"
+        alignItems="center"
+      >
         <Text as="span">HTML</Text>
-        <Text
+        <Box
           ml={"5px"}
-          p={"0 5px"}
-          as="span"
-          fontSize={"12px"}
+          p={"0 4px"}
+          fontSize={"10px"}
           sx={{ border: "1px solid white", borderRadius: "50%" }}
         >
           1
-        </Text>
+        </Box>
       </Button>
-      <Button variant="none" backgroundColor="transparent" border="none">
+      <Button
+        variant="none"
+        backgroundColor="transparent"
+        border="none"
+        p={"0"}
+        mr={"15px"}
+      >
         <AddIcon height="30px" width="30px" fill={theme.colors.grey500} />
         <Text as="span" className="visually-hidden">
           Add type
@@ -148,30 +182,39 @@ const ActionButtons = () => {
   const theme = useTheme();
   return (
     <Flex>
-      <DownloadOutlinedIcon
-        height="28px"
-        width="28px"
-        fill={theme.colors.grey000}
-        style={{ margin: "0 8px" }}
-      />
-      <UploadOutlinedIcon
-        height="28px"
-        width="28px"
-        fill={theme.colors.grey000}
-        style={{ margin: "0 8px" }}
-      />
-      <ChatIcon
-        height="28px"
-        width="28px"
-        fill={theme.colors.grey000}
-        style={{ margin: "0 8px" }}
-      />
-      <DeleteIcon
-        height="28px"
-        width="28px"
-        fill={theme.colors.grey000}
-        style={{ margin: "0 8px" }}
-      />
+      <StyledButton variant="none">
+        <Text as="span" className="visually-hidden">
+          Delete
+        </Text>
+        <DownloadOutlinedIcon
+          height="28px"
+          width="28px"
+          fill={theme.colors.grey000}
+        />
+      </StyledButton>
+      <StyledButton variant="none">
+        <Text as="span" className="visually-hidden">
+          Upload
+        </Text>
+        <UploadOutlinedIcon
+          height="28px"
+          width="28px"
+          fill={theme.colors.grey000}
+        />
+      </StyledButton>
+
+      <StyledButton variant="none">
+        <Text as="span" className="visually-hidden">
+          Chat
+        </Text>
+        <ChatIcon height="28px" width="28px" fill={theme.colors.grey000} />
+      </StyledButton>
+      <StyledButton variant="none">
+        <Text as="span" className="visually-hidden">
+          Delete
+        </Text>
+        <DeleteIcon height="28px" width="28px" fill={theme.colors.grey000} />
+      </StyledButton>
     </Flex>
   );
 };
