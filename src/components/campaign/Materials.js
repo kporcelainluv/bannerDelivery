@@ -25,6 +25,7 @@ import { DoneAll as DoneIcon } from "@styled-icons/evaicons-solid/DoneAll";
 import { BoxContainer } from "../Box";
 import { AccessPopup } from "../popups/AcessPopup";
 import { Chat } from "../popups/Chat";
+import { Input, Label } from "@rebass/forms";
 const StyledUploadIcon = styled(UploadIcon)`
   height: 24px;
   width: 24px;
@@ -220,6 +221,7 @@ const Tabs = ({ tab, setTab }) => {
 };
 
 const UploadBanner = () => {
+  const theme = useTheme();
   return (
     <Flex
       flexDirection="column"
@@ -236,16 +238,36 @@ const UploadBanner = () => {
         maxWidth: "800px"
       }}
     >
-      <Button
-        variant="primary"
-        onClick={() => {}}
-        sx={{
-          borderRadius: "24px"
-        }}
+      <Flex
+        height="48px"
+        width="186px"
+        backgroundColor="orange200"
+        sx={{ borderRadius: "4px" }}
+        alignItems="center"
       >
-        <StyledUploadIcon />
-        Upload Banner
-      </Button>
+        <Label
+          htmlFor="upload"
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+        >
+          <StyledUploadIcon fill={theme.colors.grey000} />
+          <Text as="span" color="grey000" fontSize={2}>
+            Upload Banner
+          </Text>
+        </Label>
+        <Input id="upload" name="upload" type="file" display="none" />
+      </Flex>
+      {/*<Button*/}
+      {/*  variant="primary"*/}
+      {/*  onClick={() => {}}*/}
+      {/*  sx={{*/}
+      {/*    borderRadius: "24px"*/}
+      {/*  }}*/}
+      {/*>*/}
+      {/*  <StyledUploadIcon />*/}
+      {/*  Upload Banner*/}
+      {/*</Button>*/}
       <Text margin="16px 0 0" color="grey300" fontSize={1}>
         or drop file here
       </Text>
