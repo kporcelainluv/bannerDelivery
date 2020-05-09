@@ -80,46 +80,19 @@ const StyledDownload = styled(Button)`
   }
 `;
 
-const materialsList = [
-  {
-    id: nanoid(),
-    name: "Yandex_1280x350",
-    date: "01.10.2019 21:43",
-    size: "135 KB",
-    img: "https://via.placeholder.com/110",
-    status: "pending"
-  },
-  {
-    id: nanoid(),
-    name: "Yandex_1280x350",
-    date: "01.10.2019 21:43",
-    size: "135 KB",
-    img: "https://via.placeholder.com/110",
-    status: "accepted"
-  },
-  {
-    id: nanoid(),
-    name: "Yandex_1280x350",
-    date: "01.10.2019 21:43",
-    size: "135 KB",
-    img: "https://via.placeholder.com/110",
-    status: "released"
-  }
-];
-
-export const Materials = () => {
+export const Materials = ({ campaign, customer }) => {
   const theme = useTheme();
   const [tab, setTab] = useState(TABS.JPEG);
   const [accessPopup, setAccessPopup] = useState(false);
-  const [chatPopup, setChatPopup] = useState(false);
-  const [materials, setMaterials] = useState(materialsList);
+  const [chatPopup, setChatPopup] = useState({ opened: false, material: {} });
+  const [materials, setMaterials] = useState(campaign.materials);
 
   const closePopup = () => {
     setAccessPopup(false);
   };
 
   const closeChat = () => {
-    setChatPopup(false);
+    setChatPopup({ opened: false, material: {} });
   };
 
   const deleteMaterial = material => {
@@ -140,7 +113,9 @@ export const Materials = () => {
         deleteMaterial={deleteMaterial}
       />
       {accessPopup && <AccessPopup closePopup={closePopup} />}
-      {chatPopup && <Chat closeChat={closeChat} />}
+      {chatPopup.opened && (
+        <Chat closeChat={closeChat} campaign={chatPopup.material} />
+      )}
     </Box>
   );
 };
@@ -277,6 +252,7 @@ const ActionButtons = ({
   material
 }) => {
   const theme = useTheme();
+
   return (
     <Flex>
       <StyledButton variant="none">
@@ -308,7 +284,7 @@ const ActionButtons = ({
       <StyledButton
         variant="none"
         onClick={() => {
-          setChatPopup(true);
+          setChatPopup({ opened: true, material: material });
         }}
       >
         <Text as="span" className="visually-hidden">

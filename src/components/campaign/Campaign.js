@@ -37,7 +37,7 @@ export const Campaign = ({
           />
         </Paper>
         <Paper width="848px" margin={"20px 0"}>
-          <Materials />
+          <Materials campaign={campaign} customer={customer} />
         </Paper>
       </Box>
     </Box>

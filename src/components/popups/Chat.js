@@ -45,34 +45,11 @@ const StyledTab = styled(Button)`
 
 const tabs = ["Client", "Production", "Media / Buyer"];
 
-const messagesList = [
-  {
-    id: nanoid(),
-    text:
-      "banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
-    time: "12:28",
-    type: "outcome"
-  },
-
-  {
-    id: nanoid(),
-    text:
-      "Implement 1 HTML and 2 images banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
-    time: "12:28",
-    type: "income"
-  },
-  {
-    id: nanoid(),
-    text:
-      "Implement 1 HTML and 2 images banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
-    time: "12:29",
-    type: "outcome"
-  }
-];
-export const Chat = ({ closeChat }) => {
+export const Chat = ({ closeChat, campaign }) => {
+  console.log({ campaign });
   const [tab, setTab] = useState("Client");
   const [message, setMessage] = useState("");
-  const [messages, setMessages] = useState(messagesList);
+  const [messages, setMessages] = useState(campaign.messagesList);
   return (
     <Box>
       <StyledContainer>
