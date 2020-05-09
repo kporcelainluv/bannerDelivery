@@ -31,16 +31,20 @@ export const Campaign = ({
         customer={customer}
         updateCampaignName={updateCampaignName}
       />
-      <Paper>
-        {/*<Task*/}
-        {/*  campaign={campaign}*/}
-        {/*  addAttachment={addAttachment}*/}
-        {/*  customer={customer}*/}
-        {/*  deleteAttachment={deleteAttachment}*/}
-        {/*  updateDescription={updateDescription}*/}
-        {/*/>*/}
-        <Materials />
-      </Paper>
+      <Box width="1136px" m={"0 auto"}>
+        <Paper width="848px" margin={"20px 0"}>
+          <Task
+            campaign={campaign}
+            addAttachment={addAttachment}
+            customer={customer}
+            deleteAttachment={deleteAttachment}
+            updateDescription={updateDescription}
+          />
+        </Paper>
+        <Paper width="848px" margin={"20px 0"}>
+          <Materials />
+        </Paper>
+      </Box>
     </Box>
   );
 };

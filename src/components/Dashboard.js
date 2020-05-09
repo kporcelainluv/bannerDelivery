@@ -63,7 +63,7 @@ export const Dashboard = ({
       <PageName name="Dashboard" />
 
       {customers.length > 0 ? (
-        <Paper>
+        <Paper width="1136px" margin="40px auto">
           <DashboardActive
             customers={customers}
             setPopup={setPopup}
