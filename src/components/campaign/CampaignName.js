@@ -1,18 +1,13 @@
 import React from "react";
 import { Box, Flex } from "rebass/styled-components";
-import styled from "styled-components";
+import styled, { useTheme } from "styled-components";
 import { CheckmarkCircle2Outline as CheckmarkIcon } from "@styled-icons/evaicons-outline/CheckmarkCircle2Outline";
 import { Input } from "@rebass/forms/styled-components";
+import { Button, Text } from "rebass";
 
-const StyledCheckmark = styled(CheckmarkIcon)`
-  display: none;
-  height: 32px;
-  width: 32px;
-  margin: 0 8px;
-  fill: ${p => p.theme.colors.grey000};
-  input:focus && {
-    display: block;
-  }
+const StyledSave = styled(Button)`
+  border: none;
+  background-color: transparent;
 `;
 
 const StyledInput = styled(Input)`
@@ -27,9 +22,6 @@ const StyledInput = styled(Input)`
   &&:focus {
     background-color: ${p => p.theme.colors.grey500};
   }
-  &&:focus + svg {
-    display: block;
-  }
 `;
 
 export const CampaignName = ({
@@ -39,6 +31,7 @@ export const CampaignName = ({
   customer,
   updateCampaignName
 }) => {
+  const theme = useTheme();
   return (
     <Box maxWidth="1136px" width="100%" margin="40px auto 0">
       <Flex as="form" sx={{ position: "relative" }} alignItems="center">
@@ -49,11 +42,22 @@ export const CampaignName = ({
             updateCampaignName(campaign, customer, e.target.value);
           }}
         />
-        <StyledCheckmark
-          onClick={() => {
+        <StyledSave
+          variant="none"
+          onClick={e => {
+            e.preventDefault();
             setName(name);
           }}
-        />
+        >
+          <Text as="span" className="visually-hidden">
+            Save
+          </Text>
+          <CheckmarkIcon
+            height="24px"
+            width="24px"
+            fill={theme.colors.grey000}
+          />
+        </StyledSave>
       </Flex>
     </Box>
   );
