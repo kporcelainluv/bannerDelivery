@@ -1,3 +1,5 @@
+import { nanoid } from "nanoid";
+
 export const STATUS = {
   COMPLETED: "completed",
   ACTIVE: "active"
@@ -19,3 +21,9 @@ export const TABS = {
 };
 
 export const tabsList = ["JPEG", "HTML"];
+
+export const accessFields = [
+  { id: nanoid(), name: "Production Access Link", checked: true },
+  { id: nanoid(), name: "Client Access Link", checked: true },
+  { id: nanoid(), name: "Media / Buyer", checked: false }
+];
