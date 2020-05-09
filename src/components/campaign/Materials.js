@@ -24,6 +24,7 @@ import { DoneAll as DoneIcon } from "@styled-icons/evaicons-solid/DoneAll";
 
 import { BoxContainer } from "../Box";
 import { AccessPopup } from "../popups/AcessPopup";
+import { Chat } from "../popups/Chat";
 const StyledUploadIcon = styled(UploadIcon)`
   height: 24px;
   width: 24px;
@@ -82,11 +83,15 @@ export const Materials = () => {
   const theme = useTheme();
   const [tab, setTab] = useState("JPEG");
   const [accessPopup, setAccessPopup] = useState(false);
+  const [chatPopup, setChatPopup] = useState(false);
 
   const closePopup = () => {
     setAccessPopup(false);
   };
 
+  const closeChat = () => {
+    setChatPopup(false);
+  };
   return (
     <Box>
       <Header />
@@ -103,8 +108,10 @@ export const Materials = () => {
       <MaterialsContainer
         accessPopup={accessPopup}
         setAccessPopup={setAccessPopup}
+        setChatPopup={setChatPopup}
       />
       {accessPopup && <AccessPopup closePopup={closePopup} />}
+      {chatPopup && <Chat closeChat={closeChat} />}
     </Box>
   );
 };
@@ -213,7 +220,12 @@ const MaterialDescription = ({ element }) => {
   );
 };
 
-const ActionButtons = ({ accessPopup, setAccessPopup }) => {
+const ActionButtons = ({
+  accessPopup,
+  setAccessPopup,
+  chatPopup,
+  setChatPopup
+}) => {
   const theme = useTheme();
   return (
     <Flex>
@@ -243,7 +255,12 @@ const ActionButtons = ({ accessPopup, setAccessPopup }) => {
         />
       </StyledButton>
 
-      <StyledButton variant="none">
+      <StyledButton
+        variant="none"
+        onClick={() => {
+          setChatPopup(true);
+        }}
+      >
         <Text as="span" className="visually-hidden">
           Chat
         </Text>
@@ -259,7 +276,7 @@ const ActionButtons = ({ accessPopup, setAccessPopup }) => {
   );
 };
 
-const MaterialsContainer = ({ accessPopup, setAccessPopup }) => {
+const MaterialsContainer = ({ accessPopup, setAccessPopup, setChatPopup }) => {
   return (
     <Box>
       {materialsList.map(element => {
@@ -280,6 +297,7 @@ const MaterialsContainer = ({ accessPopup, setAccessPopup }) => {
               <ActionButtons
                 accessPopup={accessPopup}
                 setAccessPopup={setAccessPopup}
+                setChatPopup={setChatPopup}
               />
             </Flex>
           </Flex>

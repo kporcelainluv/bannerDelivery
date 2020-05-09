@@ -64,14 +64,14 @@ const messagesList = [
     type: "outcome"
   }
 ];
-export const Chat = () => {
+export const Chat = ({ closeChat }) => {
   const [tab, setTab] = useState("Client");
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState(messagesList);
   return (
     <Box sx={{ position: "relative" }}>
       <StyledContainer>
-        <Header tab={tab} setTab={setTab} />
+        <Header tab={tab} setTab={setTab} closeChat={closeChat} />
         <Messages messages={messages} />
         <InputField
           message={message}
@@ -84,7 +84,7 @@ export const Chat = () => {
   );
 };
 
-const Header = ({ tab, setTab }) => {
+const Header = ({ tab, setTab, closeChat }) => {
   const theme = useTheme();
   return (
     <Box sx={{ background: theme.colors.gradient1 }} height="88px">
@@ -99,7 +99,18 @@ const Header = ({ tab, setTab }) => {
             width="34px"
             style={{ paddingTop: "10px" }}
           />
-          <CloseIcon fill={theme.colors.grey000} height="24px" width="24px" />
+          <Button
+            variant="none"
+            backgroundColor="transparent"
+            border="none"
+            p={"0"}
+            onClick={() => closeChat()}
+          >
+            <Text as="span" className="visually-hidden">
+              Close
+            </Text>
+            <CloseIcon fill={theme.colors.grey000} height="24px" width="24px" />
+          </Button>
         </Box>
       </Flex>
 
