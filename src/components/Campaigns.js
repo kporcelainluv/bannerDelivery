@@ -7,6 +7,7 @@ import { CheckBox as CheckboxIcon } from "@styled-icons/material-outlined/CheckB
 import { ArrowBack as ArrowBackIcon } from "@styled-icons/boxicons-regular/ArrowBack";
 import styled, { useTheme } from "styled-components";
 import { useParams } from "react-router";
+import { Link } from "react-router-dom";
 
 import { nanoid } from "nanoid";
 import { PageName } from "./PageName";
@@ -32,7 +33,6 @@ export const Campaigns = ({
   const [displayedCampaigns, setDisplayedCampaigns] = useState("active");
   const theme = useTheme();
 
-  console.log({ customer });
 
   const tabButtons = [
     { id: nanoid(), name: "Active", status: STATUS.ACTIVE },
@@ -146,28 +146,33 @@ export const Campaigns = ({
                   />
                 )}
                 <Box>
-                  <Heading
-                    as="h3"
-                    fontSize={1}
-                    color={campaignNameColor}
-                    paddingLeft="20px"
-                    fontWeight="normal"
-                    sx={{
-                      lineHeight: "24px"
-                    }}
+                  <Link
+                    to={`/${id}/campaigns/${c.id}`}
+                    style={{ textDecoration: "none" }}
                   >
-                    {c.name}
-                  </Heading>
-                  <Text
-                    color="grey200"
-                    paddingLeft="20px"
-                    fontSize={0}
-                    sx={{
-                      lineHeight: "16px"
-                    }}
-                  >
-                    {c.date}
-                  </Text>
+                    <Heading
+                      as="h3"
+                      fontSize={1}
+                      color={campaignNameColor}
+                      paddingLeft="20px"
+                      fontWeight="normal"
+                      sx={{
+                        lineHeight: "24px"
+                      }}
+                    >
+                      {c.name}
+                    </Heading>
+                    <Text
+                      color="grey200"
+                      paddingLeft="20px"
+                      fontSize={0}
+                      sx={{
+                        lineHeight: "16px"
+                      }}
+                    >
+                      {c.date}
+                    </Text>
+                  </Link>
                 </Box>
               </Flex>
             );

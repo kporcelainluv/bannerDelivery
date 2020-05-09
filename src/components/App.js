@@ -188,21 +188,20 @@ export const App = () => {
         <Router>
           <Header />
           <Switch>
+            <Route path="/:id/campaigns/:campaignId">
+              <Campaign
+                customers={customers}
+                addAttachment={addAttachment}
+                deleteAttachment={deleteAttachment}
+                updateDescription={updateDescription}
+                updateCampaignName={updateCampaignName}
+              />
+            </Route>
             <Route path="/:id/campaigns">
               <Campaigns
                 customers={customers}
                 markCampaignActive={markCampaignActive}
                 markCampaignCompleted={markCampaignCompleted}
-              />
-            </Route>
-            <Route path="/campaign">
-              <Campaign
-                customer={customers[3]}
-                addAttachment={addAttachment}
-                campaign={customers[3]["campaigns"][0]}
-                deleteAttachment={deleteAttachment}
-                updateDescription={updateDescription}
-                updateCampaignName={updateCampaignName}
               />
             </Route>
             <Route path="/">

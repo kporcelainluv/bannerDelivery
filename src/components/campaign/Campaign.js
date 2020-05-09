@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Button, Text, Box } from "rebass/styled-components";
+import { useParams } from "react-router";
 
 import { Paper } from "../Paper";
 import { Task } from "./Task";
@@ -7,13 +8,15 @@ import { CampaignName } from "./CampaignName";
 import { Materials } from "./Materials";
 
 export const Campaign = ({
-  customer,
+  customers,
   addAttachment,
-  campaign,
   deleteAttachment,
   updateDescription,
   updateCampaignName
 }) => {
+  const { id, campaignId } = useParams();
+  const customer = customers.filter(c => c.id === id)[0];
+  const campaign = customer.campaigns.filter(c => c.id === campaignId)[0];
   const [name, setName] = useState(campaign.name);
 
   return (
