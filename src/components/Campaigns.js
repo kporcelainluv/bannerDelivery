@@ -6,6 +6,7 @@ import { CheckBoxOutlineBlank as OutlineIcon } from "@styled-icons/material-outl
 import { CheckBox as CheckboxIcon } from "@styled-icons/material-outlined/CheckBox";
 import { ArrowBack as ArrowBackIcon } from "@styled-icons/boxicons-regular/ArrowBack";
 import styled, { useTheme } from "styled-components";
+import { useParams } from "react-router";
 
 import { nanoid } from "nanoid";
 import { PageName } from "./PageName";
@@ -22,12 +23,16 @@ const StyledSearch = styled(SearchIcon)`
 `;
 
 export const Campaigns = ({
-  customer,
+  customers,
   markCampaignActive,
   markCampaignCompleted
 }) => {
+  const { id } = useParams();
+  const customer = customers.filter(c => c.id === id)[0];
   const [displayedCampaigns, setDisplayedCampaigns] = useState("active");
   const theme = useTheme();
+
+  console.log({ customer });
 
   const tabButtons = [
     { id: nanoid(), name: "Active", status: STATUS.ACTIVE },

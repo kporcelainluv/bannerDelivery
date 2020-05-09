@@ -9,6 +9,8 @@ import { Edit as EditIcon } from "@styled-icons/material/Edit";
 import { Input } from "@rebass/forms";
 import styled, { useTheme } from "styled-components";
 
+import { Link } from "react-router-dom";
+
 import { Paper } from "./Paper";
 import { AddClientPopup } from "./popups/AddClientPopup";
 import { PageName } from "./PageName";
@@ -78,7 +80,9 @@ export const Dashboard = ({
         </EmptyPaper>
       )}
 
-      {popup && <AddClientPopup handleClose={handleClose} addCustomer={addCustomer} />}
+      {popup && (
+        <AddClientPopup handleClose={handleClose} addCustomer={addCustomer} />
+      )}
     </Box>
   );
 };
@@ -206,6 +210,7 @@ const CustomersList = ({
         </Heading>
         <Flex flexDirection="column">
           {customers.map(customer => {
+            const id = customer.id;
             return (
               <Flex
                 key={customer.id}
@@ -241,16 +246,17 @@ const CustomersList = ({
                     }}
                   />
                 )}
-
-                <Heading
-                  as="h4"
-                  fontSize={1}
-                  color={status === STATUS.ACTIVE ? "grey000" : "grey300"}
-                  fontWeight="normal"
-                  padding="0 0 0 24px"
-                >
-                  {customer.name}
-                </Heading>
+                <Link to={`${id}/campaigns`} style={{ textDecoration: "none" }}>
+                  <Heading
+                    as="h4"
+                    fontSize={1}
+                    color={status === STATUS.ACTIVE ? "grey000" : "grey300"}
+                    fontWeight="normal"
+                    padding="0 0 0 24px"
+                  >
+                    {customer.name}
+                  </Heading>
+                </Link>
                 {status === STATUS.ACTIVE && (
                   <ActionButtons
                     status={status}
@@ -263,6 +269,7 @@ const CustomersList = ({
           })}
         </Flex>
       </Box>
+
       {status === STATUS.ACTIVE && <hr />}
     </Fragment>
   );

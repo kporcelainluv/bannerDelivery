@@ -188,9 +188,9 @@ export const App = () => {
         <Router>
           <Header />
           <Switch>
-            <Route path="/campaigns">
+            <Route path="/:id/campaigns">
               <Campaigns
-                customer={customers[3]}
+                customers={customers}
                 markCampaignActive={markCampaignActive}
                 markCampaignCompleted={markCampaignCompleted}
               />

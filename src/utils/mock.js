@@ -4,7 +4,7 @@ export const customersList = [
   {
     id: nanoid(),
     name: "Burger King",
-    status: "active",
+    status: "completed",
     campaigns: [
       {
         id: nanoid(),
@@ -48,7 +48,7 @@ export const customersList = [
   {
     id: nanoid(),
     name: "Domofond",
-    status: "active",
+    status: "completed",
     campaigns: [
       {
         id: nanoid(),
@@ -70,7 +70,7 @@ export const customersList = [
   {
     id: nanoid(),
     name: "Sberbank",
-    status: "completed",
+    status: "active",
     campaigns: [
       {
         id: nanoid(),
