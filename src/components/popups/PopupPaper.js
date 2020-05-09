@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Flex, Heading, Box } from "rebass/styled-components";
+import { Button, Flex, Heading } from "rebass/styled-components";
 import { CloseOutline } from "@styled-icons/evaicons-outline/CloseOutline";
 
 import { useTheme } from "styled-components";

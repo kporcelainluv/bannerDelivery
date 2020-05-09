@@ -5,7 +5,7 @@ import { useTheme } from "styled-components";
 import { CloseOutline } from "@styled-icons/evaicons-outline/CloseOutline";
 import { PopupPaper } from "./PopupPaper";
 
-export const Popup = ({ handleClose, addCustomer }) => {
+export const AddClientPopup = ({ handleClose, addCustomer }) => {
   const [name, setName] = useState("");
   const theme = useTheme();
   return (

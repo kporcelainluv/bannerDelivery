@@ -10,7 +10,7 @@ import { Input } from "@rebass/forms";
 import styled, { useTheme } from "styled-components";
 
 import { Paper } from "./Paper";
-import { Popup } from "./popups/Popup";
+import { AddClientPopup } from "./popups/AddClientPopup";
 import { PageName } from "./PageName";
 import { STATUS } from "../utils/consts";
 
@@ -78,7 +78,7 @@ export const Dashboard = ({
         </EmptyPaper>
       )}
 
-      {popup && <Popup handleClose={handleClose} addCustomer={addCustomer} />}
+      {popup && <AddClientPopup handleClose={handleClose} addCustomer={addCustomer} />}
     </Box>
   );
 };
