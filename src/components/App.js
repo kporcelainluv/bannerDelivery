@@ -11,107 +11,7 @@ import { STATUS } from "../utils/consts";
 import { Campaigns } from "./Campaigns";
 import { Campaign } from "./campaign/Campaign";
 import { AccessPopup } from "./popups/AcessPopup";
-
-const customersList = [
-  {
-    id: nanoid(),
-    name: "Burger King",
-    status: "active",
-    campaigns: [
-      {
-        id: nanoid(),
-        name: "Mother's day",
-        date: "30 Sep 2019"
-      },
-      {
-        id: nanoid(),
-        name: "Campaign 10.19",
-        date: "20 Nov 2019"
-      },
-      {
-        id: nanoid(),
-        name: "New Year campaign",
-        date: "31 Dec 2019"
-      }
-    ]
-  },
-  {
-    id: nanoid(),
-    name: "Mama Pizza",
-    status: "completed",
-    campaigns: [
-      {
-        id: nanoid(),
-        name: "Mother's day",
-        date: "30 Sep 2019"
-      },
-      {
-        id: nanoid(),
-        name: "Campaign 10.19",
-        date: "20 Nov 2019"
-      },
-      {
-        id: nanoid(),
-        name: "New Year campaign",
-        date: "31 Dec 2019"
-      }
-    ]
-  },
-  {
-    id: nanoid(),
-    name: "Domofond",
-    status: "active",
-    campaigns: [
-      {
-        id: nanoid(),
-        name: "Mother's day",
-        date: "30 Sep 2019"
-      },
-      {
-        id: nanoid(),
-        name: "Campaign 10.19",
-        date: "20 Nov 2019"
-      },
-      {
-        id: nanoid(),
-        name: "New Year campaign",
-        date: "31 Dec 2019"
-      }
-    ]
-  },
-  {
-    id: nanoid(),
-    name: "Sberbank",
-    status: "completed",
-    campaigns: [
-      {
-        id: nanoid(),
-        name: "Mother's day",
-        date: "30 Sep 2019",
-        status: "completed",
-        attachments: [
-          { name: "Specifications.js", id: nanoid() },
-          { name: "Prototype.png", id: nanoid() }
-        ],
-        description: "Implement HTML and PNG banners"
-      },
-      {
-        id: nanoid(),
-        name: "Campaign 10.19",
-        date: "20 Nov 2019",
-        status: "active",
-        attachments: []
-      },
-      {
-        id: nanoid(),
-        name: "New Year campaign",
-        date: "31 Dec 2019",
-        status: "active",
-        attachments: []
-      }
-    ]
-  }
-];
+import { customersList } from "../utils/mock";
 
 export const App = () => {
   const [customers, setCustomers] = useState(customersList);
@@ -305,7 +205,6 @@ export const App = () => {
           updateDescription={updateDescription}
           updateCampaignName={updateCampaignName}
         />
-        {/*<AccessPopup />*/}
       </ThemeProvider>
     </div>
   );
