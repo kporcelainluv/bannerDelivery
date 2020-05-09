@@ -76,6 +76,22 @@ const materialsList = [
     size: "135 KB",
     img: "https://via.placeholder.com/110",
     status: "pending"
+  },
+  {
+    id: nanoid(),
+    name: "Yandex_1280x350",
+    date: "01.10.2019 21:43",
+    size: "135 KB",
+    img: "https://via.placeholder.com/110",
+    status: "accepted"
+  },
+  {
+    id: nanoid(),
+    name: "Yandex_1280x350",
+    date: "01.10.2019 21:43",
+    size: "135 KB",
+    img: "https://via.placeholder.com/110",
+    status: "released"
   }
 ];
 
@@ -84,6 +100,7 @@ export const Materials = () => {
   const [tab, setTab] = useState("JPEG");
   const [accessPopup, setAccessPopup] = useState(false);
   const [chatPopup, setChatPopup] = useState(false);
+  const [materials, setMaterials] = useState(materialsList);
 
   const closePopup = () => {
     setAccessPopup(false);
@@ -91,6 +108,11 @@ export const Materials = () => {
 
   const closeChat = () => {
     setChatPopup(false);
+  };
+
+  const deleteMaterial = material => {
+    const updatedMaterials = materials.filter(m => m.id !== material.id);
+    setMaterials(updatedMaterials);
   };
   return (
     <Box>
@@ -109,6 +131,8 @@ export const Materials = () => {
         accessPopup={accessPopup}
         setAccessPopup={setAccessPopup}
         setChatPopup={setChatPopup}
+        materials={materials}
+        deleteMaterial={deleteMaterial}
       />
       {accessPopup && <AccessPopup closePopup={closePopup} />}
       {chatPopup && <Chat closeChat={closeChat} />}
@@ -224,7 +248,9 @@ const ActionButtons = ({
   accessPopup,
   setAccessPopup,
   chatPopup,
-  setChatPopup
+  setChatPopup,
+  deleteMaterial,
+  material
 }) => {
   const theme = useTheme();
   return (
@@ -266,7 +292,12 @@ const ActionButtons = ({
         </Text>
         <ChatIcon height="28px" width="28px" fill={theme.colors.grey000} />
       </StyledButton>
-      <StyledButton variant="none">
+      <StyledButton
+        variant="none"
+        onClick={() => {
+          deleteMaterial(material);
+        }}
+      >
         <Text as="span" className="visually-hidden">
           Delete
         </Text>
@@ -276,10 +307,16 @@ const ActionButtons = ({
   );
 };
 
-const MaterialsContainer = ({ accessPopup, setAccessPopup, setChatPopup }) => {
+const MaterialsContainer = ({
+  accessPopup,
+  setAccessPopup,
+  setChatPopup,
+  materials,
+  deleteMaterial
+}) => {
   return (
     <Box>
-      {materialsList.map(element => {
+      {materials.map(element => {
         return (
           <Flex p="24px" key={element.id}>
             <Image src={element.img} />
@@ -298,6 +335,8 @@ const MaterialsContainer = ({ accessPopup, setAccessPopup, setChatPopup }) => {
                 accessPopup={accessPopup}
                 setAccessPopup={setAccessPopup}
                 setChatPopup={setChatPopup}
+                deleteMaterial={deleteMaterial}
+                material={element}
               />
             </Flex>
           </Flex>
