@@ -43,7 +43,7 @@ const StyledTab = styled(Button)`
 
 const tabs = ["Client", "Production", "Media / Buyer"];
 
-const messages = [
+const messagesList = [
   {
     text:
       "banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
@@ -65,15 +65,20 @@ const messages = [
   }
 ];
 export const Chat = () => {
-  const theme = useTheme();
-
   const [tab, setTab] = useState("Client");
+  const [message, setMessage] = useState("");
+  const [messages, setMessages] = useState(messagesList);
   return (
     <Box sx={{ position: "relative" }}>
       <StyledContainer>
         <Header tab={tab} setTab={setTab} />
-        <Messages />
-        <InputField />
+        <Messages messages={messages} />
+        <InputField
+          message={message}
+          messages={messages}
+          setMessage={setMessage}
+          setMessages={setMessages}
+        />
       </StyledContainer>
     </Box>
   );
@@ -118,9 +123,9 @@ const Header = ({ tab, setTab }) => {
   );
 };
 
-const Messages = () => {
+const Messages = ({ messages }) => {
   return (
-    <Box height="488px">
+    <Flex height="488px" flexDirection="column" justifyContent="flex-end">
       {messages.map(message => {
         return (
           <Box
@@ -146,7 +151,7 @@ const Messages = () => {
               as="span"
               fontSize={0}
               color="grey300"
-              p="0 16px"
+              p="0 9px 6px 0"
               display="flex"
               justifyContent="flex-end"
             >
@@ -155,11 +160,11 @@ const Messages = () => {
           </Box>
         );
       })}
-    </Box>
+    </Flex>
   );
 };
 
-const InputField = () => {
+const InputField = ({ message, messages, setMessage, setMessages }) => {
   const theme = useTheme();
   return (
     <Flex
@@ -174,12 +179,31 @@ const InputField = () => {
           name="message"
           type="text"
           placeholder="Message..."
+          value={message}
           width="750px"
           color="grey300"
           sx={{ border: "1px solid transparent" }}
+          onChange={e => setMessage(e.target.value)}
         />
       </Box>
-      <Button variant="none" backgroundColor="transparent" p="0" ml="auto">
+      <Button
+        variant="none"
+        backgroundColor="transparent"
+        p="0"
+        ml="auto"
+        onClick={() =>
+          setMessages([
+            ...messages,
+            {
+              text: message,
+              time: new Date()
+                .toLocaleString("ru-RU", { timeZone: "Europe/Moscow" })
+                .slice(12, 17),
+              type: "outcome"
+            }
+          ])
+        }
+      >
         <SendIcon fill={theme.colors.grey000} height="24px" width="24px" />
       </Button>
     </Flex>
