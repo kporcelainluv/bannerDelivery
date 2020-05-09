@@ -1,19 +1,20 @@
 import React, { useState } from "react";
 import { Box, Flex, Heading, Button, Text } from "rebass/styled-components";
+import { Input } from "@rebass/forms/styled-components";
 import styled, { useTheme } from "styled-components";
+import { nanoid } from "nanoid";
 import { CloseOutline as CloseIcon } from "@styled-icons/evaicons-outline/CloseOutline";
 import { MinusOutline as UnderlineIcon } from "@styled-icons/evaicons-outline/MinusOutline";
 import { Send as SendIcon } from "@styled-icons/material-sharp/Send";
-import { Input } from "@rebass/forms/styled-components";
 
 const StyledContainer = styled(Box)`
   height: 648px;
   width: 848px;
   background-color: ${p => p.theme.colors.grey700};
-  position: absolute;
+  position: fixed;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -20%);
+  transform: translate(-50%, -50%);
   margin-bottom: 50px;
 `;
 
@@ -45,6 +46,7 @@ const tabs = ["Client", "Production", "Media / Buyer"];
 
 const messagesList = [
   {
+    id: nanoid(),
     text:
       "banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
     time: "12:28",
@@ -52,12 +54,14 @@ const messagesList = [
   },
 
   {
+    id: nanoid(),
     text:
       "Implement 1 HTML and 2 images banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
     time: "12:28",
     type: "income"
   },
   {
+    id: nanoid(),
     text:
       "Implement 1 HTML and 2 images banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
     time: "12:29",
@@ -140,6 +144,7 @@ const Messages = ({ messages }) => {
       {messages.map(message => {
         return (
           <Box
+            key={message.id}
             backgroundColor={message.type === "income" ? "#3F4C5C" : "#43414D"}
             height="92px"
             width="540px"
