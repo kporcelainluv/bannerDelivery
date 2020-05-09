@@ -17,3 +17,5 @@ export const TABS = {
   HTML: "HTML",
   JPEG: "JPEG"
 };
+
+export const tabsList = ["JPEG", "HTML"];

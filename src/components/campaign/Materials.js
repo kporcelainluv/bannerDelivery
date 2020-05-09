@@ -24,7 +24,7 @@ import { nanoid } from "nanoid";
 
 import { AccessPopup } from "../popups/AcessPopup";
 import { Chat } from "../popups/Chat";
-import { BUTTON_STATUS, BUTTON_TEXT, TABS } from "../../utils/consts";
+import { BUTTON_STATUS, BUTTON_TEXT, TABS, tabsList } from "../../utils/consts";
 
 const StyledUploadIcon = styled(UploadIcon)`
   height: 24px;
@@ -55,6 +55,27 @@ const StyledTab = styled(Button)`
     left: -3px;
     border-bottom: ${({ selected }) =>
       (selected && `2px solid #D67935`) || (!selected && "none")};
+  }
+`;
+
+const StyledNumber = styled(Box)`
+  margin-left: 5px;
+  padding: 0 4px;
+  font-size: 10px;
+  border: 1px solid ${p => p.theme.colors.grey000};
+  border-radius: 50%;
+`;
+
+const StyledDownload = styled(Button)`
+  width: 128px;
+  height: 36px;
+  border-radius: 4px;
+  background-color: ${p => p.theme.colors.grey500};
+  display: flex;
+  align-items: center;
+  &&:hover,
+  &&:focus {
+    background-color: ${p => p.theme.colors.grey500};
   }
 `;
 
@@ -130,24 +151,7 @@ const Header = () => {
       <Heading as="h2" fontSize={2} color="grey000" mb="24px">
         Materials
       </Heading>
-      <Button
-        width="128px"
-        height="36px"
-        variant="primary"
-        borderRadius="4px"
-        backgroundColor="grey500"
-        onClick={() => {}}
-        display="flex"
-        alignItems="center"
-        sx={{
-          ":hover": {
-            backgroundColor: "grey500"
-          },
-          ":focus": {
-            backgroundColor: "grey500"
-          }
-        }}
-      >
+      <StyledDownload variant="primary" onClick={() => {}}>
         <DownloadIcon
           height="15px"
           width="15px"
@@ -156,7 +160,7 @@ const Header = () => {
         <Text as="span" p="0 0 0 5px" fontSize={1} color="orange200">
           Download
         </Text>
-      </Button>
+      </StyledDownload>
     </Flex>
   );
 };
@@ -165,34 +169,25 @@ const Tabs = ({ tab, setTab }) => {
   const theme = useTheme();
   return (
     <Flex p={"0 24px"} alignItems="center">
-      <StyledTab
-        variant="none"
-        selected={tab === TABS.JPEG}
-        onClick={() => {
-          setTab(TABS.JPEG);
-        }}
-      >
-        <Text as="span">{TABS.JPEG}</Text>
+      {tabsList.map((t, index) => {
+        return (
+          <StyledTab
+            variant="none"
+            selected={tab === t}
+            onClick={() => {
+              setTab(t);
+            }}
+          >
+            <Text as="span">{t}</Text>
+            {t === TABS.JPEG ? (
+              <MoreIcon height="15px" width="15px" />
+            ) : (
+              <StyledNumber>{index}</StyledNumber>
+            )}
+          </StyledTab>
+        );
+      })}
 
-        <MoreIcon height="15px" width="15px" />
-      </StyledTab>
-      <StyledTab
-        variant="none"
-        selected={tab === TABS.HTML}
-        onClick={() => {
-          setTab(TABS.HTML);
-        }}
-      >
-        <Text as="span">{TABS.HTML}</Text>
-        <Box
-          ml={"5px"}
-          p={"0 4px"}
-          fontSize={"10px"}
-          sx={{ border: "1px solid white", borderRadius: "50%" }}
-        >
-          1
-        </Box>
-      </StyledTab>
       <Button
         variant="none"
         backgroundColor="transparent"
@@ -215,6 +210,7 @@ const UploadBanner = () => {
     <Flex
       flexDirection="column"
       width="100%"
+      maxWidth="800px"
       margin="40px auto"
       boxShadow="large"
       justifyContent="center"
@@ -223,8 +219,7 @@ const UploadBanner = () => {
       height="146px"
       backgroundColor="grey500"
       sx={{
-        borderRadius: "4px",
-        maxWidth: "800px"
+        borderRadius: "4px"
       }}
     >
       <Flex
@@ -247,16 +242,6 @@ const UploadBanner = () => {
         </Label>
         <Input id="upload" name="upload" type="file" display="none" />
       </Flex>
-      {/*<Button*/}
-      {/*  variant="primary"*/}
-      {/*  onClick={() => {}}*/}
-      {/*  sx={{*/}
-      {/*    borderRadius: "24px"*/}
-      {/*  }}*/}
-      {/*>*/}
-      {/*  <StyledUploadIcon />*/}
-      {/*  Upload Banner*/}
-      {/*</Button>*/}
       <Text margin="16px 0 0" color="grey300" fontSize={1}>
         or drop file here
       </Text>
@@ -402,6 +387,10 @@ const MaterialStatusIcon = ({ status }) => {
 
 const CTAButton = ({ element }) => {
   const theme = useTheme();
+
+  const getText = status => {
+    return BUTTON_TEXT[status.toUpperCase()];
+  };
   return (
     <Button
       height="36px"
@@ -420,7 +409,7 @@ const CTAButton = ({ element }) => {
         <CancelIcon height="20px" width="20px" fill={theme.colors.grey000} />
       )}
 
-      <Text as="span">{BUTTON_TEXT[element.status.toUpperCase()]}</Text>
+      <Text as="span">{getText(element.status)}</Text>
     </Button>
   );
 };
