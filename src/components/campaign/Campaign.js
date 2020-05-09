@@ -1,11 +1,6 @@
 import React, { useState } from "react";
-import { Button, Text, Box, Flex, Heading } from "rebass/styled-components";
-import { CheckmarkCircle2Outline as CheckmarkIcon } from "@styled-icons/evaicons-outline/CheckmarkCircle2Outline";
-import { CloseOutline as CLoseIcon } from "@styled-icons/evaicons-outline/CloseOutline";
-import { AddSolid as AddIcon } from "@styled-icons/zondicons/AddSolid";
-import { Input, Label, Textarea } from "@rebass/forms/styled-components";
+import { Button, Text, Box } from "rebass/styled-components";
 
-import styled, { useTheme } from "styled-components";
 import { Paper } from "../Paper";
 import { Task } from "./Task";
 import { CampaignName } from "./CampaignName";

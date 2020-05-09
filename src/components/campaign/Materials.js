@@ -7,10 +7,8 @@ import {
   Heading,
   Image
 } from "rebass/styled-components";
-
+import { Input, Label } from "@rebass/forms/styled-components";
 import { CloudUpload as UploadIcon } from "@styled-icons/boxicons-solid/CloudUpload";
-import styled, { useTheme } from "styled-components";
-import { nanoid } from "nanoid";
 import { Download as DownloadIcon } from "@styled-icons/boxicons-solid/Download";
 import { MoreVerticalOutline as MoreIcon } from "@styled-icons/evaicons-outline/MoreVerticalOutline";
 import { AddSolid as AddIcon } from "@styled-icons/zondicons/AddSolid";
@@ -21,10 +19,13 @@ import { Chat3 as ChatIcon } from "@styled-icons/remix-line/Chat3";
 import { DeleteOutline as CancelIcon } from "@styled-icons/typicons/DeleteOutline";
 import { DeleteOutline as DeleteIcon } from "@styled-icons/material-twotone/DeleteOutline";
 import { DoneAll as DoneIcon } from "@styled-icons/evaicons-solid/DoneAll";
+import styled, { useTheme } from "styled-components";
+import { nanoid } from "nanoid";
 
 import { AccessPopup } from "../popups/AcessPopup";
 import { Chat } from "../popups/Chat";
-import { Input, Label } from "@rebass/forms";
+import { BUTTON_STATUS, BUTTON_TEXT, TABS } from "../../utils/consts";
+
 const StyledUploadIcon = styled(UploadIcon)`
   height: 24px;
   width: 24px;
@@ -57,17 +58,6 @@ const StyledTab = styled(Button)`
   }
 `;
 
-const BUTTON_STATUS_TEXT = {
-  PENDING: "Accept",
-  ACCEPTED: "Release",
-  RELEASED: "Cancel"
-};
-
-const TABS = {
-  HTML: "HTML",
-  JPEG: "JPEG"
-};
-
 const materialsList = [
   {
     id: nanoid(),
@@ -97,7 +87,7 @@ const materialsList = [
 
 export const Materials = () => {
   const theme = useTheme();
-  const [tab, setTab] = useState("JPEG");
+  const [tab, setTab] = useState(TABS.JPEG);
   const [accessPopup, setAccessPopup] = useState(false);
   const [chatPopup, setChatPopup] = useState(false);
   const [materials, setMaterials] = useState(materialsList);
@@ -395,15 +385,15 @@ const MaterialsContainer = ({
 
 const MaterialStatusIcon = ({ status }) => {
   const theme = useTheme();
-  if (status === "pending") {
+  if (status === BUTTON_STATUS.PENDING) {
     return <Box height="20px" width="20px" />;
   }
-  if (status === "accepted") {
+  if (status === BUTTON_STATUS.ACCEPTED) {
     return (
       <CheckmarkIcon height="20px" width="20px" fill={theme.colors.orange200} />
     );
   }
-  if (status === "released") {
+  if (status === BUTTON_STATUS.RELEASED) {
     return (
       <DoneIcon height="20px" width="20px" fill={theme.colors.orange200} />
     );
@@ -420,17 +410,17 @@ const CTAButton = ({ element }) => {
       alignItems="center"
       justifyContent="space-between"
     >
-      {element.status === "pending" && (
+      {element.status === BUTTON_STATUS.PENDING && (
         <CheckmarkIcon height="20px" width="20px" fill={theme.colors.grey000} />
       )}
-      {element.status === "accepted" && (
+      {element.status === BUTTON_STATUS.ACCEPTED && (
         <DoneIcon height="20px" width="20px" fill={theme.colors.grey000} />
       )}
-      {element.status === "released" && (
+      {element.status === BUTTON_STATUS.RELEASED && (
         <CancelIcon height="20px" width="20px" fill={theme.colors.grey000} />
       )}
 
-      <Text as="span">{BUTTON_STATUS_TEXT[element.status.toUpperCase()]}</Text>
+      <Text as="span">{BUTTON_TEXT[element.status.toUpperCase()]}</Text>
     </Button>
   );
 };
