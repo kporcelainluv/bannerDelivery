@@ -37,8 +37,9 @@ const StyledTab = styled(Button)`
     width: 100%;
     bottom: 0;
     left: 0;
+    color: ${p => p.theme.colors.orange200};
     border-bottom: ${({ selected }) =>
-      (selected && `2px solid #D67935`) || (!selected && "none")};
+      (selected && `2px solid`) || (!selected && "none")};
   }
 `;
 
@@ -142,17 +143,18 @@ const Messages = ({ messages }) => {
   return (
     <Flex height="488px" flexDirection="column" justifyContent="flex-end">
       {messages.map(message => {
+        const margin =
+          message.type === "income"
+            ? "16px auto 16px 16px"
+            : "16px 16px 16px auto";
+        const background = message.type === "income" ? "#3F4C5C" : "#43414D";
         return (
           <Box
             key={message.id}
-            backgroundColor={message.type === "income" ? "#3F4C5C" : "#43414D"}
+            backgroundColor={background}
             height="92px"
             width="540px"
-            margin={
-              message.type === "income"
-                ? "16px auto 16px 16px"
-                : "16px 16px 16px auto"
-            }
+            margin={margin}
           >
             <Text
               as="p"
@@ -182,6 +184,9 @@ const Messages = ({ messages }) => {
 
 const InputField = ({ message, messages, setMessage, setMessages }) => {
   const theme = useTheme();
+  const currentTime = new Date()
+    .toLocaleString("ru-RU", { timeZone: "Europe/Moscow" })
+    .slice(12, 17);
   return (
     <Flex
       p="18px 24px"
@@ -212,9 +217,7 @@ const InputField = ({ message, messages, setMessage, setMessages }) => {
             ...messages,
             {
               text: message,
-              time: new Date()
-                .toLocaleString("ru-RU", { timeZone: "Europe/Moscow" })
-                .slice(12, 17),
+              time: currentTime,
               type: "outcome"
             }
           ])

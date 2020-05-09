@@ -53,8 +53,9 @@ const StyledTab = styled(Button)`
     width: 100%;
     bottom: -8px;
     left: -3px;
+    color: ${p => p.theme.colors.orange200};
     border-bottom: ${({ selected }) =>
-      (selected && `2px solid #D67935`) || (!selected && "none")};
+      (selected && `2px solid`) || (!selected && "none")};
   }
 `;
 
@@ -172,6 +173,7 @@ const Tabs = ({ tab, setTab }) => {
       {tabsList.map((t, index) => {
         return (
           <StyledTab
+            key={t}
             variant="none"
             selected={tab === t}
             onClick={() => {

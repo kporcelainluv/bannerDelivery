@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { Button, Flex, Heading, Box, Text } from "rebass/styled-components";
 import { RefreshOutline as RefreshIcon } from "@styled-icons/evaicons-outline/RefreshOutline";
 import { Copy as CopyIcon } from "@styled-icons/feather/Copy";
-import styled, { useTheme } from "styled-components";
 import { Switch } from "@rebass/forms/styled-components";
+import styled, { useTheme } from "styled-components";
 import { nanoid } from "nanoid";
 
 import { PopupPaper } from "./PopupPaper";

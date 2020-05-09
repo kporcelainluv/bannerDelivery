@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import { Flex, Heading, Button } from "rebass/styled-components";
+import { Flex, Button } from "rebass/styled-components";
 import { Label, Input } from "@rebass/forms";
 import { useTheme } from "styled-components";
-import { CloseOutline } from "@styled-icons/evaicons-outline/CloseOutline";
 import { PopupPaper } from "./PopupPaper";
 
 export const AddClientPopup = ({ handleClose, addCustomer }) => {
@@ -50,7 +49,7 @@ export const AddClientPopup = ({ handleClose, addCustomer }) => {
             variant="secondary"
             sx={{
               backgroundColor: theme.colors.grey500,
-              ":hover": { backgroundColor: "#97999E" },
+              ":hover": { backgroundColor: theme.colors.grey300 },
               marginRight: "16px"
             }}
             onClick={handleClose}
