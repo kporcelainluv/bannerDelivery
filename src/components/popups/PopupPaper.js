@@ -4,7 +4,7 @@ import { CloseOutline } from "@styled-icons/evaicons-outline/CloseOutline";
 
 import { useTheme } from "styled-components";
 
-export const PopupPaper = ({ heading, children, height }) => {
+export const PopupPaper = ({ heading, closePopup, children }) => {
   const theme = useTheme();
   return (
     <Flex
@@ -36,6 +36,7 @@ export const PopupPaper = ({ heading, children, height }) => {
           variant="none"
           sx={{ background: "none", border: "none", color: "#FFFFFE" }}
           padding="0"
+          onClick={() => closePopup()}
         >
           <CloseOutline height="25px" width="25px" cursor="pointer" />
         </Button>
