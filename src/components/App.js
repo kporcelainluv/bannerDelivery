@@ -10,8 +10,9 @@ import { Dashboard } from "./Dashboard";
 import { STATUS } from "../utils/consts";
 import { Campaigns } from "./Campaigns";
 import { Campaign } from "./campaign/Campaign";
-import { AccessPopup } from "./popups/AcessPopup";
 import { customersList } from "../utils/mock";
+
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 export const App = () => {
   const [customers, setCustomers] = useState(customersList);
@@ -184,27 +185,37 @@ export const App = () => {
     <div className="App">
       <GlobalTheme />
       <ThemeProvider theme={darkTheme}>
-        <Header />
-        {/*<Dashboard*/}
-        {/*  addCustomer={addCustomer}*/}
-        {/*  removeCustomer={removeCustomer}*/}
-        {/*  markCompleted={markCompleted}*/}
-        {/*  markActive={markActive}*/}
-        {/*  customers={customers}*/}
-        {/*/>*/}
-        {/*<Campaigns*/}
-        {/*  customer={customers[3]}*/}
-        {/*  markCampaignActive={markCampaignActive}*/}
-        {/*  markCampaignCompleted={markCampaignCompleted}*/}
-        {/*/>*/}
-        <Campaign
-          customer={customers[3]}
-          addAttachment={addAttachment}
-          campaign={customers[3]["campaigns"][0]}
-          deleteAttachment={deleteAttachment}
-          updateDescription={updateDescription}
-          updateCampaignName={updateCampaignName}
-        />
+        <Router>
+          <Header />
+          <Switch>
+            <Route path="/campaigns">
+              <Campaigns
+                customer={customers[3]}
+                markCampaignActive={markCampaignActive}
+                markCampaignCompleted={markCampaignCompleted}
+              />
+            </Route>
+            <Route path="/campaign">
+              <Campaign
+                customer={customers[3]}
+                addAttachment={addAttachment}
+                campaign={customers[3]["campaigns"][0]}
+                deleteAttachment={deleteAttachment}
+                updateDescription={updateDescription}
+                updateCampaignName={updateCampaignName}
+              />
+            </Route>
+            <Route path="/">
+              <Dashboard
+                addCustomer={addCustomer}
+                removeCustomer={removeCustomer}
+                markCompleted={markCompleted}
+                markActive={markActive}
+                customers={customers}
+              />
+            </Route>
+          </Switch>
+        </Router>
       </ThemeProvider>
     </div>
   );
