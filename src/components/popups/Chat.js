@@ -13,7 +13,7 @@ const StyledContainer = styled(Box)`
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, 0);
+  transform: translate(-50%, -20%);
   margin-bottom: 50px;
 `;
 
@@ -69,7 +69,7 @@ export const Chat = ({ closeChat }) => {
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState(messagesList);
   return (
-    <Box sx={{ position: "relative" }}>
+    <Box>
       <StyledContainer>
         <Header tab={tab} setTab={setTab} closeChat={closeChat} />
         <Messages messages={messages} />

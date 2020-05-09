@@ -22,7 +22,6 @@ import { DeleteOutline as CancelIcon } from "@styled-icons/typicons/DeleteOutlin
 import { DeleteOutline as DeleteIcon } from "@styled-icons/material-twotone/DeleteOutline";
 import { DoneAll as DoneIcon } from "@styled-icons/evaicons-solid/DoneAll";
 
-import { BoxContainer } from "../Box";
 import { AccessPopup } from "../popups/AcessPopup";
 import { Chat } from "../popups/Chat";
 import { Input, Label } from "@rebass/forms";
