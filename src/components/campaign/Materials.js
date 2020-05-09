@@ -119,14 +119,7 @@ export const Materials = () => {
       <Header />
       <Tabs tab={tab} setTab={setTab} />
       <Box as="hr" m={"0"} color={theme.colors.grey400} />
-      <BoxContainer
-        buttonText={"Upload Banner"}
-        additionalText={"or drop file here"}
-        background={"grey500"}
-        radius={"4px"}
-      >
-        {<StyledUploadIcon />}
-      </BoxContainer>
+      <UploadBanner />
       <MaterialsContainer
         accessPopup={accessPopup}
         setAccessPopup={setAccessPopup}
@@ -226,6 +219,40 @@ const Tabs = ({ tab, setTab }) => {
   );
 };
 
+const UploadBanner = () => {
+  return (
+    <Flex
+      flexDirection="column"
+      width="100%"
+      margin="40px auto"
+      boxShadow="large"
+      justifyContent="center"
+      alignItems="center"
+      p="20px 0 "
+      height="146px"
+      backgroundColor="grey500"
+      sx={{
+        borderRadius: "4px",
+        maxWidth: "800px"
+      }}
+    >
+      <Button
+        variant="primary"
+        onClick={() => {}}
+        sx={{
+          borderRadius: "24px"
+        }}
+      >
+        <StyledUploadIcon />
+        Upload Banner
+      </Button>
+      <Text margin="16px 0 0" color="grey300" fontSize={1}>
+        or drop file here
+      </Text>
+    </Flex>
+  );
+};
+
 const MaterialDescription = ({ element }) => {
   const { name, date, size } = element;
   return (
@@ -247,7 +274,6 @@ const MaterialDescription = ({ element }) => {
 const ActionButtons = ({
   accessPopup,
   setAccessPopup,
-  chatPopup,
   setChatPopup,
   deleteMaterial,
   material
