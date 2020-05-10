@@ -48,6 +48,26 @@ const EmptyPaper = styled(Flex)`
   height: 146px;
 `;
 
+const StyledOutlineIcon = styled(OutlineIcon)`
+  height: 24px;
+  width: 24px;
+  fill: ${p => p.theme.colors.orange200};
+  cursor: pointer;
+  &&:hover {
+    fill: ${p => p.theme.colors.orange100};
+  }
+`;
+
+const StyledCheckboxIcon = styled(CheckboxIcon)`
+  height: 24px;
+  width: 24px;
+  fill: ${p => p.theme.colors.grey300};
+  cursor: pointer;
+  &&:hover {
+    fill: ${p => p.theme.colors.grey100};
+  }
+`;
+
 export const Dashboard = ({
   addCustomer,
   removeCustomer,
@@ -61,7 +81,7 @@ export const Dashboard = ({
 
   const [popup, setPopup] = useState(false);
   return (
-    <Box sx={{ position: "relative" }} width="100%" height="100%" p='0 20px'>
+    <Box sx={{ position: "relative" }} width="100%" height="100%" p="0 20px">
       <PageName name="Dashboard" />
 
       {customers.length > 0 ? (
@@ -228,19 +248,13 @@ const CustomersList = ({
                 }
               >
                 {status === STATUS.ACTIVE ? (
-                  <OutlineIcon
-                    height="24px"
-                    width="24px"
-                    fill={theme.colors.orange200}
+                  <StyledOutlineIcon
                     onClick={() => {
                       markCompleted(customer);
                     }}
                   />
                 ) : (
-                  <CheckboxIcon
-                    height="24px"
-                    width="24px"
-                    fill={theme.colors.grey300}
+                  <StyledCheckboxIcon
                     onClick={() => {
                       markActive(customer);
                     }}
