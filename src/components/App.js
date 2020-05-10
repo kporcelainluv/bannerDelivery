@@ -25,26 +25,14 @@ export const App = () => {
   };
 
   const removeCustomer = customer => {
-    const updatedCustomers = customers.filter(c => c.id !== customer.id);
-    setCustomers(updatedCustomers);
+    setCustomers(customers.filter(c => c.id !== customer.id));
   };
 
-  const markCompleted = customer => {
+  const toggleCustomerStatus = (customer, status) => {
     setCustomers(
       customers.map(c => {
         if (c.id === customer.id) {
-          return { ...c, status: STATUS.COMPLETED };
-        }
-        return c;
-      })
-    );
-  };
-
-  const markActive = customer => {
-    setCustomers(
-      customers.map(c => {
-        if (c.id === customer.id) {
-          return { ...c, status: STATUS.ACTIVE };
+          return { ...c, status: status };
         }
         return c;
       })
@@ -208,8 +196,7 @@ export const App = () => {
               <Dashboard
                 addCustomer={addCustomer}
                 removeCustomer={removeCustomer}
-                markCompleted={markCompleted}
-                markActive={markActive}
+                toggleCustomerStatus={toggleCustomerStatus}
                 customers={customers}
               />
             </Route>

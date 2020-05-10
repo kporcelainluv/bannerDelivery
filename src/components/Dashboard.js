@@ -71,8 +71,7 @@ const StyledCheckboxIcon = styled(CheckboxIcon)`
 export const Dashboard = ({
   addCustomer,
   removeCustomer,
-  markCompleted,
-  markActive,
+  toggleCustomerStatus,
   customers
 }) => {
   const handleClose = () => {
@@ -90,8 +89,7 @@ export const Dashboard = ({
             customers={customers}
             setPopup={setPopup}
             removeCustomer={removeCustomer}
-            markCompleted={markCompleted}
-            markActive={markActive}
+            toggleCustomerStatus={toggleCustomerStatus}
           />
         </Paper>
       ) : (
@@ -132,8 +130,7 @@ const DashboardActive = ({
   customers,
   setPopup,
   removeCustomer,
-  markCompleted,
-  markActive
+  toggleCustomerStatus
 }) => {
   const theme = useTheme();
 
@@ -197,8 +194,7 @@ const DashboardActive = ({
             listName={type.name}
             status={type.status}
             removeCustomer={removeCustomer}
-            markCompleted={markCompleted}
-            markActive={markActive}
+            toggleCustomerStatus={toggleCustomerStatus}
           />
         );
       })}
@@ -211,11 +207,8 @@ const CustomersList = ({
   listName,
   status,
   removeCustomer,
-  markCompleted,
-  markActive
+  toggleCustomerStatus
 }) => {
-  const theme = useTheme();
-
   return (
     <Fragment>
       <Box padding="30px 0">
@@ -250,13 +243,13 @@ const CustomersList = ({
                 {status === STATUS.ACTIVE ? (
                   <StyledOutlineIcon
                     onClick={() => {
-                      markCompleted(customer);
+                      toggleCustomerStatus(customer, STATUS.COMPLETED);
                     }}
                   />
                 ) : (
                   <StyledCheckboxIcon
                     onClick={() => {
-                      markActive(customer);
+                      toggleCustomerStatus(customer, STATUS.ACTIVE);
                     }}
                   />
                 )}
