@@ -11,6 +11,7 @@ export const Paper = ({ width, children, margin }) => {
       backgroundColor="grey700"
       margin={margin}
       flexDirection="column"
+      paddingBottom="50px"
       sx={{
         borderRadius: "16px",
         boxShadow: theme.shadows.large

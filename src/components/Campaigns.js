@@ -22,6 +22,25 @@ const StyledSearch = styled(SearchIcon)`
   left: 15px;
   color: ${props => props.theme.colors.grey200};
 `;
+const StyledOutlineIcon = styled(OutlineIcon)`
+  height: 24px;
+  width: 24px;
+  fill: ${p => p.theme.colors.grey300};
+  cursor: pointer;
+  &&:hover {
+    fill: ${p => p.theme.colors.orange100};
+  }
+`;
+
+const StyledCheckboxIcon = styled(CheckboxIcon)`
+  height: 24px;
+  width: 24px;
+  fill: ${p => p.theme.colors.grey300};
+  cursor: pointer;
+  &&:hover {
+    fill: ${p => p.theme.colors.grey100};
+  }
+`;
 
 export const Campaigns = ({
   customers,
@@ -109,7 +128,10 @@ export const Campaigns = ({
                     p="2px 0"
                     color={getTabColor(button.status)}
                     sx={{
-                      borderBottom: getBorderColor(button.status)
+                      borderBottom: getBorderColor(button.status),
+                      ":hover": {
+                        color: theme.colors.orange200
+                      }
                     }}
                   >
                     {button.name}
@@ -133,19 +155,13 @@ export const Campaigns = ({
                 }}
               >
                 {displayedCampaigns === STATUS.ACTIVE ? (
-                  <OutlineIcon
-                    height="24px"
-                    width="24px"
-                    fill={theme.colors.grey000}
+                  <StyledOutlineIcon
                     onClick={() => {
                       markCampaignCompleted(customer, c.id);
                     }}
                   />
                 ) : (
-                  <CheckboxIcon
-                    height="24px"
-                    width="24px"
-                    fill={theme.colors.grey200}
+                  <StyledCheckboxIcon
                     onClick={() => {
                       markCampaignActive(customer, c.id);
                     }}
