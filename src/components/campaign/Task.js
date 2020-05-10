@@ -6,7 +6,7 @@ import { CloseOutline as CLoseIcon } from "@styled-icons/evaicons-outline/CloseO
 import { AddSolid as AddIcon } from "@styled-icons/zondicons/AddSolid";
 
 const AttachedFile = styled(Flex)`
-  width: 162px;
+  width: auto;
   height: 32px;
   background-color: ${p => p.theme.colors.grey500};
   border-radius: 16px;
@@ -14,7 +14,8 @@ const AttachedFile = styled(Flex)`
   align-items: center;
   justify-content: space-around;
   margin-right: 8px;
-  padding: 0 6px;
+  padding: 0 10px 0 16px;
+  cursor: pointer;
 `;
 
 export const Task = ({
@@ -138,13 +139,18 @@ const AddAttachment = ({ addAttachment, customer, campaign }) => {
         }}
       />
       <Label htmlFor="addFile" display="flex" alignItems="center">
-        <AddIcon height="30px" width="30px" fill={theme.colors.grey500} />
+        <AddIcon
+          height="30px"
+          width="30px"
+          fill={theme.colors.grey500}
+          cursor="pointer"
+        />
         <Text
           as="span"
           fontSize={1}
           color="orange200"
           pl="10px"
-          sx={{ letterSpacing: "0.3px" }}
+          sx={{ letterSpacing: "0.3px", cursor: "pointer" }}
         >
           Add Attachment
         </Text>

@@ -51,7 +51,7 @@ const StyledTab = styled(Button)`
     content: "";
     position: absolute;
     width: 100%;
-    bottom: -8px;
+    bottom: -13px;
     left: -3px;
     color: ${p => p.theme.colors.orange200};
     border-bottom: ${({ selected }) =>
@@ -76,7 +76,17 @@ const StyledDownload = styled(Button)`
   align-items: center;
   &&:hover,
   &&:focus {
-    background-color: ${p => p.theme.colors.grey500};
+    background-color: ${p => p.theme.colors.grey800};
+  }
+`;
+
+const StyledAddIcon = styled(AddIcon)`
+  width: 30px;
+  height: 30px;
+  color: ${p => p.theme.colors.grey500};
+  &&:hover,
+  &&:focus {
+    fill: ${p => p.theme.colors.orange200};
   }
 `;
 
@@ -133,7 +143,13 @@ const Header = () => {
           width="15px"
           fill={theme.colors.orange200}
         />
-        <Text as="span" p="0 0 0 5px" fontSize={1} color="orange200">
+        <Text
+          as="span"
+          p="0 0 0 5px"
+          fontSize={1}
+          color="orange200"
+          sx={{ lineHeight: "20px" }}
+        >
           Download
         </Text>
       </StyledDownload>
@@ -154,8 +170,17 @@ const Tabs = ({ tab, setTab }) => {
             onClick={() => {
               setTab(t);
             }}
+            mb="5px"
           >
-            <Text as="span">{t}</Text>
+            <Text
+              as="span"
+              sx={{
+                cursor: "pointer",
+                ":hover": { color: theme.colors.orange200 }
+              }}
+            >
+              {t}
+            </Text>
             {t === TABS.JPEG ? (
               <MoreIcon height="15px" width="15px" />
             ) : (
@@ -171,8 +196,9 @@ const Tabs = ({ tab, setTab }) => {
         border="none"
         p={"0"}
         mr={"15px"}
+        mb="5px"
       >
-        <AddIcon height="30px" width="30px" fill={theme.colors.grey500} />
+        <StyledAddIcon />
         <Text as="span" className="visually-hidden">
           Add type
         </Text>
@@ -196,14 +222,19 @@ const UploadBanner = () => {
       height="146px"
       backgroundColor="grey500"
       sx={{
-        borderRadius: "4px"
+        borderRadius: "4px",
+        ":hover": { backgroundColor: theme.colors.grey800 }
       }}
     >
       <Flex
         height="48px"
         width="186px"
         backgroundColor="orange200"
-        sx={{ borderRadius: "4px" }}
+        sx={{
+          borderRadius: "4px",
+          ":hover": { backgroundColor: theme.colors.orange100 },
+          cursor: "pointer"
+        }}
         alignItems="center"
       >
         <Label
@@ -213,7 +244,14 @@ const UploadBanner = () => {
           alignItems="center"
         >
           <StyledUploadIcon fill={theme.colors.grey000} />
-          <Text as="span" color="grey000" fontSize={2}>
+          <Text
+            as="span"
+            color="grey000"
+            fontSize={2}
+            sx={{
+              cursor: "pointer"
+            }}
+          >
             Upload Banner
           </Text>
         </Label>
@@ -314,32 +352,36 @@ const MaterialsContainer = ({
   materials,
   deleteMaterial
 }) => {
+  const theme = useTheme();
   return (
     <Box>
-      {materials.map(element => {
+      {materials.map((element, index) => {
         return (
-          <Flex p="24px" key={element.id}>
-            <Image src={element.img} />
-            <Flex ml="24px">
-              <MaterialStatusIcon status={element.status} />
-              <MaterialDescription element={element} />
+          <Box sx={{ ":hover": { backgroundColor: theme.colors.grey500 } }}>
+            <Flex p="24px" key={element.id} flexDirection="row">
+              <Image src={element.img} />
+              <Flex ml="24px">
+                <MaterialStatusIcon status={element.status} />
+                <MaterialDescription element={element} />
+              </Flex>
+              <Flex
+                ml="auto"
+                flexDirection="column"
+                justifyContent="space-between"
+                alignItems="flex-end"
+              >
+                <CTAButton element={element} />
+                <ActionButtons
+                  accessPopup={accessPopup}
+                  setAccessPopup={setAccessPopup}
+                  setChatPopup={setChatPopup}
+                  deleteMaterial={deleteMaterial}
+                  material={element}
+                />
+              </Flex>
             </Flex>
-            <Flex
-              ml="auto"
-              flexDirection="column"
-              justifyContent="space-between"
-              alignItems="flex-end"
-            >
-              <CTAButton element={element} />
-              <ActionButtons
-                accessPopup={accessPopup}
-                setAccessPopup={setAccessPopup}
-                setChatPopup={setChatPopup}
-                deleteMaterial={deleteMaterial}
-                material={element}
-              />
-            </Flex>
-          </Flex>
+            {/*{index < materials.length - 1 && <Box as="hr" m="0 24px" />}*/}
+          </Box>
         );
       })}
     </Box>

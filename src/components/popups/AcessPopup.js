@@ -47,7 +47,7 @@ export const AccessPopup = ({ closePopup }) => {
           : theme.colors.orange300;
 
         return (
-          <Box key={field.id} m="35px 25px">
+          <Box key={field.id} m="35px 25px" >
             <Flex justifyContent="space-between">
               <Heading
                 as="h3"

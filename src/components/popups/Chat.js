@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Box, Flex, Heading, Button, Text } from "rebass/styled-components";
 import { Input } from "@rebass/forms/styled-components";
 import styled, { useTheme } from "styled-components";
-import { nanoid } from "nanoid";
 import { CloseOutline as CloseIcon } from "@styled-icons/evaicons-outline/CloseOutline";
 import { MinusOutline as UnderlineIcon } from "@styled-icons/evaicons-outline/MinusOutline";
 import { Send as SendIcon } from "@styled-icons/material-sharp/Send";
