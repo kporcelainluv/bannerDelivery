@@ -20,6 +20,7 @@ export const Header = () => {
         maxWidth={"1136px"}
         height={"56px"}
         m={"0 auto"}
+        p="0 20px"
       >
         <Link to={`/`} style={{ textDecoration: "none" }}>
           <Heading as="h3" fontSize={2} color={"grey000"}>

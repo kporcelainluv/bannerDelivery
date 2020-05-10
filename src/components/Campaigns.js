@@ -62,10 +62,10 @@ export const Campaigns = ({
     displayedCampaigns === STATUS.ACTIVE ? "grey000" : "grey200";
 
   return (
-    <Box sx={{ position: "relative" }} width="100%" height="100%">
+    <Box sx={{ position: "relative" }} width="100%" height="100%" p="0 20px">
       <PageName name={customer.name} />
       <ReturnToDashboard />
-      <Paper>
+      <Paper margin="0 auto" width="1136px">
         <Flex justifyContent="space-between" margin="24px">
           <Flex as="form" sx={{ position: "relative" }}>
             <StyledSearch />

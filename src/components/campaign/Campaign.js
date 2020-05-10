@@ -38,7 +38,7 @@ export const Campaign = ({
   const [name, setName] = useState(campaign.name);
 
   return (
-    <Box>
+    <Box p="0 20px">
       <ReturnToDashboard
         customerName={customer.name}
         campaignName={campaign.name}

@@ -61,7 +61,7 @@ export const Dashboard = ({
 
   const [popup, setPopup] = useState(false);
   return (
-    <Box sx={{ position: "relative" }} width="100%" height="100%">
+    <Box sx={{ position: "relative" }} width="100%" height="100%" p='0 20px'>
       <PageName name="Dashboard" />
 
       {customers.length > 0 ? (
