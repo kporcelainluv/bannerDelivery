@@ -1,11 +1,29 @@
 import React, { useState } from "react";
-import { Button, Text, Box } from "rebass/styled-components";
+import { Text, Box, Flex } from "rebass/styled-components";
+import { Home as HomeIcon } from "@styled-icons/boxicons-solid/Home";
+import { ArrowIosForwardOutline as ArrowIcon } from "@styled-icons/evaicons-outline/ArrowIosForwardOutline";
 import { useParams } from "react-router";
+import { Link } from "react-router-dom";
+import styled from "styled-components";
 
 import { Paper } from "../Paper";
 import { Task } from "./Task";
 import { CampaignName } from "./CampaignName";
 import { Materials } from "./Materials";
+import { useTheme } from "styled-components";
+
+const Arrow = styled(ArrowIcon)`
+  height: 20px;
+  width: 20px;
+  fill: ${p => p.theme.colors.grey300};
+  margin-top: 3px;
+`;
+
+const StyledLink = styled(Link)`
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+`;
 
 export const Campaign = ({
   customers,
@@ -21,7 +39,11 @@ export const Campaign = ({
 
   return (
     <Box>
-      <ReturnToDashboard />
+      <ReturnToDashboard
+        customerName={customer.name}
+        campaignName={campaign.name}
+        id={id}
+      />
       <CampaignName
         name={name}
         setName={setName}
@@ -47,22 +69,33 @@ export const Campaign = ({
   );
 };
 
-const ReturnToDashboard = () => {
+const ReturnToDashboard = ({ customerName, campaignName, id }) => {
+  const theme = useTheme();
   return (
-    <Box width="100%" maxWidth="1136px" margin="40px auto">
-      <Button
-        display="flex"
-        flexDirection="row"
-        alignItems="center"
-        variant="none"
-        backgroundColor="transparent"
-        border="none"
-        p={0}
-      >
+    <Flex width="100%" maxWidth="1136px" margin="40px auto">
+      <StyledLink to={`/`}>
+        <HomeIcon height="15px" width="20px" fill={theme.colors.grey300} />
         <Text as="span" fontSize={1} color="grey300" paddingLeft="5px">
-          Back to dashboard
+          Dashboard
         </Text>
-      </Button>
-    </Box>
+      </StyledLink>
+      <Arrow />
+      <StyledLink to={`/${id}/campaigns`}>
+        <Text as="span" fontSize={1} color="grey300" paddingLeft="5px">
+          {customerName}
+        </Text>
+      </StyledLink>
+      <Arrow />
+      <Text
+        as="span"
+        fontSize={1}
+        color="grey300"
+        paddingLeft="5px"
+        display="flex"
+        alignItems="center"
+      >
+        {campaignName}
+      </Text>
+    </Flex>
   );
 };
