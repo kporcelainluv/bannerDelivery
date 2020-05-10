@@ -33,7 +33,6 @@ export const Campaigns = ({
   const [displayedCampaigns, setDisplayedCampaigns] = useState("active");
   const theme = useTheme();
 
-
   const tabButtons = [
     { id: nanoid(), name: "Active", status: STATUS.ACTIVE },
     { id: nanoid(), name: "Completed", status: STATUS.COMPLETED }
@@ -187,14 +186,13 @@ const ReturnToDashboard = () => {
   const theme = useTheme();
   return (
     <Box width="100%" maxWidth="1136px" margin="40px auto">
-      <Button
-        display="flex"
-        flexDirection="row"
-        alignItems="center"
-        variant="none"
-        backgroundColor="transparent"
-        border="none"
-        p={0}
+      <Link
+        to={`/`}
+        style={{
+          textDecoration: "none",
+          display: "flex",
+          alignItems: "center"
+        }}
       >
         <ArrowBackIcon
           height={"24px"}
@@ -204,7 +202,7 @@ const ReturnToDashboard = () => {
         <Text as="span" fontSize={1} color="grey300" paddingLeft="5px">
           Back to dashboard
         </Text>
-      </Button>
+      </Link>
     </Box>
   );
 };
