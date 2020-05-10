@@ -38,16 +38,6 @@ export const Campaigns = ({
     { id: nanoid(), name: "Completed", status: STATUS.COMPLETED }
   ];
 
-  const activeCampaigns = customer.campaigns.filter(
-    c => c.status === STATUS.ACTIVE
-  );
-  const completedCampaigns = customer.campaigns.filter(
-    c => c.status === STATUS.COMPLETED
-  );
-
-  const displayedCampaign =
-    displayedCampaigns === STATUS.ACTIVE ? activeCampaigns : completedCampaigns;
-
   const getTabColor = status => {
     return displayedCampaigns === status ? "orange100" : "grey200";
   };
@@ -60,6 +50,23 @@ export const Campaigns = ({
 
   const campaignNameColor =
     displayedCampaigns === STATUS.ACTIVE ? "grey000" : "grey200";
+
+  if (!customer.campaigns) {
+    return (
+      <Box sx={{ position: "relative" }} width="100%" height="100%" p="0 20px">
+        <PageName name={customer.name} />
+        <ReturnToDashboard />
+      </Box>
+    );
+  }
+
+  const activeCampaigns =
+    customer.campaigns.filter(c => c.status === STATUS.ACTIVE) || [];
+  const completedCampaigns =
+    customer.campaigns.filter(c => c.status === STATUS.COMPLETED) || [];
+
+  const displayedCampaign =
+    displayedCampaigns === STATUS.ACTIVE ? activeCampaigns : completedCampaigns;
 
   return (
     <Box sx={{ position: "relative" }} width="100%" height="100%" p="0 20px">
