@@ -387,7 +387,10 @@ const MaterialsContainer = ({
     <Box>
       {materials.map((element, index) => {
         return (
-          <Box sx={{ ":hover": { backgroundColor: theme.colors.grey500 } }}>
+          <Box
+            sx={{ ":hover": { backgroundColor: theme.colors.grey500 } }}
+            key={element.id}
+          >
             <Flex p="24px" key={element.id} flexDirection="row">
               <Image src={element.img} />
               <Flex ml="24px">
