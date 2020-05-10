@@ -46,7 +46,6 @@ const StyledTab = styled(Button)`
 const tabs = ["Client", "Production", "Media / Buyer"];
 
 export const Chat = ({ closeChat, campaign }) => {
-  console.log({ campaign });
   const [tab, setTab] = useState("Client");
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState(campaign.messagesList);
