@@ -44,8 +44,8 @@ const StyledCheckboxIcon = styled(CheckboxIcon)`
 
 export const Campaigns = ({
   customers,
-  markCampaignActive,
-  markCampaignCompleted
+
+  toggleCampaignStatus
 }) => {
   const { id } = useParams();
   const customer = customers.filter(c => c.id === id)[0];
@@ -156,15 +156,15 @@ export const Campaigns = ({
               >
                 {displayedCampaigns === STATUS.ACTIVE ? (
                   <StyledOutlineIcon
-                    onClick={() => {
-                      markCampaignCompleted(customer, c.id);
-                    }}
+                    onClick={() =>
+                      toggleCampaignStatus(customer, c.id, STATUS.COMPLETED)
+                    }
                   />
                 ) : (
                   <StyledCheckboxIcon
-                    onClick={() => {
-                      markCampaignActive(customer, c.id);
-                    }}
+                    onClick={() =>
+                      toggleCampaignStatus(customer, c.id, STATUS.ACTIVE)
+                    }
                   />
                 )}
                 <Box>

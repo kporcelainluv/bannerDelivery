@@ -39,27 +39,10 @@ export const App = () => {
     );
   };
 
-  const markCampaignActive = (customer, id) => {
+  const toggleCampaignStatus = (customer, id, newStatus) => {
     const updatedCampaign = customer.campaigns.map(c => {
       if (id === c.id) {
-        return { ...c, status: STATUS.ACTIVE };
-      }
-      return c;
-    });
-    setCustomers(
-      customers.map(c => {
-        if (c.id === customer.id) {
-          return { ...c, campaigns: updatedCampaign };
-        }
-        return c;
-      })
-    );
-  };
-
-  const markCampaignCompleted = (customer, id) => {
-    const updatedCampaign = customer.campaigns.map(c => {
-      if (id === c.id) {
-        return { ...c, status: STATUS.COMPLETED };
+        return { ...c, status: newStatus };
       }
       return c;
     });
@@ -188,8 +171,7 @@ export const App = () => {
             <Route path="/:id/campaigns">
               <Campaigns
                 customers={customers}
-                markCampaignActive={markCampaignActive}
-                markCampaignCompleted={markCampaignCompleted}
+                toggleCampaignStatus={toggleCampaignStatus}
               />
             </Route>
             <Route path="/">
