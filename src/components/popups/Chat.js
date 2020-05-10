@@ -187,7 +187,7 @@ const InputField = ({ message, messages, setMessage, setMessages }) => {
         backgroundColor="transparent"
         p="0"
         ml="auto"
-        onClick={() =>
+        onClick={() => {
           setMessages([
             ...messages,
             {
@@ -195,8 +195,9 @@ const InputField = ({ message, messages, setMessage, setMessages }) => {
               time: currentTime,
               type: "outcome"
             }
-          ])
-        }
+          ]);
+          setMessage("");
+        }}
       >
         <SendIcon fill={theme.colors.grey000} height="24px" width="24px" />
       </Button>

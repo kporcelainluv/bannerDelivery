@@ -84,8 +84,42 @@ const StyledAddIcon = styled(AddIcon)`
   width: 30px;
   height: 30px;
   color: ${p => p.theme.colors.grey500};
+  cursor: pointer;
   &&:hover,
   &&:focus {
+    fill: ${p => p.theme.colors.orange200};
+  }
+`;
+const StyledUploadIcon2 = styled(UploadOutlinedIcon)`
+  height: 28px;
+  width: 28px;
+  fill: ${p => p.theme.colors.grey000};
+  &:hover {
+    fill: ${p => p.theme.colors.orange200};
+  }
+`;
+const StyledDownloadIcon = styled(DownloadOutlinedIcon)`
+  height: 28px;
+  width: 28px;
+  fill: ${p => p.theme.colors.grey000};
+  &:hover {
+    fill: ${p => p.theme.colors.orange200};
+  }
+`;
+
+const StyledChatIcon = styled(ChatIcon)`
+  height: 28px;
+  width: 28px;
+  fill: ${p => p.theme.colors.grey000};
+  &:hover {
+    fill: ${p => p.theme.colors.orange200};
+  }
+`;
+const StyledDeleteIcon = styled(DeleteIcon)`
+  height: 28px;
+  width: 28px;
+  fill: ${p => p.theme.colors.grey000};
+  &:hover {
     fill: ${p => p.theme.colors.orange200};
   }
 `;
@@ -297,11 +331,7 @@ const ActionButtons = ({
         <Text as="span" className="visually-hidden">
           Delete
         </Text>
-        <DownloadOutlinedIcon
-          height="28px"
-          width="28px"
-          fill={theme.colors.grey000}
-        />
+        <StyledDownloadIcon />
       </StyledButton>
       <StyledButton
         variant="none"
@@ -312,11 +342,7 @@ const ActionButtons = ({
         <Text as="span" className="visually-hidden">
           Upload
         </Text>
-        <UploadOutlinedIcon
-          height="28px"
-          width="28px"
-          fill={theme.colors.grey000}
-        />
+        <StyledUploadIcon2 />
       </StyledButton>
 
       <StyledButton
@@ -328,7 +354,11 @@ const ActionButtons = ({
         <Text as="span" className="visually-hidden">
           Chat
         </Text>
-        <ChatIcon height="28px" width="28px" fill={theme.colors.grey000} />
+        <StyledChatIcon
+          height="28px"
+          width="28px"
+          fill={theme.colors.grey000}
+        />
       </StyledButton>
       <StyledButton
         variant="none"
@@ -339,7 +369,7 @@ const ActionButtons = ({
         <Text as="span" className="visually-hidden">
           Delete
         </Text>
-        <DeleteIcon height="28px" width="28px" fill={theme.colors.grey000} />
+        <StyledDeleteIcon />
       </StyledButton>
     </Flex>
   );

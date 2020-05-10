@@ -12,7 +12,7 @@ import { Campaigns } from "./Campaigns";
 import { Campaign } from "./campaign/Campaign";
 import { customersList } from "../utils/mock";
 
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 export const App = () => {
   const [customers, setCustomers] = useState(customersList);

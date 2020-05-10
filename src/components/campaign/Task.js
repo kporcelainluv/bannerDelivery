@@ -18,6 +18,17 @@ const AttachedFile = styled(Flex)`
   cursor: pointer;
 `;
 
+const StyledAddIcon = styled(AddIcon)`
+  width: 30px;
+  height: 30px;
+  color: ${p => p.theme.colors.grey500};
+  cursor: pointer;
+  &&:hover,
+  &&:focus {
+    fill: ${p => p.theme.colors.orange200};
+  }
+`;
+
 export const Task = ({
   campaign,
   addAttachment,
@@ -139,18 +150,17 @@ const AddAttachment = ({ addAttachment, customer, campaign }) => {
         }}
       />
       <Label htmlFor="addFile" display="flex" alignItems="center">
-        <AddIcon
-          height="30px"
-          width="30px"
-          fill={theme.colors.grey500}
-          cursor="pointer"
-        />
+        <StyledAddIcon />
         <Text
           as="span"
           fontSize={1}
           color="orange200"
           pl="10px"
-          sx={{ letterSpacing: "0.3px", cursor: "pointer" }}
+          sx={{
+            letterSpacing: "0.3px",
+            cursor: "pointer",
+            ":hover": { color: theme.colors.orange100 }
+          }}
         >
           Add Attachment
         </Text>
