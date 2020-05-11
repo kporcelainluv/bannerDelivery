@@ -4,6 +4,7 @@ import { Plus as PlusIcon } from "@styled-icons/boxicons-regular/Plus";
 import { Search as SearchIcon } from "@styled-icons/evaicons-solid/Search";
 import { CheckBoxOutlineBlank as OutlineIcon } from "@styled-icons/material-outlined/CheckBoxOutlineBlank";
 import { CheckBox as CheckboxIcon } from "@styled-icons/material-outlined/CheckBox";
+import { DotsVerticalRounded as DotsIcon } from "@styled-icons/boxicons-regular/DotsVerticalRounded";
 import { Bin as BinIcon } from "@styled-icons/icomoon/Bin";
 import { Edit as EditIcon } from "@styled-icons/material/Edit";
 import { Input } from "@rebass/forms";
@@ -22,7 +23,11 @@ const StyledSearch = styled(SearchIcon)`
   width: 24px;
   top: 13px;
   left: 15px;
+  display: none;
   color: ${props => props.theme.colors.grey200};
+  @media (min-width: ${p => p.theme.breakpoints[1]}) {
+    display: block;
+  }
 `;
 
 const ActionButton = styled(Button)`
@@ -189,19 +194,38 @@ const DashboardActive = ({
 
   return (
     <Box>
-      <Flex justifyContent="space-between" margin="24px">
-        <Flex as="form" sx={{ position: "relative" }}>
+      <Flex
+        justifyContent="center"
+        m="0"
+        sx={{
+          "@media screen and (min-width: 1200px)": {
+            justifyContent: "space-between",
+            margin: "24px"
+          }
+        }}
+      >
+        <Flex
+          as="form"
+          display="none"
+          sx={{
+            position: "relative"
+          }}
+        >
           <StyledSearch />
           <Input
             height="48px"
             width="376px"
             placeholder="Search customer"
             p="0 0 0 50px"
+            display="none"
             sx={{
               borderRadius: "4px",
               backgroundColor: theme.colors.grey500,
               border: "none",
-              color: theme.colors.grey200
+              color: theme.colors.grey200,
+              "@media screen and (min-width: 1200px)": {
+                display: "block"
+              }
             }}
           />
         </Flex>
@@ -212,6 +236,13 @@ const DashboardActive = ({
           borderRadius="4px"
           onClick={() => {
             setPopup(true);
+          }}
+          sx={{
+            position: "absolute",
+            bottom: 0,
+            "@media screen and (min-width: 1200px)": {
+              position: "relative"
+            }
           }}
         >
           <PlusIcon height="24px" width="24px" />
@@ -234,6 +265,20 @@ const DashboardActive = ({
   );
 };
 
+const StyledCustomerContainer = styled(Flex)`
+  margin: 10px 0 0;
+  padding: 12px 0 12px 0;
+  align-items: center;
+  &&:hover {
+    background-color: ${({ status }) =>
+      (status === "active" && "#3F4C5C") || (status === "completed" && "none")};
+  }
+  @media (min-width: ${p => p.theme.breakpoints[1]}) {
+    padding: 12px 0 12px 24px;
+    background-color: ${p => p.theme.colors.grey700};
+  }
+`;
+
 const CustomersList = ({
   customers,
   listName,
@@ -249,29 +294,29 @@ const CustomersList = ({
           fontSize={1}
           color={status === STATUS.ACTIVE ? "grey000" : "grey300"}
           fontWeight="bold"
-          padding="0 74px"
+          padding="0 30px"
+          sx={{
+            "@media screen and (min-width: 1200px)": {
+              padding: "0 74px"
+            }
+          }}
         >
           {listName}
         </Heading>
-        <Flex flexDirection="column">
+        <Flex
+          flexDirection="column"
+          maxHeight="190px"
+          overflowY="scroll"
+          sx={{
+            "@media screen and (min-width: 1200px)": {
+              maxHeight: "100%"
+            }
+          }}
+        >
           {customers.map(customer => {
             const id = customer.id;
             return (
-              <Flex
-                key={customer.id}
-                margin="10px 0 0"
-                p="12px 0 12px 24px"
-                alignItems="center"
-                sx={
-                  status === STATUS.ACTIVE
-                    ? {
-                        ":hover": {
-                          backgroundColor: "grey500"
-                        }
-                      }
-                    : {}
-                }
-              >
+              <StyledCustomerContainer key={customer.id}>
                 {status === STATUS.ACTIVE ? (
                   <StyledOutlineIcon
                     onClick={() => {
@@ -303,7 +348,7 @@ const CustomersList = ({
                     customer={customer}
                   />
                 )}
-              </Flex>
+              </StyledCustomerContainer>
             );
           })}
         </Flex>
@@ -319,20 +364,47 @@ const ActionButtons = ({ status, removeCustomer, customer }) => {
     status === STATUS.ACTIVE ? theme.colors.orange200 : theme.colors.grey300;
 
   return (
-    <Flex flexDirection="row" marginLeft="30px">
+    <Flex
+      flexDirection="row"
+      marginLeft="auto"
+      sx={{
+        "@media screen and (min-width: 1200px)": {
+          marginLeft: "30px"
+        }
+      }}
+    >
       <ActionButton
         variant="none"
         onClick={() => removeCustomer(customer)}
         disabled={status !== STATUS.ACTIVE}
       >
         <BinIcon height="14px" width="14px" fill={color} />
-        <Text display="inline-block" padding="0 10px" color={color}>
+        <Text
+          as="span"
+          padding="0 10px"
+          color={color}
+          display="none"
+          sx={{
+            "@media screen and (min-width: 1200px)": {
+              display: "inline-block"
+            }
+          }}
+        >
           Delete
         </Text>
       </ActionButton>
       <ActionButton variant="none">
         <EditIcon height="16px" width="16px" fill={color} />
-        <Text display="inline-block" padding="0 10px" color={color}>
+        <Text
+          display="none"
+          padding="0 10px"
+          color={color}
+          sx={{
+            "@media screen and (min-width: 1200px)": {
+              display: "inline-block"
+            }
+          }}
+        >
           Edit
         </Text>
       </ActionButton>
