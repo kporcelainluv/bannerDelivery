@@ -62,5 +62,6 @@ export const darkTheme = {
   },
   shadows: {
     large: "0px 0px 25px rgba(13, 13, 13, 0.05)"
-  }
+  },
+  breakpoints: ["320px", "1200px"]
 };
