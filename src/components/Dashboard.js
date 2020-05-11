@@ -39,13 +39,17 @@ const EmptyPaper = styled(Flex)`
   width: 100%;
   max-width: 1136px;
   margin: 40px auto 0;
-  background-color: ${p => p.theme.colors.grey700};
+  background-color: transparent;
   border-radius: 16px;
   box-shadow: ${p => p.theme.shadows.large};
   justify-content: center;
   align-items: center;
-  padding: 20px 0 0;
+  padding: 20px 0;
   height: 146px;
+  @media (min-width: ${p => p.theme.breakpoints[1]}) {
+    padding: 20px 0 0;
+    background-color: ${p => p.theme.colors.grey700};
+  }
 `;
 
 const StyledOutlineIcon = styled(OutlineIcon)`
@@ -106,7 +110,14 @@ export const Dashboard = ({
 };
 const DashboardEmpty = ({ setPopup }) => {
   return (
-    <Fragment>
+    <Flex
+      flexDirection="column-reverse"
+      sx={{
+        "@media screen and (min-width: 1200px)": {
+          flexDirection: "column"
+        }
+      }}
+    >
       <Button
         variant="primary"
         onClick={() => {
@@ -117,12 +128,33 @@ const DashboardEmpty = ({ setPopup }) => {
         }}
       >
         <PlusIcon height="25px" width="25px" />
-        Add First Customer
+        <Text
+          as="span"
+          display="inline-block"
+          sx={{
+            "@media screen and (min-width: 1200px)": {
+              display: "none"
+            }
+          }}
+        >
+          Add Customer
+        </Text>
+        <Text
+          as="span"
+          display="none"
+          sx={{
+            "@media screen and (min-width: 1200px)": {
+              display: "inline-block"
+            }
+          }}
+        >
+          Add First Customer
+        </Text>
       </Button>
-      <Text margin="16px 0 0" color="grey300" fontSize={1}>
+      <Text as="p" margin="16px 0" color="grey300" fontSize={1}>
         List of your customers will be here
       </Text>
-    </Fragment>
+    </Flex>
   );
 };
 
