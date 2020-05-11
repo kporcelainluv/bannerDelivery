@@ -13,18 +13,24 @@ export const PopupPaper = ({ heading, closePopup, children }) => {
       <Flex
         as="form"
         onSubmit={e => e.preventDefault()}
-        width="584px"
+        width="100%"
+        height="100%"
         backgroundColor="grey700"
         flexDirection="column"
         sx={{
           position: "fixed",
           top: "50%",
           left: "50%",
-          transform: "translate(-50%, -50%)"
+          transform: "translate(-50%, -50%)",
+          "@media screen and (min-width: 1200px)": {
+            width: "584px",
+            height: "300px"
+          }
         }}
       >
         <Flex
-          height="56px"
+          minHeight="56px"
+          height="auto"
           sx={{ background: theme.colors.gradient1 }}
           flexDirection="row"
           width="100%"

@@ -16,6 +16,7 @@ export const AddClientPopup = ({ handleClose, addCustomer }) => {
         justifyContent="center"
         flexDirection="column"
         margin="35px auto"
+        p={"0 20px"}
       >
         <Label
           htmlFor="name"
@@ -32,14 +33,17 @@ export const AddClientPopup = ({ handleClose, addCustomer }) => {
           type="text"
           id="name"
           name="name"
-          width="536px"
+          width="328px"
           height="48px"
           value={name}
           sx={{
             border: "1px solid #43414D",
             backgroundColor: "transparent",
             color: theme.colors.grey000,
-            fontSize: theme.fontSizes[2]
+            fontSize: theme.fontSizes[2],
+            "@media screen and (min-width: 1200px)": {
+              width: "536px"
+            }
           }}
           onChange={e => {
             setName(e.target.value);
@@ -53,8 +57,30 @@ export const AddClientPopup = ({ handleClose, addCustomer }) => {
         ) : (
           <Box height="40px" />
         )}
+        <Button
+          variant="secondary"
+          backgroundColor="orange200"
+          width="328px"
+          height="48px"
+          sx={{
+            "@media screen and (min-width: 1200px)": {
+              display: "none"
+            }
+          }}
+        >
+          Save customer
+        </Button>
 
-        <Flex flexDirection="row" margin="40px 0 0 auto">
+        <Box
+          margin="40px 0 0 auto"
+          display="none"
+          sx={{
+            "@media screen and (min-width: 1200px)": {
+              display: "flex",
+              flexDirection: "row"
+            }
+          }}
+        >
           <Button
             variant="secondary"
             sx={{
@@ -82,7 +108,7 @@ export const AddClientPopup = ({ handleClose, addCustomer }) => {
           >
             Save
           </Button>
-        </Flex>
+        </Box>
       </Flex>
     </PopupPaper>
   );
