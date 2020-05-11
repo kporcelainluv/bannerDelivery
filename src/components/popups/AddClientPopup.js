@@ -67,6 +67,13 @@ export const AddClientPopup = ({ handleClose, addCustomer }) => {
               display: "none"
             }
           }}
+          onClick={() => {
+            if (name.length > 0) {
+              addCustomer(name);
+              handleClose();
+            }
+            setWarning(true);
+          }}
         >
           Save customer
         </Button>
