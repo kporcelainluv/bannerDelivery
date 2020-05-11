@@ -15,7 +15,7 @@ import { customersList1, customersList2 } from "../utils/mock";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 export const App = () => {
-  const [customers, setCustomers] = useState(customersList2);
+  const [customers, setCustomers] = useState(customersList1);
 
   const addCustomer = name => {
     setCustomers(c => [
