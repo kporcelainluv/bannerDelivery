@@ -10,12 +10,12 @@ import { Dashboard } from "./Dashboard";
 import { STATUS } from "../utils/consts";
 import { Campaigns } from "./Campaigns";
 import { Campaign } from "./campaign/Campaign";
-import { customersList } from "../utils/mock";
+import { customersList1, customersList2 } from "../utils/mock";
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 export const App = () => {
-  const [customers, setCustomers] = useState(customersList);
+  const [customers, setCustomers] = useState(customersList2);
 
   const addCustomer = name => {
     setCustomers(c => [

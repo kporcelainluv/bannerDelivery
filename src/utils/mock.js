@@ -1,6 +1,8 @@
 import { nanoid } from "nanoid";
 
-export const customersList = [
+export const customersList1 = [];
+
+export const customersList2 = [
   {
     id: "E093_1Py8qB8xDsKEad4Q",
     name: "Burger King",
