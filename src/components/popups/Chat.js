@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Box, Flex, Heading, Button, Text } from "rebass/styled-components";
 import { Input } from "@rebass/forms/styled-components";
 import styled, { useTheme } from "styled-components";
 import { CloseOutline as CloseIcon } from "@styled-icons/evaicons-outline/CloseOutline";
 import { MinusOutline as UnderlineIcon } from "@styled-icons/evaicons-outline/MinusOutline";
 import { Send as SendIcon } from "@styled-icons/material-sharp/Send";
+import { nanoid } from "nanoid";
 import { DialogOverlay } from "@reach/dialog";
 import "@reach/dialog/styles.css";
 
@@ -42,33 +43,43 @@ const StyledTab = styled(Button)`
 
 const tabs = ["Client", "Production", "Media / Buyer"];
 
-export const Chat = ({ closeChat, campaign }) => {
+export const Chat = ({ closeChat, addMessage, customer, id, campaignId }) => {
+  const refId = useRef(id);
+  const campaign = customer.campaigns.filter(c => c.id === campaignId)[0];
+  const material = campaign.materials.filter(c => c.id === refId.current)[0];
+
   const [tab, setTab] = useState("Client");
   const [message, setMessage] = useState("");
-  const [messages, setMessages] = useState(campaign.messagesList);
   return (
     <DialogOverlay aria-label="Chat dialog">
       <StyledContainer>
-        <Header tab={tab} setTab={setTab} closeChat={closeChat} />
-        <Messages messages={messages} />
+        <Header
+          tab={tab}
+          setTab={setTab}
+          closeChat={closeChat}
+          name={material.name}
+        />
+        <Messages messages={material.messagesList} />
         <InputField
           message={message}
-          messages={messages}
           setMessage={setMessage}
-          setMessages={setMessages}
+          addMessage={addMessage}
+          customer={customer}
+          campaign={campaign}
+          material={material}
         />
       </StyledContainer>
     </DialogOverlay>
   );
 };
 
-const Header = ({ tab, setTab, closeChat }) => {
+const Header = ({ tab, setTab, closeChat, name }) => {
   const theme = useTheme();
   return (
     <Box sx={{ background: theme.colors.gradient1 }} height="88px">
       <Flex alignItems="center" justifyContent="space-between" p="10px 24px">
         <Heading as="span" fontSize={2} color="grey000">
-          #1 Yandex_1280x3500, PNG
+          {name}
         </Heading>
         <Box>
           <UnderlineIcon
@@ -160,7 +171,14 @@ const Messages = ({ messages }) => {
   );
 };
 
-const InputField = ({ message, messages, setMessage, setMessages }) => {
+const InputField = ({
+  message,
+  setMessage,
+  addMessage,
+  customer,
+  campaign,
+  material
+}) => {
   const theme = useTheme();
   const currentTime = new Date()
     .toLocaleString("ru-RU", { timeZone: "Europe/Moscow" })
@@ -191,14 +209,12 @@ const InputField = ({ message, messages, setMessage, setMessages }) => {
         p="0"
         ml="auto"
         onClick={() => {
-          setMessages([
-            ...messages,
-            {
-              text: message,
-              time: currentTime,
-              type: "outcome"
-            }
-          ]);
+          addMessage(customer, campaign, material, {
+            id: nanoid(),
+            text: message,
+            time: currentTime,
+            type: "outcome"
+          });
           setMessage("");
         }}
       >

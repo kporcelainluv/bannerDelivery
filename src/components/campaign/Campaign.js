@@ -29,8 +29,7 @@ export const Campaign = ({
   customers,
   addAttachment,
   deleteAttachment,
-  // updateDescription,
-  // updateCampaignName,
+  addMessage,
   updateCampaign
 }) => {
   const { id, campaignId } = useParams();
@@ -63,7 +62,7 @@ export const Campaign = ({
           />
         </Paper>
         <Paper width="848px" margin={"20px 0"}>
-          <Materials campaign={campaign} customer={customer} />
+          <Materials campaign={campaign} customer={customer} addMessage={addMessage}/>
         </Paper>
       </Box>
     </Box>

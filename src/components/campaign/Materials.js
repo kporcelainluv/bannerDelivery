@@ -20,7 +20,6 @@ import { DeleteOutline as CancelIcon } from "@styled-icons/typicons/DeleteOutlin
 import { DeleteOutline as DeleteIcon } from "@styled-icons/material-twotone/DeleteOutline";
 import { DoneAll as DoneIcon } from "@styled-icons/evaicons-solid/DoneAll";
 import styled, { useTheme } from "styled-components";
-import { nanoid } from "nanoid";
 
 import { AccessPopup } from "../popups/AcessPopup";
 import { Chat } from "../popups/Chat";
@@ -124,11 +123,15 @@ const StyledDeleteIcon = styled(DeleteIcon)`
   }
 `;
 
-export const Materials = ({ campaign, customer }) => {
+export const Materials = ({ campaign, customer, addMessage }) => {
   const theme = useTheme();
   const [tab, setTab] = useState(TABS.JPEG);
   const [accessPopup, setAccessPopup] = useState(false);
-  const [chatPopup, setChatPopup] = useState({ opened: false, material: {} });
+  const [chatPopup, setChatPopup] = useState({
+    opened: false,
+    material: {},
+    id: undefined
+  });
   const [materials, setMaterials] = useState(campaign.materials);
 
   const closePopup = () => {
@@ -143,6 +146,7 @@ export const Materials = ({ campaign, customer }) => {
     const updatedMaterials = materials.filter(m => m.id !== material.id);
     setMaterials(updatedMaterials);
   };
+  console.log({ customer });
   return (
     <Box>
       <Header />
@@ -158,7 +162,13 @@ export const Materials = ({ campaign, customer }) => {
       />
       {accessPopup && <AccessPopup closePopup={closePopup} />}
       {chatPopup.opened && (
-        <Chat closeChat={closeChat} campaign={chatPopup.material} />
+        <Chat
+          closeChat={closeChat}
+          campaignId={campaign.id}
+          addMessage={addMessage}
+          customer={customer}s
+          id={chatPopup.id}
+        />
       )}
     </Box>
   );
@@ -348,7 +358,8 @@ const ActionButtons = ({
       <StyledButton
         variant="none"
         onClick={() => {
-          setChatPopup({ opened: true, material: material });
+          console.log({ material });
+          setChatPopup({ opened: true, material: material, id: material.id });
         }}
       >
         <Text as="span" className="visually-hidden">

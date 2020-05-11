@@ -127,6 +127,35 @@ export const App = () => {
     );
   };
 
+  const addMessage = (customer, campaign, material, message) => {
+    setCustomers(
+      customers.map(cmr => {
+        if (cmr.id === customer.id) {
+          return {
+            ...cmr,
+            campaigns: cmr.campaigns.map(c => {
+              if (c.id === campaign.id) {
+                return {
+                  ...c,
+                  materials: c.materials.map(m => {
+                    if (m.id === material.id) {
+                      return {
+                        ...m,
+                        messagesList: [...m.messagesList, message]
+                      };
+                    }
+                    return m;
+                  })
+                };
+              }
+              return c;
+            })
+          };
+        }
+        return cmr;
+      })
+    );
+  };
   return (
     <div className="App">
       <GlobalTheme />
@@ -140,6 +169,7 @@ export const App = () => {
                 addAttachment={addAttachment}
                 deleteAttachment={deleteAttachment}
                 updateCampaign={updateCampaign}
+                addMessage={addMessage}
               />
             </Route>
             <Route path="/:id/campaigns">
