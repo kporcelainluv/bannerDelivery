@@ -57,17 +57,39 @@ export const App = () => {
   };
 
   const addAttachment = (name, customer, campaign) => {
+    setCustomers(
+      customers.map(c => {
+        if (c.id === customer.id) {
+          return {
+            ...c,
+            campaigns: customer.campaigns.map(c => {
+              if (c.id === campaign.id) {
+                return {
+                  ...c,
+                  attachments: [
+                    ...c.attachments,
+                    {
+                      name: name,
+                      id: nanoid()
+                    }
+                  ]
+                };
+              }
+              return c;
+            })
+          };
+        }
+        return c;
+      })
+    );
+  };
+
+  const deleteAttachment = (attachmentId, customer, campaign) => {
     const updatedCampaigns = customer.campaigns.map(c => {
       if (c.id === campaign.id) {
         return {
           ...c,
-          attachments: [
-            ...c.attachments,
-            {
-              name: name,
-              id: nanoid()
-            }
-          ]
+          attachments: campaign.attachments.filter(c => c.id !== attachmentId)
         };
       }
       return c;
@@ -86,65 +108,18 @@ export const App = () => {
     );
   };
 
-  const deleteAttachment = (attachmentId, customer, campaign) => {
-    const updatedAttachments = campaign.attachments.filter(
-      c => c.id !== attachmentId
-    );
-    const updatedCampaigns = customer.campaigns.map(c => {
-      if (c.id === campaign.id) {
-        return { ...c, attachments: updatedAttachments };
-      }
-      return c;
-    });
-
+  const updateCampaign = (campaign, customer, type, newValue) => {
     setCustomers(
       customers.map(c => {
         if (c.id === customer.id) {
           return {
             ...c,
-            campaigns: updatedCampaigns
-          };
-        }
-        return c;
-      })
-    );
-  };
-
-  const updateDescription = (campaign, customer, newDescription) => {
-    const updatedCampaigns = customer.campaigns.map(c => {
-      if (c.id === campaign.id) {
-        return { ...c, description: newDescription };
-      }
-      return c;
-    });
-
-    setCustomers(
-      customers.map(c => {
-        if (c.id === customer.id) {
-          return {
-            ...c,
-            campaigns: updatedCampaigns
-          };
-        }
-        return c;
-      })
-    );
-  };
-
-  const updateCampaignName = (campaign, customer, newName) => {
-    const updatedCampaigns = customer.campaigns.map(c => {
-      if (c.id === campaign.id) {
-        return { ...c, name: newName };
-      }
-      return c;
-    });
-
-    setCustomers(
-      customers.map(c => {
-        if (c.id === customer.id) {
-          return {
-            ...c,
-            campaigns: updatedCampaigns
+            campaigns: customer.campaigns.map(c => {
+              if (c.id === campaign.id) {
+                return { ...c, [type]: newValue };
+              }
+              return c;
+            })
           };
         }
         return c;
@@ -164,8 +139,7 @@ export const App = () => {
                 customers={customers}
                 addAttachment={addAttachment}
                 deleteAttachment={deleteAttachment}
-                updateDescription={updateDescription}
-                updateCampaignName={updateCampaignName}
+                updateCampaign={updateCampaign}
               />
             </Route>
             <Route path="/:id/campaigns">

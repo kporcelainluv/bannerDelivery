@@ -33,8 +33,8 @@ export const Task = ({
   campaign,
   addAttachment,
   customer,
-  updateDescription,
-  deleteAttachment
+  deleteAttachment,
+  updateCampaign
 }) => {
   return (
     <Box padding="24px">
@@ -45,7 +45,7 @@ export const Task = ({
         <Description
           campaign={campaign}
           customer={customer}
-          updateDescription={updateDescription}
+          updateCampaign={updateCampaign}
         />
         <Attachment
           customer={customer}
@@ -62,7 +62,12 @@ export const Task = ({
   );
 };
 
-const Description = ({ campaign, updateDescription, customer }) => {
+const Description = ({
+  campaign,
+  updateDescription,
+  customer,
+  updateCampaign
+}) => {
   const theme = useTheme();
   return (
     <Fragment>
@@ -95,7 +100,7 @@ const Description = ({ campaign, updateDescription, customer }) => {
           }
         }}
         onChange={e => {
-          updateDescription(campaign, customer, e.target.value);
+          updateCampaign(campaign, customer, "description", e.target.value);
         }}
       />
     </Fragment>

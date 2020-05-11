@@ -29,7 +29,7 @@ export const CampaignName = ({
   name,
   campaign,
   customer,
-  updateCampaignName
+  updateCampaign
 }) => {
   const theme = useTheme();
   return (
@@ -39,7 +39,7 @@ export const CampaignName = ({
           value={name}
           onChange={e => {
             setName(e.target.value);
-            updateCampaignName(campaign, customer, e.target.value);
+            updateCampaign(campaign, customer, "name", e.target.value);
           }}
         />
         <StyledSave
