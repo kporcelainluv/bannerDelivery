@@ -13,6 +13,7 @@ import { nanoid } from "nanoid";
 import { PageName } from "./PageName";
 import { Paper } from "./Paper";
 import { STATUS } from "../utils/consts";
+import { Plus as PlusIcon } from "@styled-icons/boxicons-regular/Plus";
 
 const StyledSearch = styled(SearchIcon)`
   position: absolute;
@@ -92,8 +93,26 @@ export const Campaigns = ({
       <PageName name={customer.name} />
       <ReturnToDashboard />
       <Paper margin="0 auto" width="1136px">
-        <Flex justifyContent="space-between" margin="24px">
-          <Flex as="form" sx={{ position: "relative" }}>
+        <Box
+          justifyContent="center"
+          display="flex"
+          sx={{
+            "@media screen and (min-width: 1200px)": {
+              margin: "24px",
+              justifyContent: "space-between"
+            }
+          }}
+        >
+          <Box
+            as="form"
+            display="none"
+            sx={{
+              position: "relative",
+              "@media screen and (min-width: 1200px)": {
+                display: "flex"
+              }
+            }}
+          >
             <StyledSearch />
             <Input
               height="48px"
@@ -107,9 +126,54 @@ export const Campaigns = ({
                 color: theme.colors.grey200
               }}
             />
-          </Flex>
-        </Flex>
-        <Flex padding="30px 0 10px 60px">
+          </Box>
+          <Button
+            variant="primary"
+            // onClick={() => {
+            //   setPopup(true);
+            // }}
+            sx={{
+              position: "absolute",
+              bottom: "0",
+              borderRadius: "24px",
+              "@media screen and (min-width: 1200px)": {
+                position: "relative"
+              }
+            }}
+          >
+            <PlusIcon height="25px" width="25px" />
+            <Text
+              as="span"
+              display="inline-block"
+              sx={{
+                "@media screen and (min-width: 1200px)": {
+                  display: "none"
+                }
+              }}
+            >
+              Add Customer
+            </Text>
+            <Text
+              as="span"
+              display="none"
+              sx={{
+                "@media screen and (min-width: 1200px)": {
+                  display: "inline-block"
+                }
+              }}
+            >
+              Add Campaign
+            </Text>
+          </Button>
+        </Box>
+        <Flex
+          padding="30px 0 10px 15px"
+          sx={{
+            "@media screen and (min-width: 1200px)": {
+              padding: "30px 0 10px 60px"
+            }
+          }}
+        >
           {tabButtons.map(button => {
             return (
               <Fragment key={button.name}>
@@ -141,12 +205,19 @@ export const Campaigns = ({
             );
           })}
         </Flex>
-        <Box>
+        <Box
+          mb="50px"
+          sx={{
+            "@media screen and (min-width: 1200px)": {
+              marginBottom: "0"
+            }
+          }}
+        >
           {displayedCampaign.map(c => {
             return (
               <Flex
                 key={c.id}
-                padding="15px 0 15px 30px"
+                padding="15px 0 15px 12px"
                 alignItems="center"
                 sx={{
                   ":hover": {
