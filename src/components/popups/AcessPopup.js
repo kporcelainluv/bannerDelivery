@@ -6,6 +6,7 @@ import { Switch } from "@rebass/forms/styled-components";
 import styled, { useTheme } from "styled-components";
 import { nanoid } from "nanoid";
 
+
 import { PopupPaper } from "./PopupPaper";
 import { accessFields } from "../../utils/consts";
 
@@ -47,7 +48,7 @@ export const AccessPopup = ({ closePopup }) => {
           : theme.colors.orange300;
 
         return (
-          <Box key={field.id} m="35px 25px" >
+          <Box key={field.id} m="35px 25px">
             <Flex justifyContent="space-between">
               <Heading
                 as="h3"

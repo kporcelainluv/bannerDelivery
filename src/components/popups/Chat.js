@@ -5,16 +5,14 @@ import styled, { useTheme } from "styled-components";
 import { CloseOutline as CloseIcon } from "@styled-icons/evaicons-outline/CloseOutline";
 import { MinusOutline as UnderlineIcon } from "@styled-icons/evaicons-outline/MinusOutline";
 import { Send as SendIcon } from "@styled-icons/material-sharp/Send";
+import { DialogOverlay } from "@reach/dialog";
+import "@reach/dialog/styles.css";
 
 const StyledContainer = styled(Box)`
   height: 648px;
   width: 848px;
   background-color: ${p => p.theme.colors.grey700};
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  margin-bottom: 50px;
+  margin: 0 auto;
 `;
 
 const StyledTab = styled(Button)`
@@ -49,7 +47,7 @@ export const Chat = ({ closeChat, campaign }) => {
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState(campaign.messagesList);
   return (
-    <Box>
+    <DialogOverlay aria-label="Chat dialog">
       <StyledContainer>
         <Header tab={tab} setTab={setTab} closeChat={closeChat} />
         <Messages messages={messages} />
@@ -60,7 +58,7 @@ export const Chat = ({ closeChat, campaign }) => {
           setMessages={setMessages}
         />
       </StyledContainer>
-    </Box>
+    </DialogOverlay>
   );
 };
 
@@ -116,7 +114,12 @@ const Header = ({ tab, setTab, closeChat }) => {
 
 const Messages = ({ messages }) => {
   return (
-    <Flex height="488px" flexDirection="column" justifyContent="flex-end">
+    <Flex
+      height="488px"
+      flexDirection="column"
+      justifyContent="flex-end"
+      sx={{ overflowX: "hidden" }}
+    >
       {messages.map(message => {
         const margin =
           message.type === "income"
