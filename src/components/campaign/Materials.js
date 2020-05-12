@@ -34,7 +34,10 @@ const StyledButton = styled(Button)`
   background-color: transparent;
   border: none;
   padding: 0;
-  margin-left: 10px;
+  margin-right: 10px;
+  @media (min-width: ${p => p.theme.breakpoints[1]}) {
+    margin: 0 0 0 10px;
+  }
 `;
 
 const StyledTab = styled(Button)`
@@ -129,8 +132,7 @@ export const Materials = ({ campaign, customer, addMessage }) => {
   const [accessPopup, setAccessPopup] = useState(false);
   const [chatPopup, setChatPopup] = useState({
     opened: false,
-    material: {},
-    id: undefined
+    id: "rSKkujpC9UKWffy_z57sd"
   });
   const [materials, setMaterials] = useState(campaign.materials);
 
@@ -139,14 +141,13 @@ export const Materials = ({ campaign, customer, addMessage }) => {
   };
 
   const closeChat = () => {
-    setChatPopup({ opened: false, material: {} });
+    setChatPopup({ opened: false, id: undefined });
   };
 
   const deleteMaterial = material => {
     const updatedMaterials = materials.filter(m => m.id !== material.id);
     setMaterials(updatedMaterials);
   };
-  console.log({ customer });
   return (
     <Box>
       <Header />
@@ -166,7 +167,7 @@ export const Materials = ({ campaign, customer, addMessage }) => {
           closeChat={closeChat}
           campaignId={campaign.id}
           addMessage={addMessage}
-          customer={customer}s
+          customer={customer}
           id={chatPopup.id}
         />
       )}
@@ -177,8 +178,27 @@ export const Materials = ({ campaign, customer, addMessage }) => {
 const Header = () => {
   const theme = useTheme();
   return (
-    <Flex padding="30px 24px 0px" justifyContent="space-between">
-      <Heading as="h2" fontSize={2} color="grey000" mb="24px">
+    <Flex
+      padding="0"
+      justifyContent="space-between"
+      alignItems="baseline"
+      sx={{
+        "@media screen and (min-width: 1200px)": {
+          padding: "30px 24px 0px"
+        }
+      }}
+    >
+      <Heading
+        as="h2"
+        fontSize={1}
+        color="grey000"
+        mb="24px"
+        sx={{
+          "@media screen and (min-width: 1200px)": {
+            fontSize: theme.fontSizes[2]
+          }
+        }}
+      >
         Materials
       </Heading>
       <StyledDownload variant="primary" onClick={() => {}}>
@@ -204,7 +224,15 @@ const Header = () => {
 const Tabs = ({ tab, setTab }) => {
   const theme = useTheme();
   return (
-    <Flex p={"0 24px"} alignItems="center">
+    <Flex
+      p="0"
+      alignItems="center"
+      sx={{
+        "@media screen and (min-width: 1200px)": {
+          padding: "0 24px"
+        }
+      }}
+    >
       {tabsList.map((t, index) => {
         return (
           <StyledTab
@@ -257,27 +285,32 @@ const UploadBanner = () => {
     <Flex
       flexDirection="column"
       width="100%"
-      maxWidth="800px"
-      margin="40px auto"
       boxShadow="large"
       justifyContent="center"
       alignItems="center"
-      p="20px 0 "
-      height="146px"
-      backgroundColor="grey500"
+      p="20px 0"
       sx={{
         borderRadius: "4px",
-        ":hover": { backgroundColor: theme.colors.grey800 }
+        ":hover": { backgroundColor: theme.colors.grey800 },
+        maxWidth: "800px",
+        "@media screen and (min-width: 1200px)": {
+          backgroundColor: theme.colors.grey500,
+          height: "146px",
+          margin: "40px auto"
+        }
       }}
     >
       <Flex
         height="48px"
-        width="186px"
+        width="100%"
         backgroundColor="orange200"
         sx={{
           borderRadius: "4px",
           ":hover": { backgroundColor: theme.colors.orange100 },
-          cursor: "pointer"
+          cursor: "pointer",
+          "@media screen and (min-width: 1200px)": {
+            width: "186px"
+          }
         }}
         alignItems="center"
       >
@@ -301,7 +334,18 @@ const UploadBanner = () => {
         </Label>
         <Input id="upload" name="upload" type="file" display="none" />
       </Flex>
-      <Text margin="16px 0 0" color="grey300" fontSize={1}>
+      <Text
+        as="span"
+        margin="16px 0 0"
+        color="grey300"
+        fontSize={1}
+        display="none"
+        sx={{
+          "@media screen and (min-width: 1200px)": {
+            display: "inline-block"
+          }
+        }}
+      >
         or drop file here
       </Text>
     </Flex>
@@ -310,14 +354,40 @@ const UploadBanner = () => {
 
 const MaterialDescription = ({ element }) => {
   const { name, date, size } = element;
+  const theme = useTheme();
   return (
     <Flex flexDirection="column" ml="10px">
-      <Heading as="h2" fontSize={1} color="grey000" mb={"5px"}>
+      <Heading
+        as="h2"
+        fontSize={0}
+        color="grey000"
+        mb={"5px"}
+        maxWidth="160px"
+        sx={{
+          wordBreak: "break-all",
+          lineHeight: "20px",
+          "@media screen and (min-width: 1200px)": {
+            fontSize: theme.fontSizes[1],
+            maxWidth: "100%"
+          }
+        }}
+      >
         {name}
       </Heading>
       {[date, size].map(element => {
         return (
-          <Text key={element} as="span" fontSize={1} color="grey300" mb={"5px"}>
+          <Text
+            key={element}
+            as="span"
+            fontSize={0}
+            color="grey300"
+            mb={"5px"}
+            sx={{
+              "@media screen and (min-width: 1200px)": {
+                fontSize: theme.fontSizes[1]
+              }
+            }}
+          >
             {element}
           </Text>
         );
@@ -333,8 +403,6 @@ const ActionButtons = ({
   deleteMaterial,
   material
 }) => {
-  const theme = useTheme();
-
   return (
     <Flex>
       <StyledButton variant="none">
@@ -358,18 +426,13 @@ const ActionButtons = ({
       <StyledButton
         variant="none"
         onClick={() => {
-          console.log({ material });
-          setChatPopup({ opened: true, material: material, id: material.id });
+          setChatPopup({ opened: true, id: material.id });
         }}
       >
         <Text as="span" className="visually-hidden">
           Chat
         </Text>
-        <StyledChatIcon
-          height="28px"
-          width="28px"
-          fill={theme.colors.grey000}
-        />
+        <StyledChatIcon />
       </StyledButton>
       <StyledButton
         variant="none"
@@ -396,23 +459,66 @@ const MaterialsContainer = ({
   const theme = useTheme();
   return (
     <Box>
-      {materials.map((element, index) => {
+      {materials.map(element => {
         return (
           <Box
             sx={{ ":hover": { backgroundColor: theme.colors.grey500 } }}
             key={element.id}
           >
-            <Flex p="24px" key={element.id} flexDirection="row">
-              <Image src={element.img} />
-              <Flex ml="24px">
-                <MaterialStatusIcon status={element.status} />
-                <MaterialDescription element={element} />
-              </Flex>
-              <Flex
-                ml="auto"
-                flexDirection="column"
+            <Flex
+              key={element.id}
+              p="16px 0"
+              flexDirection="column"
+              sx={{
+                "@media screen and (min-width: 1200px)": {
+                  padding: "24px",
+                  flexDirection: "row"
+                }
+              }}
+            >
+              <Box display="flex">
+                <Box>
+                  <Image
+                    src={element.img}
+                    height="100%"
+                    // height="70px"
+                    // minWidth="70px"
+                    sx={{
+                      "@media screen and (min-width: 1200px)": {
+                        height: "110px",
+                        minWidth: "110px"
+                      }
+                    }}
+                  />
+                </Box>
+
+                <Flex
+                  flexDirection="row-reverse"
+                  justifyContent="space-between"
+                  width="100%"
+                  sx={{
+                    "@media screen and (min-width: 1200px)": {
+                      marginLeft: "24px",
+                      flexDirection: "row"
+                    }
+                  }}
+                >
+                  <MaterialStatusIcon status={element.status} />
+                  <MaterialDescription element={element} />
+                </Flex>
+              </Box>
+              <Box
+                display="flex"
+                flexDirection="row-reverse"
                 justifyContent="space-between"
-                alignItems="flex-end"
+                alignItems="center"
+                sx={{
+                  "@media screen and (min-width: 1200px)": {
+                    flexDirection: "column",
+                    alignItems: "flex-end",
+                    marginLeft: "auto"
+                  }
+                }}
               >
                 <CTAButton element={element} />
                 <ActionButtons
@@ -422,7 +528,7 @@ const MaterialsContainer = ({
                   deleteMaterial={deleteMaterial}
                   material={element}
                 />
-              </Flex>
+              </Box>
             </Flex>
             {/*{index < materials.length - 1 && <Box as="hr" m="0 24px" />}*/}
           </Box>

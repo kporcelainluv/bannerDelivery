@@ -10,10 +10,27 @@ import { DialogOverlay } from "@reach/dialog";
 import "@reach/dialog/styles.css";
 
 const StyledContainer = styled(Box)`
-  height: 648px;
-  width: 848px;
+  height: 100%;
+  width: 100%;
   background-color: ${p => p.theme.colors.grey700};
   margin: 0 auto;
+  @media (min-width: ${p => p.theme.breakpoints[1]}) {
+    height: 648px;
+    width: 848px;
+  }
+`;
+const StyledMessage = styled(Flex)`
+  max-height: calc(100% - 170px);
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 100%;
+  overflow: auto;
+  div:nth-child(1) {
+    margin-top: auto;
+  }
+  @media (min-width: ${p => p.theme.breakpoints[1]}) {
+    height: 488px;
+  }
 `;
 
 const StyledTab = styled(Button)`
@@ -23,8 +40,8 @@ const StyledTab = styled(Button)`
   color: ${({ selected }) =>
     (selected && "#FFFFFE") || (!selected && "rgba(63, 76, 92, 0.6)")};
 
-  padding: 8px 5px;
-  margin-right: 40px;
+  margin-right: 10px;
+  padding: 8px 0;
   border-radius: 0;
   position: relative;
   display: flex;
@@ -38,6 +55,10 @@ const StyledTab = styled(Button)`
     color: ${p => p.theme.colors.orange200};
     border-bottom: ${({ selected }) =>
       (selected && `2px solid`) || (!selected && "none")};
+  }
+  @media (min-width: ${p => p.theme.breakpoints[1]}) {
+    margin-right: 40px;
+    padding: 8px 5px;
   }
 `;
 
@@ -76,9 +97,33 @@ export const Chat = ({ closeChat, addMessage, customer, id, campaignId }) => {
 const Header = ({ tab, setTab, closeChat, name }) => {
   const theme = useTheme();
   return (
-    <Box sx={{ background: theme.colors.gradient1 }} height="88px">
-      <Flex alignItems="center" justifyContent="space-between" p="10px 24px">
-        <Heading as="span" fontSize={2} color="grey000">
+    <Box
+      sx={{
+        background: theme.colors.gradient1,
+        "@media screen and (min-width: 1200px)": {
+          height: "88px"
+        }
+      }}
+    >
+      <Flex
+        alignItems="center"
+        justifyContent="space-between"
+        p="10px 16px"
+        sx={{
+          "@media screen and (min-width: 1200px)": {
+            padding: "10px 24px"
+          }
+        }}
+      >
+        <Heading
+          as="span"
+          fontSize={2}
+          color="grey000"
+          sx={{
+            wordBreak: "break-word",
+            maxWidth: "70%"
+          }}
+        >
           {name}
         </Heading>
         <Box>
@@ -125,12 +170,7 @@ const Header = ({ tab, setTab, closeChat, name }) => {
 
 const Messages = ({ messages }) => {
   return (
-    <Flex
-      height="488px"
-      flexDirection="column"
-      justifyContent="flex-end"
-      sx={{ overflowX: "hidden" }}
-    >
+    <StyledMessage>
       {messages.map(message => {
         const margin =
           message.type === "income"
@@ -141,8 +181,12 @@ const Messages = ({ messages }) => {
           <Box
             key={message.id}
             backgroundColor={background}
-            height="92px"
-            width="540px"
+            width="240px"
+            sx={{
+              "@media screen and (min-width: 1200px)": {
+                width: "540px"
+              }
+            }}
             margin={margin}
           >
             <Text
@@ -167,7 +211,7 @@ const Messages = ({ messages }) => {
           </Box>
         );
       })}
-    </Flex>
+    </StyledMessage>
   );
 };
 
@@ -189,6 +233,7 @@ const InputField = ({
       backgroundColor="grey500"
       height="72px"
       alignItems="center"
+      width="100%"
     >
       <Box>
         <Input
@@ -197,9 +242,13 @@ const InputField = ({
           type="text"
           placeholder="Message..."
           value={message}
-          width="750px"
           color="grey300"
-          sx={{ border: "1px solid transparent" }}
+          sx={{
+            border: "1px solid transparent",
+            "@media screen and (min-width: 1200px)": {
+              width: "750px"
+            }
+          }}
           onChange={e => setMessage(e.target.value)}
         />
       </Box>

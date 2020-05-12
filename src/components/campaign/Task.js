@@ -36,9 +36,27 @@ export const Task = ({
   deleteAttachment,
   updateCampaign
 }) => {
+  const theme = useTheme();
   return (
-    <Box padding="24px">
-      <Heading as="h2" fontSize={2} color="grey000" mb="24px">
+    <Box
+      padding="0"
+      sx={{
+        "@media screen and (min-width: 1200px)": {
+          padding: "24px"
+        }
+      }}
+    >
+      <Heading
+        as="h2"
+        fontSize={1}
+        color="grey000"
+        mb="24px"
+        sx={{
+          "@media screen and (min-width: 1200px)": {
+            fontSize: theme.fontSizes[1]
+          }
+        }}
+      >
         Task
       </Heading>
       <Flex as="form" sx={{ position: "relative" }} flexDirection="column">
@@ -62,12 +80,7 @@ export const Task = ({
   );
 };
 
-const Description = ({
-  campaign,
-  updateDescription,
-  customer,
-  updateCampaign
-}) => {
+const Description = ({ campaign, customer, updateCampaign }) => {
   const theme = useTheme();
   return (
     <Fragment>
@@ -84,7 +97,7 @@ const Description = ({
         id="description"
         name="description"
         height="200px"
-        width="535px"
+        width="100%"
         placeholder={campaign.description}
         fontSize={1}
         color="grey000"
@@ -97,6 +110,9 @@ const Description = ({
           borderColor: "grey400",
           "::placeholder": {
             color: theme.colors.grey000
+          },
+          "@media screen and (min-width: 1200px)": {
+            width: "535px"
           }
         }}
         onChange={e => {

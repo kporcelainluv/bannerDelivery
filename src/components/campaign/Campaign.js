@@ -51,8 +51,23 @@ export const Campaign = ({
         customer={customer}
         updateCampaign={updateCampaign}
       />
-      <Box width="1136px" m={"0 auto"}>
-        <Paper width="848px" margin={"20px 0"}>
+      <Box
+        width="100%"
+        m={"0 auto"}
+        sx={{
+          "@media screen and (min-width: 1200px)": {
+            width: "1136px"
+          }
+        }}
+      >
+        <Paper
+          margin={"20px 0"}
+          sx={{
+            "@media screen and (min-width: 1200px)": {
+              width: "848px"
+            }
+          }}
+        >
           <Task
             campaign={campaign}
             addAttachment={addAttachment}
@@ -62,7 +77,11 @@ export const Campaign = ({
           />
         </Paper>
         <Paper width="848px" margin={"20px 0"}>
-          <Materials campaign={campaign} customer={customer} addMessage={addMessage}/>
+          <Materials
+            campaign={campaign}
+            customer={customer}
+            addMessage={addMessage}
+          />
         </Paper>
       </Box>
     </Box>
