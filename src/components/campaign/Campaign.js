@@ -11,6 +11,7 @@ import { Task } from "./Task";
 import { CampaignName } from "./CampaignName";
 import { Materials } from "./Materials";
 import { useTheme } from "styled-components";
+import { PageName } from "../PageName";
 
 const Arrow = styled(ArrowIcon)`
   height: 20px;

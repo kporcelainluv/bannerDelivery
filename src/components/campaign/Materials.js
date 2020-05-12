@@ -362,7 +362,6 @@ const MaterialDescription = ({ element }) => {
         fontSize={0}
         color="grey000"
         mb={"5px"}
-        maxWidth="160px"
         sx={{
           wordBreak: "break-all",
           lineHeight: "20px",
@@ -374,24 +373,26 @@ const MaterialDescription = ({ element }) => {
       >
         {name}
       </Heading>
-      {[date, size].map(element => {
-        return (
-          <Text
-            key={element}
-            as="span"
-            fontSize={0}
-            color="grey300"
-            mb={"5px"}
-            sx={{
-              "@media screen and (min-width: 1200px)": {
-                fontSize: theme.fontSizes[1]
-              }
-            }}
-          >
-            {element}
-          </Text>
-        );
-      })}
+      {date &&
+        size &&
+        [date, size].map(element => {
+          return (
+            <Text
+              key={element}
+              as="span"
+              fontSize={0}
+              color="grey300"
+              mb={"5px"}
+              sx={{
+                "@media screen and (min-width: 1200px)": {
+                  fontSize: theme.fontSizes[1]
+                }
+              }}
+            >
+              {element}
+            </Text>
+          );
+        })}
     </Flex>
   );
 };
@@ -459,81 +460,81 @@ const MaterialsContainer = ({
   const theme = useTheme();
   return (
     <Box>
-      {materials.map(element => {
-        return (
-          <Box
-            sx={{ ":hover": { backgroundColor: theme.colors.grey500 } }}
-            key={element.id}
-          >
-            <Flex
+      {materials &&
+        materials.map(element => {
+          return (
+            <Box
+              sx={{ ":hover": { backgroundColor: theme.colors.grey500 } }}
               key={element.id}
-              p="16px 0"
-              flexDirection="column"
-              sx={{
-                "@media screen and (min-width: 1200px)": {
-                  padding: "24px",
-                  flexDirection: "row"
-                }
-              }}
             >
-              <Box display="flex">
-                <Box>
-                  <Image
-                    src={element.img}
-                    height="100%"
-                    // height="70px"
-                    // minWidth="70px"
-                    sx={{
-                      "@media screen and (min-width: 1200px)": {
-                        height: "110px",
-                        minWidth: "110px"
-                      }
-                    }}
-                  />
-                </Box>
-
-                <Flex
-                  flexDirection="row-reverse"
-                  justifyContent="space-between"
-                  width="100%"
-                  sx={{
-                    "@media screen and (min-width: 1200px)": {
-                      marginLeft: "24px",
-                      flexDirection: "row"
-                    }
-                  }}
-                >
-                  <MaterialStatusIcon status={element.status} />
-                  <MaterialDescription element={element} />
-                </Flex>
-              </Box>
-              <Box
-                display="flex"
-                flexDirection="row-reverse"
-                justifyContent="space-between"
-                alignItems="center"
+              <Flex
+                key={element.id}
+                p="16px 0"
+                flexDirection="column"
                 sx={{
                   "@media screen and (min-width: 1200px)": {
-                    flexDirection: "column",
-                    alignItems: "flex-end",
-                    marginLeft: "auto"
+                    padding: "24px",
+                    flexDirection: "row"
                   }
                 }}
               >
-                <CTAButton element={element} />
-                <ActionButtons
-                  accessPopup={accessPopup}
-                  setAccessPopup={setAccessPopup}
-                  setChatPopup={setChatPopup}
-                  deleteMaterial={deleteMaterial}
-                  material={element}
-                />
-              </Box>
-            </Flex>
-            {/*{index < materials.length - 1 && <Box as="hr" m="0 24px" />}*/}
-          </Box>
-        );
-      })}
+                <Box display="flex" alignItems="center">
+                  <Box mt="5px" minHeight="80px" minWidth="80px">
+                    <Image
+                      src={element.img}
+                      height="100%"
+                      width="100%"
+                      sx={{
+                        "@media screen and (min-width: 1200px)": {
+                          height: "110px",
+                          minWidth: "110px"
+                        }
+                      }}
+                    />
+                  </Box>
+
+                  <Flex
+                    flexDirection="row-reverse"
+                    justifyContent="space-between"
+                    width="100%"
+                    sx={{
+                      "@media screen and (min-width: 1200px)": {
+                        marginLeft: "24px",
+                        flexDirection: "row"
+                      }
+                    }}
+                  >
+                    <MaterialStatusIcon status={element.status} />
+                    <MaterialDescription element={element} />
+                  </Flex>
+                </Box>
+                <Box
+                  display="flex"
+                  flexDirection="row-reverse"
+                  justifyContent="space-between"
+                  alignItems="center"
+                  sx={{
+                    "@media screen and (min-width: 1200px)": {
+                      flexDirection: "column",
+                      alignItems: "flex-end",
+                      marginLeft: "auto"
+                    }
+                  }}
+                >
+                  <CTAButton element={element} />
+                  <ActionButtons
+                    accessPopup={accessPopup}
+                    setAccessPopup={setAccessPopup}
+                    setChatPopup={setChatPopup}
+                    deleteMaterial={deleteMaterial}
+                    material={element}
+                  />
+                </Box>
+              </Flex>
+              {/*{index < materials.length - 1 && <Box as="hr" m="0 24px" />}*/}
+            </Box>
+          );
+        })}
     </Box>
   );
 };

@@ -84,6 +84,45 @@ export const App = () => {
     );
   };
 
+  const addCampaign = (customer, campaignName) => {
+    setCustomers(
+      customers.map(c => {
+        if (c.id === customer.id) {
+          if (c.campaigns) {
+            return {
+              ...c,
+              campaigns: [
+                ...c.campaigns,
+                {
+                  id: nanoid(),
+                  name: campaignName,
+                  status: "active",
+                  date: new Date()
+                    .toLocaleString("ru-RU", { timeZone: "Europe/Moscow" })
+                    .slice(0, 10)
+                }
+              ]
+            };
+          }
+          return {
+            ...c,
+            campaigns: [
+              {
+                id: nanoid(),
+                name: campaignName,
+                status: "active",
+                date: new Date()
+                  .toLocaleString("ru-RU", { timeZone: "Europe/Moscow" })
+                  .slice(0, 10)
+              }
+            ]
+          };
+        }
+        return c;
+      })
+    );
+  };
+
   const deleteAttachment = (attachmentId, customer, campaign) => {
     const updatedCampaigns = customer.campaigns.map(c => {
       if (c.id === campaign.id) {
@@ -176,6 +215,7 @@ export const App = () => {
               <Campaigns
                 customers={customers}
                 toggleCampaignStatus={toggleCampaignStatus}
+                addCampaign={addCampaign}
               />
             </Route>
             <Route path="/">

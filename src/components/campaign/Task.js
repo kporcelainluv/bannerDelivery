@@ -131,23 +131,24 @@ const Attachment = ({ campaign, deleteAttachment, customer }) => {
         Attachments:
       </Text>
       <Flex mb="16px">
-        {campaign.attachments.map(a => {
-          return (
-            <AttachedFile key={a.id}>
-              <Text as="span" fontSize={0} color="grey000">
-                {a.name}
-              </Text>
-              <CLoseIcon
-                height="20px"
-                width="20px"
-                fill={theme.colors.grey000}
-                onClick={() => {
-                  deleteAttachment(a.id, customer, campaign);
-                }}
-              />
-            </AttachedFile>
-          );
-        })}
+        {campaign.attachments &&
+          campaign.attachments.map(a => {
+            return (
+              <AttachedFile key={a.id}>
+                <Text as="span" fontSize={0} color="grey000">
+                  {a.name}
+                </Text>
+                <CLoseIcon
+                  height="20px"
+                  width="20px"
+                  fill={theme.colors.grey000}
+                  onClick={() => {
+                    deleteAttachment(a.id, customer, campaign);
+                  }}
+                />
+              </AttachedFile>
+            );
+          })}
       </Flex>
     </Fragment>
   );

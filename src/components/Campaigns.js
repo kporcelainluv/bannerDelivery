@@ -14,6 +14,7 @@ import { PageName } from "./PageName";
 import { Paper } from "./Paper";
 import { STATUS } from "../utils/consts";
 import { Plus as PlusIcon } from "@styled-icons/boxicons-regular/Plus";
+import { AddCampaignPopup } from "./popups/AddCampaignPopup";
 
 const StyledSearch = styled(SearchIcon)`
   position: absolute;
@@ -43,20 +44,21 @@ const StyledCheckboxIcon = styled(CheckboxIcon)`
   }
 `;
 
-export const Campaigns = ({
-  customers,
-
-  toggleCampaignStatus
-}) => {
+export const Campaigns = ({ customers, addCampaign, toggleCampaignStatus }) => {
   const { id } = useParams();
   const customer = customers.filter(c => c.id === id)[0];
   const [displayedCampaigns, setDisplayedCampaigns] = useState("active");
+  const [popup, setPopup] = useState(false);
   const theme = useTheme();
 
   const tabButtons = [
     { id: nanoid(), name: "Active", status: STATUS.ACTIVE },
     { id: nanoid(), name: "Completed", status: STATUS.COMPLETED }
   ];
+
+  const handleClose = () => {
+    setPopup(false);
+  };
 
   const getTabColor = status => {
     return displayedCampaigns === status ? "orange100" : "grey200";
@@ -68,17 +70,20 @@ export const Campaigns = ({
       : "2px transparent";
   };
 
-  const campaignNameColor =
-    displayedCampaigns === STATUS.ACTIVE ? "grey000" : "grey200";
-
   if (!customer.campaigns) {
     return (
-      <Box sx={{ position: "relative" }} width="100%" height="100%" p="0 20px">
-        <PageName name={customer.name} />
-        <ReturnToDashboard />
-      </Box>
+      <EmptyCampaigns
+        setPopup={setPopup}
+        customer={customer}
+        popup={popup}
+        handleClose={handleClose}
+        addCampaign={addCampaign}
+      />
     );
   }
+
+  const campaignNameColor =
+    displayedCampaigns === STATUS.ACTIVE ? "grey000" : "grey200";
 
   const activeCampaigns =
     customer.campaigns.filter(c => c.status === STATUS.ACTIVE) || [];
@@ -127,44 +132,7 @@ export const Campaigns = ({
               }}
             />
           </Box>
-          <Button
-            variant="primary"
-            // onClick={() => {
-            //   setPopup(true);
-            // }}
-            sx={{
-              position: "absolute",
-              bottom: "0",
-              borderRadius: "24px",
-              "@media screen and (min-width: 1200px)": {
-                position: "relative"
-              }
-            }}
-          >
-            <PlusIcon height="25px" width="25px" />
-            <Text
-              as="span"
-              display="inline-block"
-              sx={{
-                "@media screen and (min-width: 1200px)": {
-                  display: "none"
-                }
-              }}
-            >
-              Add Customer
-            </Text>
-            <Text
-              as="span"
-              display="none"
-              sx={{
-                "@media screen and (min-width: 1200px)": {
-                  display: "inline-block"
-                }
-              }}
-            >
-              Add Campaign
-            </Text>
-          </Button>
+          <AddCampaignBtn setPopup={setPopup} />
         </Box>
         <Flex
           padding="30px 0 10px 15px"
@@ -272,6 +240,13 @@ export const Campaigns = ({
           })}
         </Box>
       </Paper>
+      {popup && (
+        <AddCampaignPopup
+          handleClose={handleClose}
+          addCampaign={addCampaign}
+          customer={customer}
+        />
+      )}
     </Box>
   );
 };
@@ -297,6 +272,73 @@ const ReturnToDashboard = () => {
           Back to dashboard
         </Text>
       </Link>
+    </Box>
+  );
+};
+
+const AddCampaignBtn = ({ setPopup }) => {
+  return (
+    <Button
+      variant="primary"
+      onClick={() => {
+        setPopup(true);
+      }}
+      sx={{
+        position: "absolute",
+        bottom: "0",
+        borderRadius: "24px",
+        "@media screen and (min-width: 1200px)": {
+          position: "relative"
+        }
+      }}
+    >
+      <PlusIcon height="25px" width="25px" />
+
+      <Text as="span">Add Campaign</Text>
+    </Button>
+  );
+};
+
+const EmptyCampaigns = ({
+  customer,
+  setPopup,
+  popup,
+  handleClose,
+  addCampaign
+}) => {
+  return (
+    <Box sx={{ position: "relative" }} width="100%" height="100%" p="0 20px">
+      <PageName name={customer.name} />
+      <ReturnToDashboard />
+      <Flex flexDirection="column">
+        <Heading as="h2" fontSize={2} color="grey000" mb="50px">
+          There are no campaigns here
+        </Heading>
+        <Button
+          variant="primary"
+          onClick={() => {
+            setPopup(true);
+          }}
+          m={"0 auto"}
+          sx={{
+            borderRadius: "24px",
+            "@media screen and (min-width: 1200px)": {
+              position: "relative"
+            }
+          }}
+        >
+          <PlusIcon height="25px" width="25px" />
+
+          <Text as="span">Add Campaign</Text>
+        </Button>
+      </Flex>
+      {popup && (
+        <AddCampaignPopup
+          handleClose={handleClose}
+          addCampaign={addCampaign}
+          customer={customer}
+        />
+      )}
     </Box>
   );
 };
