@@ -62,6 +62,7 @@ export const Campaign = ({
         }}
       >
         <Paper
+          width="848px"
           margin={"20px 0"}
           sx={{
             "@media screen and (min-width: 1200px)": {

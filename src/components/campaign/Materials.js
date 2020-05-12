@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, Fragment } from "react";
 import {
   Button,
   Flex,
@@ -153,14 +153,21 @@ export const Materials = ({ campaign, customer, addMessage }) => {
       <Header />
       <Tabs tab={tab} setTab={setTab} />
       <Box as="hr" m={"0"} color={theme.colors.grey400} />
-      <UploadBanner />
-      <MaterialsContainer
-        accessPopup={accessPopup}
-        setAccessPopup={setAccessPopup}
-        setChatPopup={setChatPopup}
-        materials={materials}
-        deleteMaterial={deleteMaterial}
-      />
+      {materials.length > 0 ? (
+        <Fragment>
+          <UploadBanner />
+          <MaterialsContainer
+            accessPopup={accessPopup}
+            setAccessPopup={setAccessPopup}
+            setChatPopup={setChatPopup}
+            materials={materials}
+            deleteMaterial={deleteMaterial}
+          />
+        </Fragment>
+      ) : (
+        <EmptyMaterials />
+      )}
+
       {accessPopup && <AccessPopup closePopup={closePopup} />}
       {chatPopup.opened && (
         <Chat
@@ -460,81 +467,79 @@ const MaterialsContainer = ({
   const theme = useTheme();
   return (
     <Box>
-      {materials &&
-        materials.map(element => {
-          return (
-            <Box
-              sx={{ ":hover": { backgroundColor: theme.colors.grey500 } }}
+      {materials.map(element => {
+        return (
+          <Box
+            sx={{ ":hover": { backgroundColor: theme.colors.grey500 } }}
+            key={element.id}
+          >
+            <Flex
               key={element.id}
+              p="16px 0"
+              flexDirection="column"
+              sx={{
+                "@media screen and (min-width: 1200px)": {
+                  padding: "24px",
+                  flexDirection: "row"
+                }
+              }}
             >
-              <Flex
-                key={element.id}
-                p="16px 0"
-                flexDirection="column"
-                sx={{
-                  "@media screen and (min-width: 1200px)": {
-                    padding: "24px",
-                    flexDirection: "row"
-                  }
-                }}
-              >
-                <Box display="flex" alignItems="center">
-                  <Box mt="5px" minHeight="80px" minWidth="80px">
-                    <Image
-                      src={element.img}
-                      height="100%"
-                      width="100%"
-                      sx={{
-                        "@media screen and (min-width: 1200px)": {
-                          height: "110px",
-                          minWidth: "110px"
-                        }
-                      }}
-                    />
-                  </Box>
-
-                  <Flex
-                    flexDirection="row-reverse"
-                    justifyContent="space-between"
+              <Box display="flex" alignItems="center">
+                <Box mt="5px" minHeight="80px" minWidth="80px">
+                  <Image
+                    src={element.img}
+                    height="100%"
                     width="100%"
                     sx={{
                       "@media screen and (min-width: 1200px)": {
-                        marginLeft: "24px",
-                        flexDirection: "row"
+                        height: "110px",
+                        minWidth: "110px"
                       }
                     }}
-                  >
-                    <MaterialStatusIcon status={element.status} />
-                    <MaterialDescription element={element} />
-                  </Flex>
+                  />
                 </Box>
-                <Box
-                  display="flex"
+
+                <Flex
                   flexDirection="row-reverse"
                   justifyContent="space-between"
-                  alignItems="center"
+                  width="100%"
                   sx={{
                     "@media screen and (min-width: 1200px)": {
-                      flexDirection: "column",
-                      alignItems: "flex-end",
-                      marginLeft: "auto"
+                      marginLeft: "24px",
+                      flexDirection: "row"
                     }
                   }}
                 >
-                  <CTAButton element={element} />
-                  <ActionButtons
-                    accessPopup={accessPopup}
-                    setAccessPopup={setAccessPopup}
-                    setChatPopup={setChatPopup}
-                    deleteMaterial={deleteMaterial}
-                    material={element}
-                  />
-                </Box>
-              </Flex>
-              {/*{index < materials.length - 1 && <Box as="hr" m="0 24px" />}*/}
-            </Box>
-          );
-        })}
+                  <MaterialStatusIcon status={element.status} />
+                  <MaterialDescription element={element} />
+                </Flex>
+              </Box>
+              <Box
+                display="flex"
+                flexDirection="row-reverse"
+                justifyContent="space-between"
+                alignItems="center"
+                sx={{
+                  "@media screen and (min-width: 1200px)": {
+                    flexDirection: "column",
+                    alignItems: "flex-end",
+                    marginLeft: "auto"
+                  }
+                }}
+              >
+                <CTAButton element={element} />
+                <ActionButtons
+                  accessPopup={accessPopup}
+                  setAccessPopup={setAccessPopup}
+                  setChatPopup={setChatPopup}
+                  deleteMaterial={deleteMaterial}
+                  material={element}
+                />
+              </Box>
+            </Flex>
+          </Box>
+        );
+      })}
     </Box>
   );
 };
@@ -582,5 +587,19 @@ const CTAButton = ({ element }) => {
 
       <Text as="span">{getText(element.status)}</Text>
     </Button>
+  );
+};
+
+const EmptyMaterials = () => {
+  return (
+    <Text
+      as="p"
+      fontSize={1}
+      color="grey000"
+      m={"20px auto"}
+      textAlign="center"
+    >
+      List of your materials will be here
+    </Text>
   );
 };

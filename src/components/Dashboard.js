@@ -288,73 +288,78 @@ const CustomersList = ({
 }) => {
   return (
     <Fragment>
-      <Box padding="30px 0">
-        <Heading
-          as="h3"
-          fontSize={1}
-          color={status === STATUS.ACTIVE ? "grey000" : "grey300"}
-          fontWeight="bold"
-          padding="0 30px"
-          sx={{
-            "@media screen and (min-width: 1200px)": {
-              padding: "0 74px"
-            }
-          }}
-        >
-          {listName}
-        </Heading>
-        <Flex
-          flexDirection="column"
-          maxHeight="190px"
-          overflowY="scroll"
-          sx={{
-            "@media screen and (min-width: 1200px)": {
-              maxHeight: "100%"
-            }
-          }}
-        >
-          {customers.map(customer => {
-            const id = customer.id;
-            return (
-              <StyledCustomerContainer key={customer.id}>
-                {status === STATUS.ACTIVE ? (
-                  <StyledOutlineIcon
-                    onClick={() => {
-                      toggleCustomerStatus(customer, STATUS.COMPLETED);
-                    }}
-                  />
-                ) : (
-                  <StyledCheckboxIcon
-                    onClick={() => {
-                      toggleCustomerStatus(customer, STATUS.ACTIVE);
-                    }}
-                  />
-                )}
-                <Link to={`${id}/campaigns`} style={{ textDecoration: "none" }}>
-                  <Heading
-                    as="h4"
-                    fontSize={1}
-                    color={status === STATUS.ACTIVE ? "grey000" : "grey300"}
-                    fontWeight="normal"
-                    padding="0 0 0 24px"
+      {customers.length > 0 && (
+        <Box padding="30px 0">
+          <Heading
+            as="h3"
+            fontSize={1}
+            color={status === STATUS.ACTIVE ? "grey000" : "grey300"}
+            fontWeight="bold"
+            padding="0 30px"
+            sx={{
+              "@media screen and (min-width: 1200px)": {
+                padding: "0 74px"
+              }
+            }}
+          >
+            {listName}
+          </Heading>
+          <Flex
+            flexDirection="column"
+            maxHeight="190px"
+            overflowY="scroll"
+            sx={{
+              "@media screen and (min-width: 1200px)": {
+                maxHeight: "100%"
+              }
+            }}
+          >
+            {customers.map(customer => {
+              const id = customer.id;
+              return (
+                <StyledCustomerContainer key={customer.id}>
+                  {status === STATUS.ACTIVE ? (
+                    <StyledOutlineIcon
+                      onClick={() => {
+                        toggleCustomerStatus(customer, STATUS.COMPLETED);
+                      }}
+                    />
+                  ) : (
+                    <StyledCheckboxIcon
+                      onClick={() => {
+                        toggleCustomerStatus(customer, STATUS.ACTIVE);
+                      }}
+                    />
+                  )}
+                  <Link
+                    to={`${id}/campaigns`}
+                    style={{ textDecoration: "none" }}
                   >
-                    {customer.name}
-                  </Heading>
-                </Link>
-                {status === STATUS.ACTIVE && (
-                  <ActionButtons
-                    status={status}
-                    removeCustomer={removeCustomer}
-                    customer={customer}
-                  />
-                )}
-              </StyledCustomerContainer>
-            );
-          })}
-        </Flex>
-      </Box>
+                    <Heading
+                      as="h4"
+                      fontSize={1}
+                      color={status === STATUS.ACTIVE ? "grey000" : "grey300"}
+                      fontWeight="normal"
+                      padding="0 0 0 24px"
+                    >
+                      {customer.name}
+                    </Heading>
+                  </Link>
+                  {status === STATUS.ACTIVE && (
+                    <ActionButtons
+                      status={status}
+                      removeCustomer={removeCustomer}
+                      customer={customer}
+                    />
+                  )}
+                </StyledCustomerContainer>
+              );
+            })}
+          </Flex>
+        </Box>
+      )}
 
-      {status === STATUS.ACTIVE && <hr />}
+      {customers.length > 0 && status === STATUS.ACTIVE && <hr />}
     </Fragment>
   );
 };
