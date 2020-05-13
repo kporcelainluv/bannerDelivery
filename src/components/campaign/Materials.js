@@ -134,8 +134,8 @@ export const Materials = ({ campaign, customer, addMessage }) => {
     opened: false,
     id: "rSKkujpC9UKWffy_z57sd"
   });
-  // const [materials, setMaterials] = useState(campaign.materials);
-  const [materials, setMaterials] = useState([]);
+  const [materials, setMaterials] = useState(campaign.materials);
+  // const [materials, setMaterials] = useState([]);
 
   const closePopup = () => {
     setAccessPopup(false);
@@ -525,11 +525,13 @@ const MaterialsContainer = ({
                 flexDirection="row-reverse"
                 justifyContent="space-between"
                 alignItems="center"
+                mt="10px"
                 sx={{
                   "@media screen and (min-width: 1200px)": {
                     flexDirection: "column",
                     alignItems: "flex-end",
-                    marginLeft: "auto"
+                    marginLeft: "auto",
+                    marginTop: "0"
                   }
                 }}
               >
