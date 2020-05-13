@@ -24,6 +24,13 @@ const StyledLink = styled(Link)`
   display: flex;
   align-items: center;
   text-decoration: none;
+  &&:hover {
+    span,
+    svg {
+      color: ${p => p.theme.colors.orange100};
+      fill: ${p => p.theme.colors.orange100};
+    }
+  }
 `;
 
 export const Campaign = ({

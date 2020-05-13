@@ -44,6 +44,20 @@ const StyledCheckboxIcon = styled(CheckboxIcon)`
   }
 `;
 
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  width: 200px;
+  &&:hover {
+    span,
+    svg {
+      color: ${p => p.theme.colors.orange100};
+      fill: ${p => p.theme.colors.orange100};
+    }
+  }
+`;
+
 export const Campaigns = ({ customers, addCampaign, toggleCampaignStatus }) => {
   const { id } = useParams();
   const customer = customers.filter(c => c.id === id)[0];
@@ -255,23 +269,12 @@ const ReturnToDashboard = () => {
   const theme = useTheme();
   return (
     <Box width="100%" maxWidth="1136px" margin="40px auto">
-      <Link
-        to={`/`}
-        style={{
-          textDecoration: "none",
-          display: "flex",
-          alignItems: "center"
-        }}
-      >
-        <ArrowBackIcon
-          height={"24px"}
-          width="24px"
-          fill={theme.colors.grey300}
-        />
+      <StyledLink to={`/`}>
+        <ArrowBackIcon height="24px" width="24px" fill={theme.colors.grey300} />
         <Text as="span" fontSize={1} color="grey300" paddingLeft="5px">
           Back to dashboard
         </Text>
-      </Link>
+      </StyledLink>
     </Box>
   );
 };
@@ -310,7 +313,12 @@ const EmptyCampaigns = ({
     <Box sx={{ position: "relative" }} width="100%" height="100%" p="0 20px">
       <PageName name={customer.name} />
       <ReturnToDashboard />
-      <Flex flexDirection="column">
+      <Flex
+        flexDirection="column"
+        maxWidth="1136px"
+        margin="40px auto"
+        width="100%"
+      >
         <Heading as="h2" fontSize={2} color="grey000" mb="50px">
           There are no campaigns here
         </Heading>

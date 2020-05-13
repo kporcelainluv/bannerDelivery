@@ -24,7 +24,7 @@ export const PopupPaper = ({ heading, closePopup, children }) => {
           transform: "translate(-50%, -50%)",
           "@media screen and (min-width: 1200px)": {
             width: "584px",
-            height: "300px"
+            height: "500px"
           }
         }}
       >

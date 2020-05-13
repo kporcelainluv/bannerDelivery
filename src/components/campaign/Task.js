@@ -29,6 +29,19 @@ const StyledAddIcon = styled(AddIcon)`
   }
 `;
 
+const StyledCLose = styled(CLoseIcon)`
+  width: 20px;
+  height: 20px;
+  color: ${p => p.theme.colors.grey000};
+  &&:hover,
+  &&:focus {
+    fill: ${p => p.theme.colors.orange200};
+  }
+  &&:disabled {
+    fill: ${p => p.theme.colors.grey700};
+  }
+`;
+
 export const Task = ({
   campaign,
   addAttachment,
@@ -135,13 +148,18 @@ const Attachment = ({ campaign, deleteAttachment, customer }) => {
           campaign.attachments.map(a => {
             return (
               <AttachedFile key={a.id}>
-                <Text as="span" fontSize={0} color="grey000">
+                <Text
+                  as="span"
+                  fontSize={0}
+                  color="grey000"
+                  sx={{
+                    ":hover": { color: "orange100" },
+                    ":disabled": { color: "grey700" }
+                  }}
+                >
                   {a.name}
                 </Text>
-                <CLoseIcon
-                  height="20px"
-                  width="20px"
-                  fill={theme.colors.grey000}
+                <StyledCLose
                   onClick={() => {
                     deleteAttachment(a.id, customer, campaign);
                   }}

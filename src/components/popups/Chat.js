@@ -46,6 +46,9 @@ const StyledTab = styled(Button)`
   position: relative;
   display: flex;
   align-items: center;
+  &&:hover {
+    color: ${p => p.theme.colors.grey000};
+  }
   &&:after {
     content: "";
     position: absolute;

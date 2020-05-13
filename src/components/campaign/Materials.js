@@ -63,7 +63,7 @@ const StyledTab = styled(Button)`
 
 const StyledNumber = styled(Box)`
   margin-left: 5px;
-  padding: 0 4px;
+  padding: 1px 4px;
   font-size: 10px;
   border: 1px solid ${p => p.theme.colors.grey000};
   border-radius: 50%;

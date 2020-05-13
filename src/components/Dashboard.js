@@ -249,6 +249,7 @@ const DashboardActive = ({
           <Text p="0 0 0 10px">Add customer</Text>
         </Button>
       </Flex>
+
       {customersTypes.map(type => {
         return (
           <CustomersList
@@ -317,7 +318,7 @@ const CustomersList = ({
             {customers.map(customer => {
               const id = customer.id;
               return (
-                <StyledCustomerContainer key={customer.id}>
+                <StyledCustomerContainer key={customer.id} status={status}>
                   {status === STATUS.ACTIVE ? (
                     <StyledOutlineIcon
                       onClick={() => {
