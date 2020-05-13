@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Flex } from "rebass/styled-components";
+import { Box, Flex, Heading } from "rebass/styled-components";
 import styled, { useTheme } from "styled-components";
 import { CheckmarkCircle2Outline as CheckmarkIcon } from "@styled-icons/evaicons-outline/CheckmarkCircle2Outline";
 import { Input } from "@rebass/forms/styled-components";
@@ -34,7 +34,28 @@ export const CampaignName = ({
   const theme = useTheme();
   return (
     <Box maxWidth="1136px" width="100%" margin="40px auto 0">
-      <Flex as="form" sx={{ position: "relative" }} alignItems="center">
+      <Flex
+        sx={{
+          "@media screen and (min-width: 1200px)": {
+            display: "none"
+          }
+        }}
+      >
+        <Heading as="h2" fontSize={2} color={theme.colors.grey000}>
+          {name}
+        </Heading>
+      </Flex>
+      <Box
+        display="none"
+        as="form"
+        sx={{
+          position: "relative",
+          "@media screen and (min-width: 1200px)": {
+            display: "flex",
+            alignItems: "center"
+          }
+        }}
+      >
         <StyledInput
           value={name}
           onChange={e => {
@@ -58,7 +79,7 @@ export const CampaignName = ({
             fill={theme.colors.grey000}
           />
         </StyledSave>
-      </Flex>
+      </Box>
     </Box>
   );
 };

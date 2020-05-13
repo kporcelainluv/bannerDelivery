@@ -165,7 +165,7 @@ const AddAttachment = ({ addAttachment, customer, campaign }) => {
         color="transparent"
         border="none"
         backgroundColor="transparent"
-        sx={{ display: "none" }}
+        display="none"
         onChange={e => {
           const name = e.target.files[0].name;
           addAttachment(name, customer, campaign);
