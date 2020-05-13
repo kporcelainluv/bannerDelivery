@@ -134,7 +134,8 @@ export const Materials = ({ campaign, customer, addMessage }) => {
     opened: false,
     id: "rSKkujpC9UKWffy_z57sd"
   });
-  const [materials, setMaterials] = useState(campaign.materials);
+  // const [materials, setMaterials] = useState(campaign.materials);
+  const [materials, setMaterials] = useState([]);
 
   const closePopup = () => {
     setAccessPopup(false);
@@ -151,8 +152,13 @@ export const Materials = ({ campaign, customer, addMessage }) => {
   return (
     <Box>
       <Header />
-      <Tabs tab={tab} setTab={setTab} />
-      <Box as="hr" m={"0"} color={theme.colors.grey400} />
+      {materials.length > 0 && (
+        <Fragment>
+          <Tabs tab={tab} setTab={setTab} />
+          <Box as="hr" m={"0"} color={theme.colors.grey400} />
+        </Fragment>
+      )}
+
       {materials.length > 0 ? (
         <Fragment>
           <UploadBanner />
@@ -591,15 +597,45 @@ const CTAButton = ({ element }) => {
 };
 
 const EmptyMaterials = () => {
+  const theme = useTheme();
   return (
-    <Text
-      as="p"
-      fontSize={1}
-      color="grey000"
-      m={"20px auto"}
-      textAlign="center"
-    >
-      List of your materials will be here
-    </Text>
+    <Box>
+      <Box mt="10px">
+        <Input
+          id="addFile"
+          name="addFile"
+          type="file"
+          color="transparent"
+          border="none"
+          backgroundColor="transparent"
+          display="none"
+        />
+        <Label htmlFor="addFile" display="flex" alignItems="center">
+          <StyledAddIcon />
+          <Text
+            as="span"
+            fontSize={1}
+            color="orange200"
+            pl="10px"
+            sx={{
+              letterSpacing: "0.3px",
+              cursor: "pointer",
+              ":hover": { color: theme.colors.orange100 }
+            }}
+          >
+            Add Attachment
+          </Text>
+        </Label>
+      </Box>
+      <Text
+        as="p"
+        fontSize={1}
+        color="grey300"
+        m={"20px auto"}
+        textAlign="center"
+      >
+        List of your materials will be here
+      </Text>
+    </Box>
   );
 };
