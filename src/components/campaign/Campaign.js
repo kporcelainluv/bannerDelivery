@@ -11,7 +11,7 @@ import { Task } from "./Task";
 import { CampaignName } from "./CampaignName";
 import { Materials } from "./Materials";
 import { useTheme } from "styled-components";
-import { PageName } from "../PageName";
+import { ArrowBack as ArrowBackIcon } from "@styled-icons/boxicons-regular/ArrowBack";
 
 const Arrow = styled(ArrowIcon)`
   height: 20px;
@@ -94,29 +94,64 @@ const ReturnToDashboard = ({ customerName, campaignName, id }) => {
   const theme = useTheme();
   return (
     <Flex width="100%" maxWidth="1136px" margin="40px auto">
-      <StyledLink to={`/`}>
-        <HomeIcon height="15px" width="20px" fill={theme.colors.grey300} />
-        <Text as="span" fontSize={1} color="grey300" paddingLeft="5px">
-          Dashboard
-        </Text>
-      </StyledLink>
-      <Arrow />
-      <StyledLink to={`/${id}/campaigns`}>
-        <Text as="span" fontSize={1} color="grey300" paddingLeft="5px">
-          {customerName}
-        </Text>
-      </StyledLink>
-      <Arrow />
-      <Text
-        as="span"
-        fontSize={1}
-        color="grey300"
-        paddingLeft="5px"
-        display="flex"
-        alignItems="center"
+      <Box
+        display="none"
+        sx={{
+          "@media screen and (min-width: 1200px)": {
+            display: "flex"
+          }
+        }}
       >
-        {campaignName}
-      </Text>
+        <StyledLink to={`/`}>
+          <HomeIcon height="15px" width="20px" fill={theme.colors.grey300} />
+          <Text as="span" fontSize={1} color="grey300" paddingLeft="5px">
+            Dashboard
+          </Text>
+        </StyledLink>
+        <Arrow />
+        <StyledLink to={`/${id}/campaigns`}>
+          <Text as="span" fontSize={1} color="grey300" paddingLeft="5px">
+            {customerName}
+          </Text>
+        </StyledLink>
+        <Arrow />
+        <Text
+          as="span"
+          fontSize={1}
+          color="grey300"
+          paddingLeft="5px"
+          display="flex"
+          alignItems="center"
+        >
+          {campaignName}
+        </Text>
+      </Box>
+      <Box
+        display="block"
+        sx={{
+          "@media screen and (min-width: 1200px)": {
+            display: "none"
+          }
+        }}
+      >
+        <Link
+          to={`/`}
+          style={{
+            textDecoration: "none",
+            display: "flex",
+            alignItems: "center"
+          }}
+        >
+          <ArrowBackIcon
+            height={"24px"}
+            width="24px"
+            fill={theme.colors.grey300}
+          />
+          <Text as="span" fontSize={1} color="grey300" paddingLeft="5px">
+            Back to {customerName}
+          </Text>
+        </Link>
+      </Box>
     </Flex>
   );
 };

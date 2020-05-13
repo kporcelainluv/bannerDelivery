@@ -22,7 +22,7 @@ const StyledContainer = styled(Box)`
 const StyledMessage = styled(Flex)`
   max-height: calc(100% - 170px);
   flex-direction: column;
-  justify-content: flex-end;
+  //justify-content: flex-end;
   height: 100%;
   overflow: auto;
   div:nth-child(1) {
@@ -235,7 +235,7 @@ const InputField = ({
       alignItems="center"
       width="100%"
     >
-      <Box>
+      <Box width="90%">
         <Input
           id="message"
           name="message"
