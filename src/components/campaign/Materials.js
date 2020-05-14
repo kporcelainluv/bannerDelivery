@@ -132,10 +132,9 @@ export const Materials = ({ campaign, customer, addMessage }) => {
   const [accessPopup, setAccessPopup] = useState(false);
   const [chatPopup, setChatPopup] = useState({
     opened: false,
-    id: "rSKkujpC9UKWffy_z57sd"
+    id: undefined
   });
   const [materials, setMaterials] = useState(campaign.materials);
-  // const [materials, setMaterials] = useState([]);
 
   const closePopup = () => {
     setAccessPopup(false);
@@ -214,7 +213,7 @@ const Header = () => {
       >
         Materials
       </Heading>
-      <StyledDownload variant="primary" onClick={() => {}}>
+      <StyledDownload variant="primary">
         <DownloadIcon
           height="15px"
           width="15px"
@@ -582,6 +581,7 @@ const CTAButton = ({ element }) => {
       display="flex"
       alignItems="center"
       justifyContent="space-between"
+      lineHeight="20px"
     >
       {element.status === BUTTON_STATUS.PENDING && (
         <CheckmarkIcon height="20px" width="20px" fill={theme.colors.grey000} />

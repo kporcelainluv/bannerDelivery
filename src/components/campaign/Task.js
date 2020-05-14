@@ -42,6 +42,25 @@ const StyledCLose = styled(CLoseIcon)`
   }
 `;
 
+const StyledTextarea = styled(Textarea)`
+  height: 200px;
+  width: 100%;
+  font-size: ${p => p.theme.fontSizes[1]};
+  color: ${p => p.theme.colors.grey000};
+  margin-bottom: 32px;
+  padding: 12px;
+  resize: none;
+  border-radius: 4px;
+  border: 1px solid ${p => p.theme.colors.grey400};
+
+  &&::placeholder {
+    color: ${p => p.theme.colors.grey000};
+  }
+  @media (min-width: ${p => p.theme.breakpoints[1]}) {
+    width: 535px;
+  }
+`;
+
 export const Task = ({
   campaign,
   addAttachment,
@@ -49,30 +68,18 @@ export const Task = ({
   deleteAttachment,
   updateCampaign
 }) => {
-  const theme = useTheme();
   return (
     <Box
-      padding="0"
       sx={{
         "@media screen and (min-width: 1200px)": {
           padding: "24px"
         }
       }}
     >
-      <Heading
-        as="h2"
-        fontSize={1}
-        color="grey000"
-        mb="24px"
-        sx={{
-          "@media screen and (min-width: 1200px)": {
-            fontSize: theme.fontSizes[1]
-          }
-        }}
-      >
+      <Heading as="h2" fontSize={1} color="grey000" mb="24px">
         Task
       </Heading>
-      <Flex as="form" sx={{ position: "relative" }} flexDirection="column">
+      <Flex as="form" flexDirection="column" sx={{ position: "relative" }}>
         <Description
           campaign={campaign}
           customer={customer}
@@ -94,7 +101,6 @@ export const Task = ({
 };
 
 const Description = ({ campaign, customer, updateCampaign }) => {
-  const theme = useTheme();
   return (
     <Fragment>
       <Label
@@ -106,28 +112,10 @@ const Description = ({ campaign, customer, updateCampaign }) => {
       >
         Description
       </Label>
-      <Textarea
+      <StyledTextarea
         id="description"
         name="description"
-        height="200px"
-        width="100%"
-        placeholder={campaign.description}
-        fontSize={1}
-        color="grey000"
-        mb="32px"
-        p="12px"
-        sx={{
-          resize: "none",
-          borderRadius: "4px",
-          border: "1px solid",
-          borderColor: "grey400",
-          "::placeholder": {
-            color: theme.colors.grey000
-          },
-          "@media screen and (min-width: 1200px)": {
-            width: "535px"
-          }
-        }}
+        value={campaign.description}
         onChange={e => {
           updateCampaign(campaign, customer, "description", e.target.value);
         }}
@@ -137,7 +125,6 @@ const Description = ({ campaign, customer, updateCampaign }) => {
 };
 
 const Attachment = ({ campaign, deleteAttachment, customer }) => {
-  const theme = useTheme();
   return (
     <Fragment>
       <Text as="span" fontSize={0} color="grey000" mb="8px">

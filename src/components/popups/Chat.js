@@ -8,6 +8,7 @@ import { Send as SendIcon } from "@styled-icons/material-sharp/Send";
 import { nanoid } from "nanoid";
 import { DialogOverlay } from "@reach/dialog";
 import "@reach/dialog/styles.css";
+import { getCurrentTime } from "../../utils/utils";
 
 const StyledContainer = styled(Box)`
   height: 100%;
@@ -227,9 +228,7 @@ const InputField = ({
   material
 }) => {
   const theme = useTheme();
-  const currentTime = new Date()
-    .toLocaleString("ru-RU", { timeZone: "Europe/Moscow" })
-    .slice(12, 17);
+
   return (
     <Flex
       p="18px 24px"
@@ -264,7 +263,7 @@ const InputField = ({
           addMessage(customer, campaign, material, {
             id: nanoid(),
             text: message,
-            time: currentTime,
+            time: getCurrentTime(),
             type: "outcome"
           });
           setMessage("");

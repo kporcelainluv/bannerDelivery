@@ -11,6 +11,7 @@ import { STATUS } from "../utils/consts";
 import { Campaigns } from "./Campaigns";
 import { Campaign } from "./campaign/Campaign";
 import { customersList1, customersList2 } from "../utils/mock";
+import { getDate } from "../utils/utils";
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
@@ -97,9 +98,7 @@ export const App = () => {
                   id: nanoid(),
                   name: campaignName,
                   status: "active",
-                  date: new Date()
-                    .toLocaleString("ru-RU", { timeZone: "Europe/Moscow" })
-                    .slice(0, 10)
+                  date: getDate()
                 }
               ]
             };
@@ -111,9 +110,7 @@ export const App = () => {
                 id: nanoid(),
                 name: campaignName,
                 status: "active",
-                date: new Date()
-                  .toLocaleString("ru-RU", { timeZone: "Europe/Moscow" })
-                  .slice(0, 10)
+                date: getDate()
               }
             ]
           };
