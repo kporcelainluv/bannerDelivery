@@ -9,8 +9,10 @@ import { Edit as EditIcon } from "@styled-icons/material/Edit";
 import { Input } from "@rebass/forms";
 import styled, { useTheme } from "styled-components";
 
+import { Link } from "react-router-dom";
+
 import { Paper } from "./Paper";
-import { Popup } from "./popups/Popup";
+import { AddClientPopup } from "./popups/AddClientPopup";
 import { PageName } from "./PageName";
 import { STATUS } from "../utils/consts";
 
@@ -46,11 +48,30 @@ const EmptyPaper = styled(Flex)`
   height: 146px;
 `;
 
+const StyledOutlineIcon = styled(OutlineIcon)`
+  height: 24px;
+  width: 24px;
+  fill: ${p => p.theme.colors.orange200};
+  cursor: pointer;
+  &&:hover {
+    fill: ${p => p.theme.colors.orange100};
+  }
+`;
+
+const StyledCheckboxIcon = styled(CheckboxIcon)`
+  height: 24px;
+  width: 24px;
+  fill: ${p => p.theme.colors.grey300};
+  cursor: pointer;
+  &&:hover {
+    fill: ${p => p.theme.colors.grey100};
+  }
+`;
+
 export const Dashboard = ({
   addCustomer,
   removeCustomer,
-  markCompleted,
-  markActive,
+  toggleCustomerStatus,
   customers
 }) => {
   const handleClose = () => {
@@ -59,17 +80,16 @@ export const Dashboard = ({
 
   const [popup, setPopup] = useState(false);
   return (
-    <Box sx={{ position: "relative" }} width="100%" height="100%">
+    <Box sx={{ position: "relative" }} width="100%" height="100%" p="0 20px">
       <PageName name="Dashboard" />
 
       {customers.length > 0 ? (
-        <Paper>
+        <Paper width="1136px" margin="40px auto">
           <DashboardActive
             customers={customers}
             setPopup={setPopup}
             removeCustomer={removeCustomer}
-            markCompleted={markCompleted}
-            markActive={markActive}
+            toggleCustomerStatus={toggleCustomerStatus}
           />
         </Paper>
       ) : (
@@ -78,7 +98,9 @@ export const Dashboard = ({
         </EmptyPaper>
       )}
 
-      {popup && <Popup handleClose={handleClose} addCustomer={addCustomer} />}
+      {popup && (
+        <AddClientPopup handleClose={handleClose} addCustomer={addCustomer} />
+      )}
     </Box>
   );
 };
@@ -108,8 +130,7 @@ const DashboardActive = ({
   customers,
   setPopup,
   removeCustomer,
-  markCompleted,
-  markActive
+  toggleCustomerStatus
 }) => {
   const theme = useTheme();
 
@@ -173,8 +194,7 @@ const DashboardActive = ({
             listName={type.name}
             status={type.status}
             removeCustomer={removeCustomer}
-            markCompleted={markCompleted}
-            markActive={markActive}
+            toggleCustomerStatus={toggleCustomerStatus}
           />
         );
       })}
@@ -187,11 +207,8 @@ const CustomersList = ({
   listName,
   status,
   removeCustomer,
-  markCompleted,
-  markActive
+  toggleCustomerStatus
 }) => {
-  const theme = useTheme();
-
   return (
     <Fragment>
       <Box padding="30px 0">
@@ -206,6 +223,7 @@ const CustomersList = ({
         </Heading>
         <Flex flexDirection="column">
           {customers.map(customer => {
+            const id = customer.id;
             return (
               <Flex
                 key={customer.id}
@@ -223,34 +241,29 @@ const CustomersList = ({
                 }
               >
                 {status === STATUS.ACTIVE ? (
-                  <OutlineIcon
-                    height="24px"
-                    width="24px"
-                    fill={theme.colors.orange200}
+                  <StyledOutlineIcon
                     onClick={() => {
-                      markCompleted(customer);
+                      toggleCustomerStatus(customer, STATUS.COMPLETED);
                     }}
                   />
                 ) : (
-                  <CheckboxIcon
-                    height="24px"
-                    width="24px"
-                    fill={theme.colors.grey300}
+                  <StyledCheckboxIcon
                     onClick={() => {
-                      markActive(customer);
+                      toggleCustomerStatus(customer, STATUS.ACTIVE);
                     }}
                   />
                 )}
-
-                <Heading
-                  as="h4"
-                  fontSize={1}
-                  color={status === STATUS.ACTIVE ? "grey000" : "grey300"}
-                  fontWeight="normal"
-                  padding="0 0 0 24px"
-                >
-                  {customer.name}
-                </Heading>
+                <Link to={`${id}/campaigns`} style={{ textDecoration: "none" }}>
+                  <Heading
+                    as="h4"
+                    fontSize={1}
+                    color={status === STATUS.ACTIVE ? "grey000" : "grey300"}
+                    fontWeight="normal"
+                    padding="0 0 0 24px"
+                  >
+                    {customer.name}
+                  </Heading>
+                </Link>
                 {status === STATUS.ACTIVE && (
                   <ActionButtons
                     status={status}
@@ -263,6 +276,7 @@ const CustomersList = ({
           })}
         </Flex>
       </Box>
+
       {status === STATUS.ACTIVE && <hr />}
     </Fragment>
   );

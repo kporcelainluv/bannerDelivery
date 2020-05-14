@@ -1,20 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Box, Flex, Heading, Button, Text } from "rebass/styled-components";
+import { Input } from "@rebass/forms/styled-components";
 import styled, { useTheme } from "styled-components";
 import { CloseOutline as CloseIcon } from "@styled-icons/evaicons-outline/CloseOutline";
 import { MinusOutline as UnderlineIcon } from "@styled-icons/evaicons-outline/MinusOutline";
 import { Send as SendIcon } from "@styled-icons/material-sharp/Send";
-import { Input } from "@rebass/forms/styled-components";
+import { nanoid } from "nanoid";
+import { DialogOverlay } from "@reach/dialog";
+import "@reach/dialog/styles.css";
 
 const StyledContainer = styled(Box)`
   height: 648px;
   width: 848px;
   background-color: ${p => p.theme.colors.grey700};
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, 0);
-  margin-bottom: 50px;
+  margin: 0 auto;
 `;
 
 const StyledTab = styled(Button)`
@@ -36,61 +35,51 @@ const StyledTab = styled(Button)`
     width: 100%;
     bottom: 0;
     left: 0;
+    color: ${p => p.theme.colors.orange200};
     border-bottom: ${({ selected }) =>
-      (selected && `2px solid #D67935`) || (!selected && "none")};
+      (selected && `2px solid`) || (!selected && "none")};
   }
 `;
 
 const tabs = ["Client", "Production", "Media / Buyer"];
 
-const messagesList = [
-  {
-    text:
-      "banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
-    time: "12:28",
-    type: "outcome"
-  },
+export const Chat = ({ closeChat, addMessage, customer, id, campaignId }) => {
+  const refId = useRef(id);
+  const campaign = customer.campaigns.filter(c => c.id === campaignId)[0];
+  const material = campaign.materials.filter(c => c.id === refId.current)[0];
 
-  {
-    text:
-      "Implement 1 HTML and 2 images banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
-    time: "12:28",
-    type: "income"
-  },
-  {
-    text:
-      "Implement 1 HTML and 2 images banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
-    time: "12:29",
-    type: "outcome"
-  }
-];
-export const Chat = () => {
   const [tab, setTab] = useState("Client");
   const [message, setMessage] = useState("");
-  const [messages, setMessages] = useState(messagesList);
   return (
-    <Box sx={{ position: "relative" }}>
+    <DialogOverlay aria-label="Chat dialog">
       <StyledContainer>
-        <Header tab={tab} setTab={setTab} />
-        <Messages messages={messages} />
+        <Header
+          tab={tab}
+          setTab={setTab}
+          closeChat={closeChat}
+          name={material.name}
+        />
+        <Messages messages={material.messagesList} />
         <InputField
           message={message}
-          messages={messages}
           setMessage={setMessage}
-          setMessages={setMessages}
+          addMessage={addMessage}
+          customer={customer}
+          campaign={campaign}
+          material={material}
         />
       </StyledContainer>
-    </Box>
+    </DialogOverlay>
   );
 };
 
-const Header = ({ tab, setTab }) => {
+const Header = ({ tab, setTab, closeChat, name }) => {
   const theme = useTheme();
   return (
     <Box sx={{ background: theme.colors.gradient1 }} height="88px">
       <Flex alignItems="center" justifyContent="space-between" p="10px 24px">
         <Heading as="span" fontSize={2} color="grey000">
-          #1 Yandex_1280x3500, PNG
+          {name}
         </Heading>
         <Box>
           <UnderlineIcon
@@ -99,7 +88,18 @@ const Header = ({ tab, setTab }) => {
             width="34px"
             style={{ paddingTop: "10px" }}
           />
-          <CloseIcon fill={theme.colors.grey000} height="24px" width="24px" />
+          <Button
+            variant="none"
+            backgroundColor="transparent"
+            border="none"
+            p={"0"}
+            onClick={() => closeChat()}
+          >
+            <Text as="span" className="visually-hidden">
+              Close
+            </Text>
+            <CloseIcon fill={theme.colors.grey000} height="24px" width="24px" />
+          </Button>
         </Box>
       </Flex>
 
@@ -125,18 +125,25 @@ const Header = ({ tab, setTab }) => {
 
 const Messages = ({ messages }) => {
   return (
-    <Flex height="488px" flexDirection="column" justifyContent="flex-end">
+    <Flex
+      height="488px"
+      flexDirection="column"
+      justifyContent="flex-end"
+      sx={{ overflowX: "hidden" }}
+    >
       {messages.map(message => {
+        const margin =
+          message.type === "income"
+            ? "16px auto 16px 16px"
+            : "16px 16px 16px auto";
+        const background = message.type === "income" ? "#3F4C5C" : "#43414D";
         return (
           <Box
-            backgroundColor={message.type === "income" ? "#3F4C5C" : "#43414D"}
+            key={message.id}
+            backgroundColor={background}
             height="92px"
             width="540px"
-            margin={
-              message.type === "income"
-                ? "16px auto 16px 16px"
-                : "16px 16px 16px auto"
-            }
+            margin={margin}
           >
             <Text
               as="p"
@@ -164,8 +171,18 @@ const Messages = ({ messages }) => {
   );
 };
 
-const InputField = ({ message, messages, setMessage, setMessages }) => {
+const InputField = ({
+  message,
+  setMessage,
+  addMessage,
+  customer,
+  campaign,
+  material
+}) => {
   const theme = useTheme();
+  const currentTime = new Date()
+    .toLocaleString("ru-RU", { timeZone: "Europe/Moscow" })
+    .slice(12, 17);
   return (
     <Flex
       p="18px 24px"
@@ -191,18 +208,15 @@ const InputField = ({ message, messages, setMessage, setMessages }) => {
         backgroundColor="transparent"
         p="0"
         ml="auto"
-        onClick={() =>
-          setMessages([
-            ...messages,
-            {
-              text: message,
-              time: new Date()
-                .toLocaleString("ru-RU", { timeZone: "Europe/Moscow" })
-                .slice(12, 17),
-              type: "outcome"
-            }
-          ])
-        }
+        onClick={() => {
+          addMessage(customer, campaign, material, {
+            id: nanoid(),
+            text: message,
+            time: currentTime,
+            type: "outcome"
+          });
+          setMessage("");
+        }}
       >
         <SendIcon fill={theme.colors.grey000} height="24px" width="24px" />
       </Button>

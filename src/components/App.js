@@ -10,111 +10,12 @@ import { Dashboard } from "./Dashboard";
 import { STATUS } from "../utils/consts";
 import { Campaigns } from "./Campaigns";
 import { Campaign } from "./campaign/Campaign";
-import { AccessPopup } from "./popups/AcessPopup";
+import { customersList1, customersList2 } from "../utils/mock";
 
-const customersList = [
-  {
-    id: nanoid(),
-    name: "Burger King",
-    status: "active",
-    campaigns: [
-      {
-        id: nanoid(),
-        name: "Mother's day",
-        date: "30 Sep 2019"
-      },
-      {
-        id: nanoid(),
-        name: "Campaign 10.19",
-        date: "20 Nov 2019"
-      },
-      {
-        id: nanoid(),
-        name: "New Year campaign",
-        date: "31 Dec 2019"
-      }
-    ]
-  },
-  {
-    id: nanoid(),
-    name: "Mama Pizza",
-    status: "completed",
-    campaigns: [
-      {
-        id: nanoid(),
-        name: "Mother's day",
-        date: "30 Sep 2019"
-      },
-      {
-        id: nanoid(),
-        name: "Campaign 10.19",
-        date: "20 Nov 2019"
-      },
-      {
-        id: nanoid(),
-        name: "New Year campaign",
-        date: "31 Dec 2019"
-      }
-    ]
-  },
-  {
-    id: nanoid(),
-    name: "Domofond",
-    status: "active",
-    campaigns: [
-      {
-        id: nanoid(),
-        name: "Mother's day",
-        date: "30 Sep 2019"
-      },
-      {
-        id: nanoid(),
-        name: "Campaign 10.19",
-        date: "20 Nov 2019"
-      },
-      {
-        id: nanoid(),
-        name: "New Year campaign",
-        date: "31 Dec 2019"
-      }
-    ]
-  },
-  {
-    id: nanoid(),
-    name: "Sberbank",
-    status: "completed",
-    campaigns: [
-      {
-        id: nanoid(),
-        name: "Mother's day",
-        date: "30 Sep 2019",
-        status: "completed",
-        attachments: [
-          { name: "Specifications.js", id: nanoid() },
-          { name: "Prototype.png", id: nanoid() }
-        ],
-        description: "Implement HTML and PNG banners"
-      },
-      {
-        id: nanoid(),
-        name: "Campaign 10.19",
-        date: "20 Nov 2019",
-        status: "active",
-        attachments: []
-      },
-      {
-        id: nanoid(),
-        name: "New Year campaign",
-        date: "31 Dec 2019",
-        status: "active",
-        attachments: []
-      }
-    ]
-  }
-];
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 export const App = () => {
-  const [customers, setCustomers] = useState(customersList);
+  const [customers, setCustomers] = useState(customersList2);
 
   const addCustomer = name => {
     setCustomers(c => [
@@ -124,53 +25,24 @@ export const App = () => {
   };
 
   const removeCustomer = customer => {
-    const updatedCustomers = customers.filter(c => c.id !== customer.id);
-    setCustomers(updatedCustomers);
+    setCustomers(customers.filter(c => c.id !== customer.id));
   };
 
-  const markCompleted = customer => {
+  const toggleCustomerStatus = (customer, status) => {
     setCustomers(
       customers.map(c => {
         if (c.id === customer.id) {
-          return { ...c, status: STATUS.COMPLETED };
+          return { ...c, status: status };
         }
         return c;
       })
     );
   };
 
-  const markActive = customer => {
-    setCustomers(
-      customers.map(c => {
-        if (c.id === customer.id) {
-          return { ...c, status: STATUS.ACTIVE };
-        }
-        return c;
-      })
-    );
-  };
-
-  const markCampaignActive = (customer, id) => {
+  const toggleCampaignStatus = (customer, id, newStatus) => {
     const updatedCampaign = customer.campaigns.map(c => {
       if (id === c.id) {
-        return { ...c, status: STATUS.ACTIVE };
-      }
-      return c;
-    });
-    setCustomers(
-      customers.map(c => {
-        if (c.id === customer.id) {
-          return { ...c, campaigns: updatedCampaign };
-        }
-        return c;
-      })
-    );
-  };
-
-  const markCampaignCompleted = (customer, id) => {
-    const updatedCampaign = customer.campaigns.map(c => {
-      if (id === c.id) {
-        return { ...c, status: STATUS.COMPLETED };
+        return { ...c, status: newStatus };
       }
       return c;
     });
@@ -185,17 +57,39 @@ export const App = () => {
   };
 
   const addAttachment = (name, customer, campaign) => {
+    setCustomers(
+      customers.map(c => {
+        if (c.id === customer.id) {
+          return {
+            ...c,
+            campaigns: customer.campaigns.map(c => {
+              if (c.id === campaign.id) {
+                return {
+                  ...c,
+                  attachments: [
+                    ...c.attachments,
+                    {
+                      name: name,
+                      id: nanoid()
+                    }
+                  ]
+                };
+              }
+              return c;
+            })
+          };
+        }
+        return c;
+      })
+    );
+  };
+
+  const deleteAttachment = (attachmentId, customer, campaign) => {
     const updatedCampaigns = customer.campaigns.map(c => {
       if (c.id === campaign.id) {
         return {
           ...c,
-          attachments: [
-            ...c.attachments,
-            {
-              name: name,
-              id: nanoid()
-            }
-          ]
+          attachments: campaign.attachments.filter(c => c.id !== attachmentId)
         };
       }
       return c;
@@ -214,23 +108,18 @@ export const App = () => {
     );
   };
 
-  const deleteAttachment = (attachmentId, customer, campaign) => {
-    const updatedAttachments = campaign.attachments.filter(
-      c => c.id !== attachmentId
-    );
-    const updatedCampaigns = customer.campaigns.map(c => {
-      if (c.id === campaign.id) {
-        return { ...c, attachments: updatedAttachments };
-      }
-      return c;
-    });
-
+  const updateCampaign = (campaign, customer, type, newValue) => {
     setCustomers(
       customers.map(c => {
         if (c.id === customer.id) {
           return {
             ...c,
-            campaigns: updatedCampaigns
+            campaigns: customer.campaigns.map(c => {
+              if (c.id === campaign.id) {
+                return { ...c, [type]: newValue };
+              }
+              return c;
+            })
           };
         }
         return c;
@@ -238,74 +127,67 @@ export const App = () => {
     );
   };
 
-  const updateDescription = (campaign, customer, newDescription) => {
-    const updatedCampaigns = customer.campaigns.map(c => {
-      if (c.id === campaign.id) {
-        return { ...c, description: newDescription };
-      }
-      return c;
-    });
-
+  const addMessage = (customer, campaign, material, message) => {
     setCustomers(
-      customers.map(c => {
-        if (c.id === customer.id) {
+      customers.map(cmr => {
+        if (cmr.id === customer.id) {
           return {
-            ...c,
-            campaigns: updatedCampaigns
+            ...cmr,
+            campaigns: cmr.campaigns.map(c => {
+              if (c.id === campaign.id) {
+                return {
+                  ...c,
+                  materials: c.materials.map(m => {
+                    if (m.id === material.id) {
+                      return {
+                        ...m,
+                        messagesList: [...m.messagesList, message]
+                      };
+                    }
+                    return m;
+                  })
+                };
+              }
+              return c;
+            })
           };
         }
-        return c;
+        return cmr;
       })
     );
   };
-
-  const updateCampaignName = (campaign, customer, newName) => {
-    const updatedCampaigns = customer.campaigns.map(c => {
-      if (c.id === campaign.id) {
-        return { ...c, name: newName };
-      }
-      return c;
-    });
-
-    setCustomers(
-      customers.map(c => {
-        if (c.id === customer.id) {
-          return {
-            ...c,
-            campaigns: updatedCampaigns
-          };
-        }
-        return c;
-      })
-    );
-  };
-
   return (
     <div className="App">
       <GlobalTheme />
       <ThemeProvider theme={darkTheme}>
-        <Header />
-        {/*<Dashboard*/}
-        {/*  addCustomer={addCustomer}*/}
-        {/*  removeCustomer={removeCustomer}*/}
-        {/*  markCompleted={markCompleted}*/}
-        {/*  markActive={markActive}*/}
-        {/*  customers={customers}*/}
-        {/*/>*/}
-        {/*<Campaigns*/}
-        {/*  customer={customers[3]}*/}
-        {/*  markCampaignActive={markCampaignActive}*/}
-        {/*  markCampaignCompleted={markCampaignCompleted}*/}
-        {/*/>*/}
-        <Campaign
-          customer={customers[3]}
-          addAttachment={addAttachment}
-          campaign={customers[3]["campaigns"][0]}
-          deleteAttachment={deleteAttachment}
-          updateDescription={updateDescription}
-          updateCampaignName={updateCampaignName}
-        />
-        {/*<AccessPopup />*/}
+        <Router>
+          <Header />
+          <Switch>
+            <Route path="/:id/campaigns/:campaignId">
+              <Campaign
+                customers={customers}
+                addAttachment={addAttachment}
+                deleteAttachment={deleteAttachment}
+                updateCampaign={updateCampaign}
+                addMessage={addMessage}
+              />
+            </Route>
+            <Route path="/:id/campaigns">
+              <Campaigns
+                customers={customers}
+                toggleCampaignStatus={toggleCampaignStatus}
+              />
+            </Route>
+            <Route path="/">
+              <Dashboard
+                addCustomer={addCustomer}
+                removeCustomer={removeCustomer}
+                toggleCustomerStatus={toggleCustomerStatus}
+                customers={customers}
+              />
+            </Route>
+          </Switch>
+        </Router>
       </ThemeProvider>
     </div>
   );

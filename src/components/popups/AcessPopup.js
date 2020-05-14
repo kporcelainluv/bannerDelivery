@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import { Button, Flex, Heading, Box, Text } from "rebass/styled-components";
 import { RefreshOutline as RefreshIcon } from "@styled-icons/evaicons-outline/RefreshOutline";
 import { Copy as CopyIcon } from "@styled-icons/feather/Copy";
-import styled, { useTheme } from "styled-components";
 import { Switch } from "@rebass/forms/styled-components";
+import styled, { useTheme } from "styled-components";
 import { nanoid } from "nanoid";
 
+
 import { PopupPaper } from "./PopupPaper";
+import { accessFields } from "../../utils/consts";
 
 const SwitchButton = styled(Switch)`
   border: none;
@@ -26,11 +28,7 @@ const buttons = [
 
 export const AccessPopup = ({ closePopup }) => {
   const theme = useTheme();
-  const [accessList, setAccessList] = useState([
-    { id: nanoid(), name: "Production Access Link", checked: true },
-    { id: nanoid(), name: "Client Access Link", checked: true },
-    { id: nanoid(), name: "Media / Buyer", checked: false }
-  ]);
+  const [accessList, setAccessList] = useState(accessFields);
 
   const setSwitch = field => {
     const updatedFields = accessList.map(f => {

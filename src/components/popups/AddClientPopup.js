@@ -1,15 +1,16 @@
 import React, { useState } from "react";
-import { Flex, Heading, Button } from "rebass/styled-components";
+import { Flex, Button, Box } from "rebass/styled-components";
 import { Label, Input } from "@rebass/forms";
 import { useTheme } from "styled-components";
-import { CloseOutline } from "@styled-icons/evaicons-outline/CloseOutline";
 import { PopupPaper } from "./PopupPaper";
+import { Text } from "rebass";
 
-export const Popup = ({ handleClose, addCustomer }) => {
+export const AddClientPopup = ({ handleClose, addCustomer }) => {
   const [name, setName] = useState("");
+  const [warning, setWarning] = useState(false);
   const theme = useTheme();
   return (
-    <PopupPaper heading={"Add Customer"}>
+    <PopupPaper heading={"Add Customer"} closePopup={handleClose}>
       <Flex
         alignItems="flex-start"
         justifyContent="center"
@@ -42,15 +43,23 @@ export const Popup = ({ handleClose, addCustomer }) => {
           }}
           onChange={e => {
             setName(e.target.value);
+            setWarning(false);
           }}
         />
+        {warning ? (
+          <Text as="span" fontSize={0} color={theme.colors.red100} m="10px 0">
+            Name shouldn’t be empty
+          </Text>
+        ) : (
+          <Box height="40px" />
+        )}
 
         <Flex flexDirection="row" margin="40px 0 0 auto">
           <Button
             variant="secondary"
             sx={{
               backgroundColor: theme.colors.grey500,
-              ":hover": { backgroundColor: "#97999E" },
+              ":hover": { backgroundColor: theme.colors.grey300 },
               marginRight: "16px"
             }}
             onClick={handleClose}
@@ -64,8 +73,11 @@ export const Popup = ({ handleClose, addCustomer }) => {
               ":hover": { backgroundColor: "#DB7124" }
             }}
             onClick={() => {
-              addCustomer(name);
-              handleClose();
+              if (name.length > 0) {
+                addCustomer(name);
+                handleClose();
+              }
+              setWarning(true);
             }}
           >
             Save

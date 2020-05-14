@@ -6,6 +6,8 @@ import { CheckBoxOutlineBlank as OutlineIcon } from "@styled-icons/material-outl
 import { CheckBox as CheckboxIcon } from "@styled-icons/material-outlined/CheckBox";
 import { ArrowBack as ArrowBackIcon } from "@styled-icons/boxicons-regular/ArrowBack";
 import styled, { useTheme } from "styled-components";
+import { useParams } from "react-router";
+import { Link } from "react-router-dom";
 
 import { nanoid } from "nanoid";
 import { PageName } from "./PageName";
@@ -20,12 +22,33 @@ const StyledSearch = styled(SearchIcon)`
   left: 15px;
   color: ${props => props.theme.colors.grey200};
 `;
+const StyledOutlineIcon = styled(OutlineIcon)`
+  height: 24px;
+  width: 24px;
+  fill: ${p => p.theme.colors.grey300};
+  cursor: pointer;
+  &&:hover {
+    fill: ${p => p.theme.colors.orange100};
+  }
+`;
+
+const StyledCheckboxIcon = styled(CheckboxIcon)`
+  height: 24px;
+  width: 24px;
+  fill: ${p => p.theme.colors.grey300};
+  cursor: pointer;
+  &&:hover {
+    fill: ${p => p.theme.colors.grey100};
+  }
+`;
 
 export const Campaigns = ({
-  customer,
-  markCampaignActive,
-  markCampaignCompleted
+  customers,
+
+  toggleCampaignStatus
 }) => {
+  const { id } = useParams();
+  const customer = customers.filter(c => c.id === id)[0];
   const [displayedCampaigns, setDisplayedCampaigns] = useState("active");
   const theme = useTheme();
 
@@ -33,16 +56,6 @@ export const Campaigns = ({
     { id: nanoid(), name: "Active", status: STATUS.ACTIVE },
     { id: nanoid(), name: "Completed", status: STATUS.COMPLETED }
   ];
-
-  const activeCampaigns = customer.campaigns.filter(
-    c => c.status === STATUS.ACTIVE
-  );
-  const completedCampaigns = customer.campaigns.filter(
-    c => c.status === STATUS.COMPLETED
-  );
-
-  const displayedCampaign =
-    displayedCampaigns === STATUS.ACTIVE ? activeCampaigns : completedCampaigns;
 
   const getTabColor = status => {
     return displayedCampaigns === status ? "orange100" : "grey200";
@@ -57,11 +70,28 @@ export const Campaigns = ({
   const campaignNameColor =
     displayedCampaigns === STATUS.ACTIVE ? "grey000" : "grey200";
 
+  if (!customer.campaigns) {
+    return (
+      <Box sx={{ position: "relative" }} width="100%" height="100%" p="0 20px">
+        <PageName name={customer.name} />
+        <ReturnToDashboard />
+      </Box>
+    );
+  }
+
+  const activeCampaigns =
+    customer.campaigns.filter(c => c.status === STATUS.ACTIVE) || [];
+  const completedCampaigns =
+    customer.campaigns.filter(c => c.status === STATUS.COMPLETED) || [];
+
+  const displayedCampaign =
+    displayedCampaigns === STATUS.ACTIVE ? activeCampaigns : completedCampaigns;
+
   return (
-    <Box sx={{ position: "relative" }} width="100%" height="100%">
+    <Box sx={{ position: "relative" }} width="100%" height="100%" p="0 20px">
       <PageName name={customer.name} />
       <ReturnToDashboard />
-      <Paper>
+      <Paper margin="0 auto" width="1136px">
         <Flex justifyContent="space-between" margin="24px">
           <Flex as="form" sx={{ position: "relative" }}>
             <StyledSearch />
@@ -98,7 +128,10 @@ export const Campaigns = ({
                     p="2px 0"
                     color={getTabColor(button.status)}
                     sx={{
-                      borderBottom: getBorderColor(button.status)
+                      borderBottom: getBorderColor(button.status),
+                      ":hover": {
+                        color: theme.colors.orange200
+                      }
                     }}
                   >
                     {button.name}
@@ -122,47 +155,46 @@ export const Campaigns = ({
                 }}
               >
                 {displayedCampaigns === STATUS.ACTIVE ? (
-                  <OutlineIcon
-                    height="24px"
-                    width="24px"
-                    fill={theme.colors.grey000}
-                    onClick={() => {
-                      markCampaignCompleted(customer, c.id);
-                    }}
+                  <StyledOutlineIcon
+                    onClick={() =>
+                      toggleCampaignStatus(customer, c.id, STATUS.COMPLETED)
+                    }
                   />
                 ) : (
-                  <CheckboxIcon
-                    height="24px"
-                    width="24px"
-                    fill={theme.colors.grey200}
-                    onClick={() => {
-                      markCampaignActive(customer, c.id);
-                    }}
+                  <StyledCheckboxIcon
+                    onClick={() =>
+                      toggleCampaignStatus(customer, c.id, STATUS.ACTIVE)
+                    }
                   />
                 )}
                 <Box>
-                  <Heading
-                    as="h3"
-                    fontSize={1}
-                    color={campaignNameColor}
-                    paddingLeft="20px"
-                    fontWeight="normal"
-                    sx={{
-                      lineHeight: "24px"
-                    }}
+                  <Link
+                    to={`/${id}/campaigns/${c.id}`}
+                    style={{ textDecoration: "none" }}
                   >
-                    {c.name}
-                  </Heading>
-                  <Text
-                    color="grey200"
-                    paddingLeft="20px"
-                    fontSize={0}
-                    sx={{
-                      lineHeight: "16px"
-                    }}
-                  >
-                    {c.date}
-                  </Text>
+                    <Heading
+                      as="h3"
+                      fontSize={1}
+                      color={campaignNameColor}
+                      paddingLeft="20px"
+                      fontWeight="normal"
+                      sx={{
+                        lineHeight: "24px"
+                      }}
+                    >
+                      {c.name}
+                    </Heading>
+                    <Text
+                      color="grey200"
+                      paddingLeft="20px"
+                      fontSize={0}
+                      sx={{
+                        lineHeight: "16px"
+                      }}
+                    >
+                      {c.date}
+                    </Text>
+                  </Link>
                 </Box>
               </Flex>
             );
@@ -177,14 +209,13 @@ const ReturnToDashboard = () => {
   const theme = useTheme();
   return (
     <Box width="100%" maxWidth="1136px" margin="40px auto">
-      <Button
-        display="flex"
-        flexDirection="row"
-        alignItems="center"
-        variant="none"
-        backgroundColor="transparent"
-        border="none"
-        p={0}
+      <Link
+        to={`/`}
+        style={{
+          textDecoration: "none",
+          display: "flex",
+          alignItems: "center"
+        }}
       >
         <ArrowBackIcon
           height={"24px"}
@@ -194,7 +225,7 @@ const ReturnToDashboard = () => {
         <Text as="span" fontSize={1} color="grey300" paddingLeft="5px">
           Back to dashboard
         </Text>
-      </Button>
+      </Link>
     </Box>
   );
 };
