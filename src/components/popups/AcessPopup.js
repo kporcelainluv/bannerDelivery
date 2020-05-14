@@ -6,7 +6,6 @@ import { Switch } from "@rebass/forms/styled-components";
 import styled, { useTheme } from "styled-components";
 import { nanoid } from "nanoid";
 
-
 import { PopupPaper } from "./PopupPaper";
 import { accessFields } from "../../utils/consts";
 
@@ -41,7 +40,11 @@ export const AccessPopup = ({ closePopup }) => {
   };
 
   return (
-    <PopupPaper heading={"Manage Access"} closePopup={closePopup}>
+    <PopupPaper
+      heading={"Manage Access"}
+      closePopup={closePopup}
+      height="500px"
+    >
       {accessList.map(field => {
         const color = field.checked
           ? theme.colors.orange200

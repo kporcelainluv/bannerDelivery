@@ -6,7 +6,7 @@ import "@reach/dialog/styles.css";
 
 import { useTheme } from "styled-components";
 
-export const PopupPaper = ({ heading, closePopup, children }) => {
+export const PopupPaper = ({ heading, closePopup, children, height }) => {
   const theme = useTheme();
   return (
     <DialogOverlay>
@@ -24,7 +24,7 @@ export const PopupPaper = ({ heading, closePopup, children }) => {
           transform: "translate(-50%, -50%)",
           "@media screen and (min-width: 1200px)": {
             width: "584px",
-            height: "500px"
+            height: height
           }
         }}
       >

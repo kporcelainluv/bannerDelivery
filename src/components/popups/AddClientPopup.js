@@ -10,7 +10,11 @@ export const AddClientPopup = ({ handleClose, addCustomer }) => {
   const [warning, setWarning] = useState(false);
   const theme = useTheme();
   return (
-    <PopupPaper heading={"Add Customer"} closePopup={handleClose}>
+    <PopupPaper
+      heading={"Add Customer"}
+      closePopup={handleClose}
+      height="300px"
+    >
       <Flex
         alignItems="flex-start"
         justifyContent="center"

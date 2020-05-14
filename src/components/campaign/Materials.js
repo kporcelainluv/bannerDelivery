@@ -134,7 +134,7 @@ export const Materials = ({ campaign, customer, addMessage }) => {
     opened: false,
     id: undefined
   });
-  const [materials, setMaterials] = useState(campaign.materials);
+  const [materials, setMaterials] = useState(campaign.materials || []);
 
   const closePopup = () => {
     setAccessPopup(false);
@@ -148,17 +148,19 @@ export const Materials = ({ campaign, customer, addMessage }) => {
     const updatedMaterials = materials.filter(m => m.id !== material.id);
     setMaterials(updatedMaterials);
   };
+
+  console.log({ campaign, materials });
   return (
     <Box>
       <Header />
-      {materials.length > 0 && (
+      {materials && materials.length > 0 && (
         <Fragment>
           <Tabs tab={tab} setTab={setTab} />
           <Box as="hr" m={"0"} color={theme.colors.grey400} />
         </Fragment>
       )}
 
-      {materials.length > 0 ? (
+      {materials && materials.length > 0 ? (
         <Fragment>
           <UploadBanner />
           <MaterialsContainer
@@ -489,8 +491,26 @@ const MaterialsContainer = ({
                 }
               }}
             >
-              <Box display="flex" alignItems="center">
-                <Box mt="5px" minHeight="80px" minWidth="80px">
+              <Box
+                display="flex"
+                alignItems="center"
+                sx={{
+                  "@media screen and (min-width: 1200px)": {
+                    alignItems: "flex-start"
+                  }
+                }}
+              >
+                <Box
+                  mt="5px"
+                  minHeight="80px"
+                  minWidth="80px"
+                  sx={{
+                    "@media screen and (min-width: 1200px)": {
+                      minHeight: "110px",
+                      minWidth: "110px"
+                    }
+                  }}
+                >
                   <Image
                     src={element.img}
                     height="100%"
@@ -498,7 +518,7 @@ const MaterialsContainer = ({
                     sx={{
                       "@media screen and (min-width: 1200px)": {
                         height: "110px",
-                        minWidth: "110px"
+                        width: "110px"
                       }
                     }}
                   />
@@ -601,7 +621,13 @@ const CTAButton = ({ element }) => {
 const EmptyMaterials = () => {
   const theme = useTheme();
   return (
-    <Box>
+    <Box
+      sx={{
+        "@media screen and (min-width: 1200px)": {
+          padding: "0 24px"
+        }
+      }}
+    >
       <Box mt="10px">
         <Input
           id="addFile"

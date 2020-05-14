@@ -98,7 +98,10 @@ export const App = () => {
                   id: nanoid(),
                   name: campaignName,
                   status: "active",
-                  date: getDate()
+                  date: getDate(),
+                  attachments: [],
+                  description: "",
+                  materials: []
                 }
               ]
             };

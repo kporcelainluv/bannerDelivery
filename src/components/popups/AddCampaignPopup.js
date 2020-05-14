@@ -9,7 +9,11 @@ export const AddCampaignPopup = ({ handleClose, addCampaign, customer }) => {
   const [warning, setWarning] = useState(false);
   const theme = useTheme();
   return (
-    <PopupPaper heading={"Add Campaign"} closePopup={handleClose}>
+    <PopupPaper
+      heading={"Add Campaign"}
+      closePopup={handleClose}
+      height="300px"
+    >
       <Flex
         alignItems="flex-start"
         justifyContent="center"
