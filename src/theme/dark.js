@@ -8,8 +8,10 @@ export const darkTheme = {
     grey500: "#3F4C5C",
     grey600: "#3f4c5c",
     grey700: "#1D2733",
+    grey800: "rgba(63, 76, 92, 0.5)",
     orange100: "#FF8E3C",
     orange200: "#D67935",
+    orange300: "rgba(214, 121, 53, 0.5)",
     red100: "#EB5760",
     gradient1: "linear-gradient(180deg, #2A2A2A 0%, #0D0D0D 100%)",
     gradient2:
