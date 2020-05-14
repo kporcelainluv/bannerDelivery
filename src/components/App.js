@@ -11,6 +11,7 @@ import { STATUS } from "../utils/consts";
 import { Campaigns } from "./Campaigns";
 import { Campaign } from "./campaign/Campaign";
 import { customersList1, customersList2 } from "../utils/mock";
+import { getDate } from "../utils/utils";
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
@@ -77,6 +78,41 @@ export const App = () => {
               }
               return c;
             })
+          };
+        }
+        return c;
+      })
+    );
+  };
+
+  const addCampaign = (customer, campaignName) => {
+    setCustomers(
+      customers.map(c => {
+        if (c.id === customer.id) {
+          if (c.campaigns) {
+            return {
+              ...c,
+              campaigns: [
+                ...c.campaigns,
+                {
+                  id: nanoid(),
+                  name: campaignName,
+                  status: "active",
+                  date: getDate()
+                }
+              ]
+            };
+          }
+          return {
+            ...c,
+            campaigns: [
+              {
+                id: nanoid(),
+                name: campaignName,
+                status: "active",
+                date: getDate()
+              }
+            ]
           };
         }
         return c;
@@ -176,6 +212,7 @@ export const App = () => {
               <Campaigns
                 customers={customers}
                 toggleCampaignStatus={toggleCampaignStatus}
+                addCampaign={addCampaign}
               />
             </Route>
             <Route path="/">

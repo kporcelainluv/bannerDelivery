@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Text, Box, Flex } from "rebass/styled-components";
 import { Home as HomeIcon } from "@styled-icons/boxicons-solid/Home";
 import { ArrowIosForwardOutline as ArrowIcon } from "@styled-icons/evaicons-outline/ArrowIosForwardOutline";
+import { ArrowBack as ArrowBackIcon } from "@styled-icons/boxicons-regular/ArrowBack";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
@@ -23,6 +24,13 @@ const StyledLink = styled(Link)`
   display: flex;
   align-items: center;
   text-decoration: none;
+  &&:hover {
+    span,
+    svg {
+      color: ${p => p.theme.colors.orange100};
+      fill: ${p => p.theme.colors.orange100};
+    }
+  }
 `;
 
 export const Campaign = ({
@@ -51,8 +59,24 @@ export const Campaign = ({
         customer={customer}
         updateCampaign={updateCampaign}
       />
-      <Box width="1136px" m={"0 auto"}>
-        <Paper width="848px" margin={"20px 0"}>
+      <Box
+        width="100%"
+        m={"0 auto"}
+        sx={{
+          "@media screen and (min-width: 1200px)": {
+            width: "1136px"
+          }
+        }}
+      >
+        <Paper
+          width="848px"
+          margin={"20px 0"}
+          sx={{
+            "@media screen and (min-width: 1200px)": {
+              width: "848px"
+            }
+          }}
+        >
           <Task
             campaign={campaign}
             addAttachment={addAttachment}
@@ -62,7 +86,11 @@ export const Campaign = ({
           />
         </Paper>
         <Paper width="848px" margin={"20px 0"}>
-          <Materials campaign={campaign} customer={customer} addMessage={addMessage}/>
+          <Materials
+            campaign={campaign}
+            customer={customer}
+            addMessage={addMessage}
+          />
         </Paper>
       </Box>
     </Box>
@@ -73,29 +101,64 @@ const ReturnToDashboard = ({ customerName, campaignName, id }) => {
   const theme = useTheme();
   return (
     <Flex width="100%" maxWidth="1136px" margin="40px auto">
-      <StyledLink to={`/`}>
-        <HomeIcon height="15px" width="20px" fill={theme.colors.grey300} />
-        <Text as="span" fontSize={1} color="grey300" paddingLeft="5px">
-          Dashboard
-        </Text>
-      </StyledLink>
-      <Arrow />
-      <StyledLink to={`/${id}/campaigns`}>
-        <Text as="span" fontSize={1} color="grey300" paddingLeft="5px">
-          {customerName}
-        </Text>
-      </StyledLink>
-      <Arrow />
-      <Text
-        as="span"
-        fontSize={1}
-        color="grey300"
-        paddingLeft="5px"
-        display="flex"
-        alignItems="center"
+      <Box
+        display="none"
+        sx={{
+          "@media screen and (min-width: 1200px)": {
+            display: "flex"
+          }
+        }}
       >
-        {campaignName}
-      </Text>
+        <StyledLink to={`/`}>
+          <HomeIcon height="15px" width="20px" fill={theme.colors.grey300} />
+          <Text as="span" fontSize={1} color="grey300" paddingLeft="5px">
+            Dashboard
+          </Text>
+        </StyledLink>
+        <Arrow />
+        <StyledLink to={`/${id}/campaigns`}>
+          <Text as="span" fontSize={1} color="grey300" paddingLeft="5px">
+            {customerName}
+          </Text>
+        </StyledLink>
+        <Arrow />
+        <Text
+          as="span"
+          fontSize={1}
+          color="grey300"
+          paddingLeft="5px"
+          display="flex"
+          alignItems="center"
+        >
+          {campaignName}
+        </Text>
+      </Box>
+      <Box
+        display="block"
+        sx={{
+          "@media screen and (min-width: 1200px)": {
+            display: "none"
+          }
+        }}
+      >
+        <Link
+          to={`/`}
+          style={{
+            textDecoration: "none",
+            display: "flex",
+            alignItems: "center"
+          }}
+        >
+          <ArrowBackIcon
+            height={"24px"}
+            width="24px"
+            fill={theme.colors.grey300}
+          />
+          <Text as="span" fontSize={1} color="grey300" paddingLeft="5px">
+            Back to {customerName}
+          </Text>
+        </Link>
+      </Box>
     </Flex>
   );
 };

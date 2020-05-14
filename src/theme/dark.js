@@ -9,6 +9,7 @@ export const darkTheme = {
     grey600: "#3f4c5c",
     grey700: "#1D2733",
     grey800: "rgba(63, 76, 92, 0.5)",
+    grey900: "#1A1C1E",
     orange100: "#FF8E3C",
     orange200: "#D67935",
     orange300: "rgba(214, 121, 53, 0.5)",
@@ -62,5 +63,6 @@ export const darkTheme = {
   },
   shadows: {
     large: "0px 0px 25px rgba(13, 13, 13, 0.05)"
-  }
+  },
+  breakpoints: ["320px", "1200px"]
 };

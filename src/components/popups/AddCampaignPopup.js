@@ -1,16 +1,15 @@
 import React, { useState } from "react";
-import { Flex, Button, Box } from "rebass/styled-components";
+import { Flex, Button, Box, Text } from "rebass/styled-components";
 import { Label, Input } from "@rebass/forms";
 import { useTheme } from "styled-components";
 import { PopupPaper } from "./PopupPaper";
-import { Text } from "rebass";
 
-export const AddClientPopup = ({ handleClose, addCustomer }) => {
+export const AddCampaignPopup = ({ handleClose, addCampaign, customer }) => {
   const [name, setName] = useState("");
   const [warning, setWarning] = useState(false);
   const theme = useTheme();
   return (
-    <PopupPaper heading={"Add Customer"} closePopup={handleClose}>
+    <PopupPaper heading={"Add Campaign"} closePopup={handleClose}>
       <Flex
         alignItems="flex-start"
         justifyContent="center"
@@ -74,13 +73,13 @@ export const AddClientPopup = ({ handleClose, addCustomer }) => {
           }}
           onClick={() => {
             if (name.length > 0) {
-              addCustomer(name);
+              addCampaign(customer, name);
               handleClose();
             }
             setWarning(true);
           }}
         >
-          Save customer
+          Save campaign
         </Button>
 
         <Box
@@ -112,7 +111,7 @@ export const AddClientPopup = ({ handleClose, addCustomer }) => {
             }}
             onClick={() => {
               if (name.length > 0) {
-                addCustomer(name);
+                addCampaign(customer, name);
                 handleClose();
               }
               setWarning(true);

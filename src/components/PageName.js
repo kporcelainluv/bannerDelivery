@@ -10,6 +10,12 @@ export const PageName = ({ name }) => {
       width="100%"
       maxWidth="1136px"
       margin="40px auto"
+      display="none"
+      sx={{
+        "@media screen and (min-width: 1200px)": {
+          display: "block"
+        }
+      }}
     >
       {name}
     </Heading>

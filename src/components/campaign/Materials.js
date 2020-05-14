@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, Fragment } from "react";
 import {
   Button,
   Flex,
@@ -34,7 +34,10 @@ const StyledButton = styled(Button)`
   background-color: transparent;
   border: none;
   padding: 0;
-  margin-left: 10px;
+  margin-right: 10px;
+  @media (min-width: ${p => p.theme.breakpoints[1]}) {
+    margin: 0 0 0 10px;
+  }
 `;
 
 const StyledTab = styled(Button)`
@@ -60,7 +63,7 @@ const StyledTab = styled(Button)`
 
 const StyledNumber = styled(Box)`
   margin-left: 5px;
-  padding: 0 4px;
+  padding: 1px 4px;
   font-size: 10px;
   border: 1px solid ${p => p.theme.colors.grey000};
   border-radius: 50%;
@@ -129,7 +132,6 @@ export const Materials = ({ campaign, customer, addMessage }) => {
   const [accessPopup, setAccessPopup] = useState(false);
   const [chatPopup, setChatPopup] = useState({
     opened: false,
-    material: {},
     id: undefined
   });
   const [materials, setMaterials] = useState(campaign.materials);
@@ -139,34 +141,45 @@ export const Materials = ({ campaign, customer, addMessage }) => {
   };
 
   const closeChat = () => {
-    setChatPopup({ opened: false, material: {} });
+    setChatPopup({ opened: false, id: undefined });
   };
 
   const deleteMaterial = material => {
     const updatedMaterials = materials.filter(m => m.id !== material.id);
     setMaterials(updatedMaterials);
   };
-  console.log({ customer });
   return (
     <Box>
       <Header />
-      <Tabs tab={tab} setTab={setTab} />
-      <Box as="hr" m={"0"} color={theme.colors.grey400} />
-      <UploadBanner />
-      <MaterialsContainer
-        accessPopup={accessPopup}
-        setAccessPopup={setAccessPopup}
-        setChatPopup={setChatPopup}
-        materials={materials}
-        deleteMaterial={deleteMaterial}
-      />
+      {materials.length > 0 && (
+        <Fragment>
+          <Tabs tab={tab} setTab={setTab} />
+          <Box as="hr" m={"0"} color={theme.colors.grey400} />
+        </Fragment>
+      )}
+
+      {materials.length > 0 ? (
+        <Fragment>
+          <UploadBanner />
+          <MaterialsContainer
+            accessPopup={accessPopup}
+            setAccessPopup={setAccessPopup}
+            setChatPopup={setChatPopup}
+            materials={materials}
+            deleteMaterial={deleteMaterial}
+          />
+        </Fragment>
+      ) : (
+        <EmptyMaterials />
+      )}
+
       {accessPopup && <AccessPopup closePopup={closePopup} />}
       {chatPopup.opened && (
         <Chat
           closeChat={closeChat}
           campaignId={campaign.id}
           addMessage={addMessage}
-          customer={customer}s
+          customer={customer}
           id={chatPopup.id}
         />
       )}
@@ -177,11 +190,30 @@ export const Materials = ({ campaign, customer, addMessage }) => {
 const Header = () => {
   const theme = useTheme();
   return (
-    <Flex padding="30px 24px 0px" justifyContent="space-between">
-      <Heading as="h2" fontSize={2} color="grey000" mb="24px">
+    <Flex
+      padding="0"
+      justifyContent="space-between"
+      alignItems="baseline"
+      sx={{
+        "@media screen and (min-width: 1200px)": {
+          padding: "30px 24px 0px"
+        }
+      }}
+    >
+      <Heading
+        as="h2"
+        fontSize={1}
+        color="grey000"
+        mb="24px"
+        sx={{
+          "@media screen and (min-width: 1200px)": {
+            fontSize: theme.fontSizes[2]
+          }
+        }}
+      >
         Materials
       </Heading>
-      <StyledDownload variant="primary" onClick={() => {}}>
+      <StyledDownload variant="primary">
         <DownloadIcon
           height="15px"
           width="15px"
@@ -204,7 +236,15 @@ const Header = () => {
 const Tabs = ({ tab, setTab }) => {
   const theme = useTheme();
   return (
-    <Flex p={"0 24px"} alignItems="center">
+    <Flex
+      p="0"
+      alignItems="center"
+      sx={{
+        "@media screen and (min-width: 1200px)": {
+          padding: "0 24px"
+        }
+      }}
+    >
       {tabsList.map((t, index) => {
         return (
           <StyledTab
@@ -257,27 +297,32 @@ const UploadBanner = () => {
     <Flex
       flexDirection="column"
       width="100%"
-      maxWidth="800px"
-      margin="40px auto"
       boxShadow="large"
       justifyContent="center"
       alignItems="center"
-      p="20px 0 "
-      height="146px"
-      backgroundColor="grey500"
+      p="20px 0"
       sx={{
         borderRadius: "4px",
-        ":hover": { backgroundColor: theme.colors.grey800 }
+        ":hover": { backgroundColor: theme.colors.grey800 },
+        maxWidth: "800px",
+        "@media screen and (min-width: 1200px)": {
+          backgroundColor: theme.colors.grey500,
+          height: "146px",
+          margin: "40px auto"
+        }
       }}
     >
       <Flex
         height="48px"
-        width="186px"
+        width="100%"
         backgroundColor="orange200"
         sx={{
           borderRadius: "4px",
           ":hover": { backgroundColor: theme.colors.orange100 },
-          cursor: "pointer"
+          cursor: "pointer",
+          "@media screen and (min-width: 1200px)": {
+            width: "186px"
+          }
         }}
         alignItems="center"
       >
@@ -301,7 +346,18 @@ const UploadBanner = () => {
         </Label>
         <Input id="upload" name="upload" type="file" display="none" />
       </Flex>
-      <Text margin="16px 0 0" color="grey300" fontSize={1}>
+      <Text
+        as="span"
+        margin="16px 0 0"
+        color="grey300"
+        fontSize={1}
+        display="none"
+        sx={{
+          "@media screen and (min-width: 1200px)": {
+            display: "inline-block"
+          }
+        }}
+      >
         or drop file here
       </Text>
     </Flex>
@@ -310,18 +366,45 @@ const UploadBanner = () => {
 
 const MaterialDescription = ({ element }) => {
   const { name, date, size } = element;
+  const theme = useTheme();
   return (
     <Flex flexDirection="column" ml="10px">
-      <Heading as="h2" fontSize={1} color="grey000" mb={"5px"}>
+      <Heading
+        as="h2"
+        fontSize={0}
+        color="grey000"
+        mb={"5px"}
+        sx={{
+          wordBreak: "break-all",
+          lineHeight: "20px",
+          "@media screen and (min-width: 1200px)": {
+            fontSize: theme.fontSizes[1],
+            maxWidth: "100%"
+          }
+        }}
+      >
         {name}
       </Heading>
-      {[date, size].map(element => {
-        return (
-          <Text key={element} as="span" fontSize={1} color="grey300" mb={"5px"}>
-            {element}
-          </Text>
-        );
-      })}
+      {date &&
+        size &&
+        [date, size].map(element => {
+          return (
+            <Text
+              key={element}
+              as="span"
+              fontSize={0}
+              color="grey300"
+              mb={"5px"}
+              sx={{
+                "@media screen and (min-width: 1200px)": {
+                  fontSize: theme.fontSizes[1]
+                }
+              }}
+            >
+              {element}
+            </Text>
+          );
+        })}
     </Flex>
   );
 };
@@ -333,8 +416,6 @@ const ActionButtons = ({
   deleteMaterial,
   material
 }) => {
-  const theme = useTheme();
-
   return (
     <Flex>
       <StyledButton variant="none">
@@ -358,18 +439,13 @@ const ActionButtons = ({
       <StyledButton
         variant="none"
         onClick={() => {
-          console.log({ material });
-          setChatPopup({ opened: true, material: material, id: material.id });
+          setChatPopup({ opened: true, id: material.id });
         }}
       >
         <Text as="span" className="visually-hidden">
           Chat
         </Text>
-        <StyledChatIcon
-          height="28px"
-          width="28px"
-          fill={theme.colors.grey000}
-        />
+        <StyledChatIcon />
       </StyledButton>
       <StyledButton
         variant="none"
@@ -396,23 +472,67 @@ const MaterialsContainer = ({
   const theme = useTheme();
   return (
     <Box>
-      {materials.map((element, index) => {
+      {materials.map(element => {
         return (
           <Box
             sx={{ ":hover": { backgroundColor: theme.colors.grey500 } }}
             key={element.id}
           >
-            <Flex p="24px" key={element.id} flexDirection="row">
-              <Image src={element.img} />
-              <Flex ml="24px">
-                <MaterialStatusIcon status={element.status} />
-                <MaterialDescription element={element} />
-              </Flex>
-              <Flex
-                ml="auto"
-                flexDirection="column"
+            <Flex
+              key={element.id}
+              p="16px 0"
+              flexDirection="column"
+              sx={{
+                "@media screen and (min-width: 1200px)": {
+                  padding: "24px",
+                  flexDirection: "row"
+                }
+              }}
+            >
+              <Box display="flex" alignItems="center">
+                <Box mt="5px" minHeight="80px" minWidth="80px">
+                  <Image
+                    src={element.img}
+                    height="100%"
+                    width="100%"
+                    sx={{
+                      "@media screen and (min-width: 1200px)": {
+                        height: "110px",
+                        minWidth: "110px"
+                      }
+                    }}
+                  />
+                </Box>
+
+                <Flex
+                  flexDirection="row-reverse"
+                  justifyContent="space-between"
+                  width="100%"
+                  sx={{
+                    "@media screen and (min-width: 1200px)": {
+                      marginLeft: "24px",
+                      flexDirection: "row"
+                    }
+                  }}
+                >
+                  <MaterialStatusIcon status={element.status} />
+                  <MaterialDescription element={element} />
+                </Flex>
+              </Box>
+              <Box
+                display="flex"
+                flexDirection="row-reverse"
                 justifyContent="space-between"
-                alignItems="flex-end"
+                alignItems="center"
+                mt="10px"
+                sx={{
+                  "@media screen and (min-width: 1200px)": {
+                    flexDirection: "column",
+                    alignItems: "flex-end",
+                    marginLeft: "auto",
+                    marginTop: "0"
+                  }
+                }}
               >
                 <CTAButton element={element} />
                 <ActionButtons
@@ -422,9 +542,8 @@ const MaterialsContainer = ({
                   deleteMaterial={deleteMaterial}
                   material={element}
                 />
-              </Flex>
+              </Box>
             </Flex>
-            {/*{index < materials.length - 1 && <Box as="hr" m="0 24px" />}*/}
           </Box>
         );
       })}
@@ -462,6 +581,7 @@ const CTAButton = ({ element }) => {
       display="flex"
       alignItems="center"
       justifyContent="space-between"
+      lineHeight="20px"
     >
       {element.status === BUTTON_STATUS.PENDING && (
         <CheckmarkIcon height="20px" width="20px" fill={theme.colors.grey000} />
@@ -475,5 +595,49 @@ const CTAButton = ({ element }) => {
 
       <Text as="span">{getText(element.status)}</Text>
     </Button>
+  );
+};
+
+const EmptyMaterials = () => {
+  const theme = useTheme();
+  return (
+    <Box>
+      <Box mt="10px">
+        <Input
+          id="addFile"
+          name="addFile"
+          type="file"
+          color="transparent"
+          border="none"
+          backgroundColor="transparent"
+          display="none"
+        />
+        <Label htmlFor="addFile" display="flex" alignItems="center">
+          <StyledAddIcon />
+          <Text
+            as="span"
+            fontSize={1}
+            color="orange200"
+            pl="10px"
+            sx={{
+              letterSpacing: "0.3px",
+              cursor: "pointer",
+              ":hover": { color: theme.colors.orange100 }
+            }}
+          >
+            Add Attachment
+          </Text>
+        </Label>
+      </Box>
+      <Text
+        as="p"
+        fontSize={1}
+        color="grey300"
+        m={"20px auto"}
+        textAlign="center"
+      >
+        List of your materials will be here
+      </Text>
+    </Box>
   );
 };
