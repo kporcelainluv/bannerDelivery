@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Text, Box, Flex } from "rebass/styled-components";
 import { Home as HomeIcon } from "@styled-icons/boxicons-solid/Home";
 import { ArrowIosForwardOutline as ArrowIcon } from "@styled-icons/evaicons-outline/ArrowIosForwardOutline";
+import { ArrowBack as ArrowBackIcon } from "@styled-icons/boxicons-regular/ArrowBack";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
@@ -11,7 +12,6 @@ import { Task } from "./Task";
 import { CampaignName } from "./CampaignName";
 import { Materials } from "./Materials";
 import { useTheme } from "styled-components";
-import { ArrowBack as ArrowBackIcon } from "@styled-icons/boxicons-regular/ArrowBack";
 
 const Arrow = styled(ArrowIcon)`
   height: 20px;
