@@ -226,6 +226,7 @@ export const Campaigns = ({ customers, addCampaign, toggleCampaignStatus }) => {
                     style={{ textDecoration: "none" }}
                   >
                     <Heading
+                      maxWidth="300px"
                       as="h3"
                       fontSize={1}
                       color={campaignNameColor}

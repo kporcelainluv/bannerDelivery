@@ -149,7 +149,6 @@ export const Materials = ({ campaign, customer, addMessage }) => {
     setMaterials(updatedMaterials);
   };
 
-  console.log({ campaign, materials });
   return (
     <Box>
       <Header />
@@ -207,7 +206,9 @@ const Header = () => {
         fontSize={1}
         color="grey000"
         mb="24px"
+        maxWidth="300px"
         sx={{
+          wordBreak: "break-all",
           "@media screen and (min-width: 1200px)": {
             fontSize: theme.fontSizes[2]
           }
@@ -554,14 +555,18 @@ const MaterialsContainer = ({
                   }
                 }}
               >
-                <CTAButton element={element} />
-                <ActionButtons
-                  accessPopup={accessPopup}
-                  setAccessPopup={setAccessPopup}
-                  setChatPopup={setChatPopup}
-                  deleteMaterial={deleteMaterial}
-                  material={element}
-                />
+                <Flex flexDirection="column">
+                  <CTAButton element={element} />
+                </Flex>
+                <Flex flexDirection="column">
+                  <ActionButtons
+                    accessPopup={accessPopup}
+                    setAccessPopup={setAccessPopup}
+                    setChatPopup={setChatPopup}
+                    deleteMaterial={deleteMaterial}
+                    material={element}
+                  />
+                </Flex>
               </Box>
             </Flex>
           </Box>

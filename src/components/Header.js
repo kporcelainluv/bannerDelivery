@@ -31,7 +31,8 @@ export const Header = () => {
         alignItems="center"
         width={"100%"}
         maxWidth={"1136px"}
-        height={"56px"}
+        minHeight={"56px"}
+        height="100%"
         m={"0 auto"}
         p="0 20px"
         sx={{
@@ -45,7 +46,7 @@ export const Header = () => {
         </StyledButton>
 
         <Link to={`/`} style={{ textDecoration: "none" }}>
-          <Heading as="h3" fontSize={2} color={"grey000"}>
+          <Heading as="h3" fontSize={2} color={"grey000"} maxWidth="400px">
             Banner Delivery
           </Heading>
         </Link>

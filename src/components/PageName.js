@@ -12,6 +12,7 @@ export const PageName = ({ name }) => {
       margin="40px auto"
       display="none"
       sx={{
+        wordBreak: "break-all",
         "@media screen and (min-width: 1200px)": {
           display: "block"
         }

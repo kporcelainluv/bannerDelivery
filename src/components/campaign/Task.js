@@ -7,15 +7,16 @@ import { AddSolid as AddIcon } from "@styled-icons/zondicons/AddSolid";
 
 const AttachedFile = styled(Flex)`
   width: auto;
-  height: 32px;
+  min-height: 32px;
   background-color: ${p => p.theme.colors.grey500};
   border-radius: 16px;
   display: flex;
   align-items: center;
   justify-content: space-around;
-  margin-right: 8px;
   padding: 0 10px 0 16px;
+  margin: 5px;
   cursor: pointer;
+  word-break: break-all;
 `;
 
 const StyledAddIcon = styled(AddIcon)`
@@ -76,7 +77,14 @@ export const Task = ({
         }
       }}
     >
-      <Heading as="h2" fontSize={1} color="grey000" mb="24px">
+      <Heading
+        as="h2"
+        fontSize={1}
+        color="grey000"
+        mb="24px"
+        maxWidth="300px"
+        sx={{ wordBreak: "break-all" }}
+      >
         Task
       </Heading>
       <Flex as="form" flexDirection="column" sx={{ position: "relative" }}>
@@ -130,7 +138,7 @@ const Attachment = ({ campaign, deleteAttachment, customer }) => {
       <Text as="span" fontSize={0} color="grey000" mb="8px">
         Attachments:
       </Text>
-      <Flex mb="16px">
+      <Flex mb="16px" flexWrap="wrap">
         {campaign.attachments &&
           campaign.attachments.map(a => {
             return (
@@ -139,6 +147,7 @@ const Attachment = ({ campaign, deleteAttachment, customer }) => {
                   as="span"
                   fontSize={0}
                   color="grey000"
+                  maxWidth="300px"
                   sx={{
                     ":hover": { color: "orange100" },
                     ":disabled": { color: "grey700" }

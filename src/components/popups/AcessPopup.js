@@ -59,6 +59,7 @@ export const AccessPopup = ({ closePopup }) => {
                 color="grey000"
                 fontWeight="bold"
                 mb="30px"
+                maxWidth="300px"
               >
                 {field.name}
               </Heading>
@@ -95,7 +96,13 @@ export const AccessPopup = ({ closePopup }) => {
                       />
                     )}
 
-                    <Text as="span" pl="5px" color={color}>
+                    <Text
+                      as="span"
+                      pl="5px"
+                      color={color}
+                      maxWidth="250px"
+                      sx={{ textAlign: "left" }}
+                    >
                       {button.name}
                     </Text>
                   </Button>

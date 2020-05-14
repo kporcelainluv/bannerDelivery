@@ -65,10 +65,21 @@ export const App = () => {
             ...c,
             campaigns: customer.campaigns.map(c => {
               if (c.id === campaign.id) {
+                if (campaign.attachments) {
+                  return {
+                    ...c,
+                    attachments: [
+                      ...c.attachments,
+                      {
+                        name: name,
+                        id: nanoid()
+                      }
+                    ]
+                  };
+                }
                 return {
                   ...c,
                   attachments: [
-                    ...c.attachments,
                     {
                       name: name,
                       id: nanoid()

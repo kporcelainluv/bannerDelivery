@@ -37,6 +37,13 @@ const ActionButton = styled(Button)`
   align-items: center;
   padding: 0 8px;
   cursor: pointer;
+  &&:hover {
+    svg,
+    span {
+      color: ${p => p.theme.colors.orange100};
+      fill: ${p => p.theme.colors.orange100};
+    }
+  }
 `;
 
 const EmptyPaper = styled(Flex)`
@@ -246,7 +253,9 @@ const DashboardActive = ({
           }}
         >
           <PlusIcon height="24px" width="24px" />
-          <Text p="0 0 0 10px">Add customer</Text>
+          <Text as="span" p="0 0 0 10px">
+            Add customer
+          </Text>
         </Button>
       </Flex>
 
@@ -342,6 +351,7 @@ const CustomersList = ({
                       color={status === STATUS.ACTIVE ? "grey000" : "grey300"}
                       fontWeight="normal"
                       padding="0 0 0 24px"
+                      maxWidth="300px"
                     >
                       {customer.name}
                     </Heading>
@@ -402,10 +412,13 @@ const ActionButtons = ({ status, removeCustomer, customer }) => {
       <ActionButton variant="none">
         <EditIcon height="16px" width="16px" fill={color} />
         <Text
+          as="span"
           display="none"
           padding="0 10px"
           color={color}
+          maxWidth="300px"
           sx={{
+            wordBreak: "break-all",
             "@media screen and (min-width: 1200px)": {
               display: "inline-block"
             }
