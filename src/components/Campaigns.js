@@ -284,13 +284,14 @@ const AddCampaignBtn = ({ setPopup }) => {
   return (
     <Button
       variant="primary"
+      width="188px"
       onClick={() => {
         setPopup(true);
       }}
       sx={{
         position: "absolute",
         bottom: "0",
-        borderRadius: "24px",
+        borderRadius: "4px",
         "@media screen and (min-width: 1200px)": {
           position: "relative"
         }

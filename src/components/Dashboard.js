@@ -237,7 +237,7 @@ const DashboardActive = ({
           />
         </Flex>
         <Button
-          width="186px"
+          width="188px"
           height="48px"
           variant="primary"
           borderRadius="4px"
