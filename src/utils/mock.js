@@ -122,6 +122,7 @@ export const customersList2 = [
         name: "Burger King Halloween",
         date: "20 Nov 2019",
         status: "active",
+        description: "Implement HTML and PNG banners for Burger King Halloween",
         attachments: [
           { name: "Halloween.js", id: "F4T_sULUZSGcXV-NDnG_U" },
           { name: "Halloween.png", id: "KofqRz1WdF7gn-PmzjgIc" }
@@ -230,6 +231,7 @@ export const customersList2 = [
         name: "New Year in B.K.",
         date: "31 Dec 2019",
         status: "active",
+        description: "Implement HTML and PNG banners for New Year in B.K.",
         attachments: [
           { name: "NY.js", id: "kwShLyfABf6n3wNSocy0C" },
           { name: "NY.png", id: "XnljT3JVKf8WPNyiCEwx2" }
@@ -340,12 +342,14 @@ export const customersList2 = [
     id: "vqfng1X3CefpNMPyTL6Fn",
     name: "Mama Pizza",
     status: "completed",
+
     campaigns: [
       {
         id: "YbS-BOo37uPMavI7zI4TI",
         name: "Mama Pizza's day",
         date: "30 Sep 2019",
         status: "completed",
+
         attachments: [
           { name: "Mama_day.js", id: "2YQeZ1mHQDayqDyDQZqDf" },
           { name: "Mama_day.png", id: "TRhqvFYe6_GqxQAqVXf-E" }
@@ -455,6 +459,7 @@ export const customersList2 = [
         name: "Mama Pizza Halloween",
         date: "20 Nov 2019",
         status: "active",
+        description: "Implement HTML and PNG banners for Mama Pizza Halloween ",
         attachments: [
           { name: "Halloween_MP.js", id: "JbCN0xKFd4Q3GLX2w3-C7" },
           { name: "Halloween_MP.png", id: "RPNM1eMFhRnHCsxZVv9CQ" }
@@ -564,6 +569,8 @@ export const customersList2 = [
         name: "New Year in Mama Pizza",
         date: "31 Dec 2019",
         status: "active",
+        description:
+          "Implement HTML and PNG banners for New Year in Mama Pizza",
         attachments: [
           { name: "NY_MP.js", id: "oe4Ge8ocJTVbBjH_hFk07" },
           { name: "NY_MP.png", id: "1iw31SQYsns2PP1Z9ujHe" }
@@ -679,6 +686,7 @@ export const customersList2 = [
         name: "Domofond's day",
         date: "30 Sep 2019",
         status: "completed",
+
         attachments: [
           { name: "D_day.js", id: "moBlJTZtfPw-7Fzf7Btos" },
           { name: "D_day.png", id: "9drPiwT5olnCdL6CdrFqi" }
@@ -789,6 +797,7 @@ export const customersList2 = [
         name: "Domofond Halloween",
         date: "20 Nov 2019",
         status: "active",
+        description: "Implement HTML and PNG banners for Domofond Halloween",
         attachments: [
           { name: "Halloween.js", id: "AzHznG9I8YvIBOU1qJWJS" },
           { name: "Halloween.png", id: "3ZJI0es-u-nX0Dfgk3nSR" }
@@ -898,6 +907,7 @@ export const customersList2 = [
         name: "New Year in Domofond",
         date: "31 Dec 2019",
         status: "active",
+        description: "Implement HTML and PNG banners for New Year in Domofond",
         attachments: [
           { name: "NY.js", id: "R5kkdsJqP3h7SsbHQBvNI" },
           { name: "NY.png", id: "8kU2JtdMcFaAiB5DZ8ypi" }
@@ -1122,6 +1132,7 @@ export const customersList2 = [
         id: "OnlHC4JOsguxqkPu_5Gl1",
         name: "Sberbank Halloween",
         date: "20 Nov 2019",
+        description: "Implement HTML and PNG banners for Sberbank Halloween",
         status: "active",
         attachments: [
           { name: "H_Sber.js", id: "JgqPnt7TJHxV8e6WKbzb7" },
@@ -1231,6 +1242,7 @@ export const customersList2 = [
         name: "New Year in Sberbank",
         date: "31 Dec 2019",
         status: "active",
+        description: "Implement HTML and PNG banners for New Year in Sberbank",
         attachments: [
           { name: "NY.js", id: "Jry5sBP1HmJxB2H_unlEK" },
           { name: "NY.png", id: "pRr2yv5s-homE2g6BzchV" }
