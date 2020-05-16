@@ -15,6 +15,10 @@ const StyledContainer = styled(Box)`
   width: 100%;
   background-color: ${p => p.theme.colors.grey700};
   margin: 0 auto;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   @media (min-width: ${p => p.theme.breakpoints[1]}) {
     height: 648px;
     width: 848px;
