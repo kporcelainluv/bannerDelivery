@@ -53,6 +53,7 @@ const StyledTextarea = styled(Textarea)`
   resize: none;
   border-radius: 4px;
   border: 1px solid ${p => p.theme.colors.grey400};
+  font-family: ${p => p.theme.fonts.body};
 
   &&::placeholder {
     color: ${p => p.theme.colors.grey000};
