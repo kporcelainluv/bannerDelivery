@@ -317,7 +317,7 @@ const CustomersList = ({
           <Flex
             flexDirection="column"
             maxHeight="190px"
-            overflowY="scroll"
+            overflowY="hidden"
             sx={{
               "@media screen and (min-width: 1200px)": {
                 maxHeight: "100%"
