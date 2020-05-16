@@ -35,6 +35,7 @@ const StyledButton = styled(Button)`
   border: none;
   padding: 0;
   margin-right: 10px;
+  cursor: pointer;
   @media (min-width: ${p => p.theme.breakpoints[1]}) {
     margin: 0 0 0 10px;
   }
@@ -602,20 +603,36 @@ const CTAButton = ({ element }) => {
   return (
     <Button
       height="36px"
-      width="113px"
+      maxWidth="133px"
+      width="100%"
       display="flex"
       alignItems="center"
       justifyContent="space-between"
       lineHeight="20px"
     >
       {element.status === BUTTON_STATUS.PENDING && (
-        <CheckmarkIcon height="20px" width="20px" fill={theme.colors.grey000} />
+        <CheckmarkIcon
+          height="20px"
+          width="20px"
+          fill={theme.colors.grey000}
+          style={{ marginRight: "5px" }}
+        />
       )}
       {element.status === BUTTON_STATUS.ACCEPTED && (
-        <DoneIcon height="20px" width="20px" fill={theme.colors.grey000} />
+        <DoneIcon
+          height="20px"
+          width="20px"
+          fill={theme.colors.grey000}
+          style={{ marginRight: "5px" }}
+        />
       )}
       {element.status === BUTTON_STATUS.RELEASED && (
-        <CancelIcon height="20px" width="20px" fill={theme.colors.grey000} />
+        <CancelIcon
+          height="20px"
+          width="20px"
+          fill={theme.colors.grey000}
+          style={{ marginRight: "5px" }}
+        />
       )}
 
       <Text as="span">{getText(element.status)}</Text>
