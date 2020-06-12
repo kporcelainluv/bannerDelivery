@@ -123,7 +123,7 @@ const StyledMaterialWrap = styled(Box)`
 export const Materials = ({ campaign, customer, addMessage }) => {
   const theme = useTheme();
   const [tabsList, setTabsList] = useState(["JPEG", "HTML"]);
-  const [activeTab, setActiveTab] = useState('JPEG');
+  const [activeTab, setActiveTab] = useState(tabsList[0]);
   const [chatPopup, setChatPopup] = useState({
     opened: false,
     id: undefined
@@ -151,29 +151,31 @@ export const Materials = ({ campaign, customer, addMessage }) => {
   const addList = (list) => {
       setTabsList([...tabsList, list]);
   }
-
   return (
     <Box>
       <Header setDownloadPopup={setDownloadPopup} />
-      {materials && materials.length > 0 && (
-        <Fragment>
-          <Tabs tab={activeTab} setTab={setActiveTab} tabsList={tabsList} setAddListPopup={setAddListPopup}/>
+          <Tabs tab={activeTab} 
+                setTab={setActiveTab} 
+                tabsList={tabsList} 
+                setAddListPopup={setAddListPopup}
+                materialsEmpty={tabsList.length < 1}/>
           <Box as="hr" m={"0"} color={theme.colors.grey400} />
-        </Fragment>
-      )}
-
-      {materials && materials.length > 0 ? (
-        <Fragment>
-          <UploadBanner />
-          <MaterialsContainer
+        <UploadBanner />
+        <MaterialsContainer
             setChatPopup={setChatPopup}
             materials={materials}
             deleteMaterial={deleteMaterial}
-          />
-        </Fragment>
-      ) : (
-        <EmptyMaterials />
-      )}
+        />
+        
+        {materials.length < 1 && <Text
+            as="p"
+            fontSize={1}
+            color="grey300"
+            m={"20px auto"}
+            textAlign="center"
+        >
+            List of your materials will be here
+        </Text> }
 
       {chatPopup.opened && (
         <Chat
@@ -238,12 +240,12 @@ const Header = ({setDownloadPopup}) => {
   );
 };
 
-const Tabs = ({ tab, setTab, tabsList, setAddListPopup }) => {
+const Tabs = ({ tab, setTab, tabsList, setAddListPopup, materialsEmpty }) => {
   const theme = useTheme();
   return (
     <Flex
       p="0"
-      alignItems="center"
+      alignItems="flex-end"
       sx={{
         "@media screen and (min-width: 1200px)": {
           padding: "0 24px"
@@ -254,13 +256,13 @@ const Tabs = ({ tab, setTab, tabsList, setAddListPopup }) => {
       {tabsList.map((t, index) => {
         return (
           <StyledTab
-            key={t}
+            key={t+index}
             variant="none"
             selected={tab === t}
             onClick={() => {
               setTab(t);
             }}
-            mb="5px"
+            m='10px 0'
           >
             <Text
               as="span"
@@ -292,9 +294,21 @@ const Tabs = ({ tab, setTab, tabsList, setAddListPopup }) => {
         }}
       >
         <StyledAddIcon />
-        <Text as="span" className="visually-hidden">
-          Add type
-        </Text>
+          {materialsEmpty ?  <Text
+              as="span"
+              fontSize={1}
+              color="orange200"
+              pl="10px"
+              sx={{
+                  letterSpacing: "0.3px",
+                  cursor: "pointer",
+                  ":hover": {color: theme.colors.orange100}
+              }}
+          >
+              Add List
+          </Text> :<Text as="span" className="visually-hidden">
+              Add List
+          </Text> }
       </Button>
     </Flex>
   );
@@ -479,7 +493,6 @@ const MaterialsContainer = ({
   materials,
   deleteMaterial
 }) => {
-  const theme = useTheme();
   return (
     <Box>
       {materials.map(element => {
@@ -645,53 +658,3 @@ const CTAButton = ({ element }) => {
   );
 };
 
-const EmptyMaterials = () => {
-  const theme = useTheme();
-  return (
-    <Box
-      sx={{
-        "@media screen and (min-width: 1200px)": {
-          padding: "0 24px"
-        }
-      }}
-    >
-      <Box mt="10px">
-        <Input
-          id="addFile"
-          name="addFile"
-          type="file"
-          color="transparent"
-          border="none"
-          backgroundColor="transparent"
-          display="none"
-        />
-        <Label htmlFor="addFile" display="flex" alignItems="center">
-          <StyledAddIcon />
-          <Text
-            as="span"
-            fontSize={1}
-            color="orange200"
-            pl="10px"
-            sx={{
-              letterSpacing: "0.3px",
-              cursor: "pointer",
-              ":hover": { color: theme.colors.orange100 }
-            }}
-          >
-            Add List
-          </Text>
-        </Label>
-      </Box>
-      <Text
-        as="p"
-        fontSize={1}
-        color="grey300"
-        m={"20px auto"}
-        textAlign="center"
-      >
-        List of your materials will be here
-      </Text>
-        <UploadBanner/>
-    </Box>
-  );
-};
