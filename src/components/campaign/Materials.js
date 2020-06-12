@@ -636,7 +636,11 @@ const CTAButton = ({ element }) => {
         />
       )}
 
-      <Text as="span">{getText(element.status)}</Text>
+      <Text as="span" sx={{
+          "@media screen and (max-width: 768px)": {
+              fontSize: '13px'
+          }
+      }}>{getText(element.status)}</Text>
     </Button>
   );
 };
