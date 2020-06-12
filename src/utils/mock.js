@@ -1557,7 +1557,7 @@ export const customersList2 = [
             ]
           },
           {
-            id: "Bjocn49jB2zdKIp2tFGZh",
+            id: "Bjocn49jB2zdKIp2dsu68fuhbki",
             name: "Halloween_Sberbank_1280x350",
             date: "01.10.2019 21:43",
             size: "135 KB",
