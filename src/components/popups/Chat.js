@@ -70,17 +70,17 @@ const StyledTab = styled(Button)`
 `;
 
 const ForwardingDecoration = styled.div`
-  content: '';
+  content: "";
   position: absolute;
   top: 15px;
   left: 8px;
   height: 90%;
   width: 2px;
-  background-color:  ${p => p.theme.colors.orange200};
-`
+  background-color: ${p => p.theme.colors.orange200};
+`;
 
 const TABS = ["Client", "Production", "Media / Buyer"];
-const FORWARD__NAME = 'From #Client'
+const FORWARD__NAME = "From #Client";
 
 export const Chat = ({ closeChat, addMessage, customer, id, campaignId }) => {
   const refId = useRef(id);
@@ -98,7 +98,7 @@ export const Chat = ({ closeChat, addMessage, customer, id, campaignId }) => {
           closeChat={closeChat}
           name={material.name}
         />
-        <Messages messages={material.messagesList} tab={tab}/>
+        <Messages messages={material.messagesList} tab={tab} />
         <InputField
           message={message}
           setMessage={setMessage}
@@ -195,9 +195,10 @@ const Messages = ({ messages, tab }) => {
             ? "16px auto 16px 16px"
             : "16px 16px 16px auto";
         const background = message.type === "income" ? "#3F4C5C" : "#43414D";
-        
-        if (tab === 'Production' && index === 0){
-          return <Box
+
+        if (tab === "Production" && index === 0) {
+          return (
+            <Box
               key={message.id}
               backgroundColor={background}
               width="240px"
@@ -207,43 +208,41 @@ const Messages = ({ messages, tab }) => {
                   width: "540px"
                 }
               }}
-          >
-            <Box 
-                p={'16px 10px 0'}
-                sx={{ position: 'relative',
-            }}>
-              <Text
-                  fontWeight={'700'}
+            >
+              <Box p={"16px 10px 0"} sx={{ position: "relative" }}>
+                <Text
+                  fontWeight={"700"}
                   as="p"
                   p="0 16px"
                   fontSize={1}
                   color="orange200"
                   sx={{ lineHeight: "20px" }}
-              >
-                {FORWARD__NAME}
-              </Text>
-              <ForwardingDecoration/>
-              <Text
+                >
+                  {FORWARD__NAME}
+                </Text>
+                <ForwardingDecoration />
+                <Text
                   as="p"
                   p="5px 16px"
                   fontSize={1}
                   color="grey000"
                   sx={{ lineHeight: "20px" }}
+                >
+                  {message.text}
+                </Text>
+              </Box>
+              <Text
+                as="span"
+                fontSize={0}
+                color="grey300"
+                p="0 9px 6px 0"
+                display="flex"
+                justifyContent="flex-end"
               >
-                {message.text}
+                {message.time}
               </Text>
             </Box>
-          <Text
-              as="span"
-              fontSize={0}
-              color="grey300"
-              p="0 9px 6px 0"
-              display="flex"
-              justifyContent="flex-end"
-          >
-            {message.time}
-          </Text>
-          </Box>
+          );
         }
         return (
           <Box

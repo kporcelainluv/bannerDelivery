@@ -5,8 +5,8 @@ import {
   Text,
   Box,
   Heading,
-  Image, 
-    Link
+  Image,
+  Link
 } from "rebass/styled-components";
 import { Input, Label } from "@rebass/forms/styled-components";
 import { CloudUpload as UploadIcon } from "@styled-icons/boxicons-solid/CloudUpload";
@@ -17,14 +17,14 @@ import { CheckmarkOutline as CheckmarkIcon } from "@styled-icons/evaicons-outlin
 import { DeleteOutline as CancelIcon } from "@styled-icons/typicons/DeleteOutline";
 import { DoneAll as DoneIcon } from "@styled-icons/evaicons-solid/DoneAll";
 import styled, { useTheme } from "styled-components";
-import {nanoid} from "nanoid";
-import moment from 'moment';
+import { nanoid } from "nanoid";
+import moment from "moment";
 
 import { Chat } from "../popups/Chat";
 import { BUTTON_STATUS, BUTTON_TEXT } from "../../utils/consts";
-import {Icon} from "../Icon";
-import {DownloadPopup} from "../popups/DownloadPopup";
-import {AddListPopup} from "../popups/AddListPopup";
+import { Icon } from "../Icon";
+import { DownloadPopup } from "../popups/DownloadPopup";
+import { AddListPopup } from "../popups/AddListPopup";
 
 const StyledUploadIcon = styled(UploadIcon)`
   height: 24px;
@@ -97,7 +97,7 @@ const StyledAddIcon = styled(AddIcon)`
 `;
 const UnreadMessagesIndicator = styled.div`
   &:before {
-    content: '';
+    content: "";
     height: 10px;
     width: 10px;
     background-color: ${p => p.theme.colors.red100};
@@ -109,20 +109,26 @@ const UnreadMessagesIndicator = styled.div`
 `;
 
 const ReplaceText = styled(Text)`
-    display: none;
-`
+  display: none;
+`;
 const StyledMaterialWrap = styled(Box)`
-&:hover {
+  &:hover {
     background-color: ${p => p.theme.colors.grey500};
     ${ReplaceText} {
-     display: inline-block;
-     color: ${p => p.theme.colors.orange200};
-     margin: 5px 0;
+      display: inline-block;
+      color: ${p => p.theme.colors.orange200};
+      margin: 5px 0;
     }
-}
-`
+  }
+`;
 
-export const Materials = ({ campaign, customer, addMessage, addMaterial, deleteMaterial }) => {
+export const Materials = ({
+  campaign,
+  customer,
+  addMessage,
+  addMaterial,
+  deleteMaterial
+}) => {
   const theme = useTheme();
   const [tabsList, setTabsList] = useState(["JPEG", "HTML"]);
   const [activeTab, setActiveTab] = useState(tabsList[0]);
@@ -133,49 +139,57 @@ export const Materials = ({ campaign, customer, addMessage, addMaterial, deleteM
   const [downloadPopup, setDownloadPopup] = useState(false);
   const [addListPopup, setAddListPopup] = useState(false);
   const materials = campaign.materials || [];
-  
+
   const closeChat = () => {
     setChatPopup({ opened: false, id: undefined });
   };
 
   const closeDownloadPopup = () => {
-      setDownloadPopup(false);
+    setDownloadPopup(false);
   };
 
-    const closeAddListPopup = () => {
-        setAddListPopup(false);
-    };
-  
-  const addList = (list) => {
-      setTabsList([...tabsList, list]);
-  }
+  const closeAddListPopup = () => {
+    setAddListPopup(false);
+  };
+
+  const addList = list => {
+    setTabsList([...tabsList, list]);
+  };
   return (
     <Box>
       <Header setDownloadPopup={setDownloadPopup} />
-          <Tabs tab={activeTab} 
-                setTab={setActiveTab} 
-                tabsList={tabsList} 
-                setAddListPopup={setAddListPopup}
-                materialsEmpty={tabsList.length < 1}/>
-          <Box as="hr" m={"0"} color={theme.colors.grey400} />
-        <UploadBanner addMaterial={addMaterial} campaignId={campaign.id} customerId={customer.id}/>
-        <MaterialsContainer
-            setChatPopup={setChatPopup}
-            materials={materials}
-            deleteMaterial={deleteMaterial}
-            customerId={customer.id}
-            campaignId={campaign.id}
-        />
-        
-        {materials.length < 1 && <Text
-            as="p"
-            fontSize={1}
-            color="grey300"
-            m={"20px auto"}
-            textAlign="center"
+      <Tabs
+        tab={activeTab}
+        setTab={setActiveTab}
+        tabsList={tabsList}
+        setAddListPopup={setAddListPopup}
+        materialsEmpty={tabsList.length < 1}
+      />
+      <Box as="hr" m={"0"} color={theme.colors.grey400} />
+      <UploadBanner
+        addMaterial={addMaterial}
+        campaignId={campaign.id}
+        customerId={customer.id}
+      />
+      <MaterialsContainer
+        setChatPopup={setChatPopup}
+        materials={materials}
+        deleteMaterial={deleteMaterial}
+        customerId={customer.id}
+        campaignId={campaign.id}
+      />
+
+      {materials.length < 1 && (
+        <Text
+          as="p"
+          fontSize={1}
+          color="grey300"
+          m={"20px auto"}
+          textAlign="center"
         >
-            List of your materials will be here
-        </Text> }
+          List of your materials will be here
+        </Text>
+      )}
 
       {chatPopup.opened && (
         <Chat
@@ -186,13 +200,20 @@ export const Materials = ({ campaign, customer, addMessage, addMaterial, deleteM
           id={chatPopup.id}
         />
       )}
-        {downloadPopup &&  <DownloadPopup closeDownloadPopup={closeDownloadPopup} tabsList={tabsList} />}
-        {addListPopup && <AddListPopup closeAddListPopup={closeAddListPopup} addList={addList}/>}
+      {downloadPopup && (
+        <DownloadPopup
+          closeDownloadPopup={closeDownloadPopup}
+          tabsList={tabsList}
+        />
+      )}
+      {addListPopup && (
+        <AddListPopup closeAddListPopup={closeAddListPopup} addList={addList} />
+      )}
     </Box>
   );
 };
 
-const Header = ({setDownloadPopup}) => {
+const Header = ({ setDownloadPopup }) => {
   const theme = useTheme();
   return (
     <Flex
@@ -220,7 +241,7 @@ const Header = ({setDownloadPopup}) => {
       >
         Materials
       </Heading>
-      <StyledDownload variant="primary" onClick={ () => setDownloadPopup(true)}>
+      <StyledDownload variant="primary" onClick={() => setDownloadPopup(true)}>
         <DownloadIcon
           height="15px"
           width="15px"
@@ -252,36 +273,36 @@ const Tabs = ({ tab, setTab, tabsList, setAddListPopup, materialsEmpty }) => {
         }
       }}
     >
-        <Flex flexWrap='wrap'>
-      {tabsList.map((t, index) => {
-        return (
-          <StyledTab
-            key={t+index}
-            variant="none"
-            selected={tab === t}
-            onClick={() => {
-              setTab(t);
-            }}
-            m='10px 0'
-          >
-            <Text
-              as="span"
-              sx={{
-                cursor: "pointer",
-                ":hover": { color: theme.colors.orange200 }
+      <Flex flexWrap="wrap">
+        {tabsList.map((t, index) => {
+          return (
+            <StyledTab
+              key={t + index}
+              variant="none"
+              selected={tab === t}
+              onClick={() => {
+                setTab(t);
               }}
+              m="10px 0"
             >
-              {t}
-            </Text>
-            {index === 0  ? (
-              <MoreIcon height="15px" width="15px" />
-            ) : (
-              <StyledNumber>{index}</StyledNumber>
-            )}
-          </StyledTab>
-        );
-      })}
-        </Flex>
+              <Text
+                as="span"
+                sx={{
+                  cursor: "pointer",
+                  ":hover": { color: theme.colors.orange200 }
+                }}
+              >
+                {t}
+              </Text>
+              {index === 0 ? (
+                <MoreIcon height="15px" width="15px" />
+              ) : (
+                <StyledNumber>{index}</StyledNumber>
+              )}
+            </StyledTab>
+          );
+        })}
+      </Flex>
       <Button
         variant="none"
         backgroundColor="transparent"
@@ -289,32 +310,36 @@ const Tabs = ({ tab, setTab, tabsList, setAddListPopup, materialsEmpty }) => {
         p={"0"}
         mr={"15px"}
         mb="5px"
-        onClick ={() => {
-            setAddListPopup(true);
+        onClick={() => {
+          setAddListPopup(true);
         }}
       >
         <StyledAddIcon />
-          {materialsEmpty ?  <Text
-              as="span"
-              fontSize={1}
-              color="orange200"
-              pl="10px"
-              sx={{
-                  letterSpacing: "0.3px",
-                  cursor: "pointer",
-                  ":hover": {color: theme.colors.orange100}
-              }}
+        {materialsEmpty ? (
+          <Text
+            as="span"
+            fontSize={1}
+            color="orange200"
+            pl="10px"
+            sx={{
+              letterSpacing: "0.3px",
+              cursor: "pointer",
+              ":hover": { color: theme.colors.orange100 }
+            }}
           >
-              Add List
-          </Text> :<Text as="span" className="visually-hidden">
-              Add List
-          </Text> }
+            Add List
+          </Text>
+        ) : (
+          <Text as="span" className="visually-hidden">
+            Add List
+          </Text>
+        )}
       </Button>
     </Flex>
   );
 };
 
-const UploadBanner = ({customerId, campaignId, addMaterial}) => {
+const UploadBanner = ({ customerId, campaignId, addMaterial }) => {
   const theme = useTheme();
   return (
     <Flex
@@ -367,30 +392,35 @@ const UploadBanner = ({customerId, campaignId, addMaterial}) => {
             Upload Banner
           </Text>
         </Label>
-        <Input id="upload" name="upload" type="file" display="none"
-               onChange={e => {
-                   const name = e.target.files[0].name;
-                   const date = moment(e.target.files[0].lastModified).format("DD.MM.YYYY hh:mm");
-                   const rawSize = e.target.files[0].size;
-                   
-                   let size = 0;
-                   if(rawSize < 1000000){
-                       size = Math.floor(rawSize/1000) + 'KB';
-                   }else{
-                       size = Math.floor(rawSize/1000000) + 'MB';
-                   }
-                   const material = {
-                           id: nanoid(),
-                           name: name,
-                           date: date,
-                           size: size,
-                           img: "https://via.placeholder.com/110",
-                           status: "added",
-                           messagesList: []
-                       }
-                   addMaterial({customerId, campaignId, material})
-                       
-               }}
+        <Input
+          id="upload"
+          name="upload"
+          type="file"
+          display="none"
+          onChange={e => {
+            const name = e.target.files[0].name;
+            const date = moment(e.target.files[0].lastModified).format(
+              "DD.MM.YYYY hh:mm"
+            );
+            const rawSize = e.target.files[0].size;
+
+            let size = 0;
+            if (rawSize < 1000000) {
+              size = Math.floor(rawSize / 1000) + "KB";
+            } else {
+              size = Math.floor(rawSize / 1000000) + "MB";
+            }
+            const material = {
+              id: nanoid(),
+              name: name,
+              date: date,
+              size: size,
+              img: "https://via.placeholder.com/110",
+              status: "added",
+              messagesList: []
+            };
+            addMaterial({ customerId, campaignId, material });
+          }}
         />
       </Flex>
       <Text
@@ -452,12 +482,9 @@ const MaterialDescription = ({ element }) => {
             </Text>
           );
         })}
-        <ReplaceText
-            as="span"
-            fontSize={0}
-        >
-            Drop file here to replace
-        </ReplaceText>
+      <ReplaceText as="span" fontSize={0}>
+        Drop file here to replace
+      </ReplaceText>
     </Flex>
   );
 };
@@ -465,24 +492,23 @@ const MaterialDescription = ({ element }) => {
 const ActionButtons = ({
   setChatPopup,
   deleteMaterial,
-  material, customerId, campaignId,
+  material,
+  customerId,
+  campaignId
 }) => {
   return (
     <Flex>
-      <StyledButton variant="none" onClick={()=> {}}>
+      <StyledButton variant="none" onClick={() => {}}>
         <Text as="span" className="visually-hidden">
           Download
         </Text>
-          <Icon name={"download"} width="32" height="32" />
+        <Icon name={"download"} width="32" height="32" />
       </StyledButton>
-      <StyledButton
-        variant="none"
-        onClick={() => {}}
-      >
+      <StyledButton variant="none" onClick={() => {}}>
         <Text as="span" className="visually-hidden">
           Upload
         </Text>
-          <Icon name={"upload"} width="32" height="32" />
+        <Icon name={"upload"} width="32" height="32" />
       </StyledButton>
 
       <StyledButton
@@ -494,19 +520,19 @@ const ActionButtons = ({
         <Text as="span" className="visually-hidden">
           Chat
         </Text>
-          <Icon name={"discuss"} width="32" height="32" />
-          {material.messagesList.length > 0 &&  <UnreadMessagesIndicator/>}
+        <Icon name={"discuss"} width="32" height="32" />
+        {material.messagesList.length > 0 && <UnreadMessagesIndicator />}
       </StyledButton>
       <StyledButton
         variant="none"
         onClick={() => {
-          deleteMaterial({customerId, campaignId, materialId: material.id});
+          deleteMaterial({ customerId, campaignId, materialId: material.id });
         }}
       >
         <Text as="span" className="visually-hidden">
           Delete
         </Text>
-          <Icon name={"delete"} width="32" height="32" />
+        <Icon name={"delete"} width="32" height="32" />
       </StyledButton>
     </Flex>
   );
@@ -516,15 +542,14 @@ const MaterialsContainer = ({
   setChatPopup,
   materials,
   deleteMaterial,
-    customerId, campaignId
+  customerId,
+  campaignId
 }) => {
   return (
     <Box>
       {materials.map(element => {
         return (
-          <StyledMaterialWrap
-            key={element.id}
-          >
+          <StyledMaterialWrap key={element.id}>
             <Flex
               key={element.id}
               p="16px 0"
@@ -556,19 +581,19 @@ const MaterialsContainer = ({
                     }
                   }}
                 >
-                    <Link href={element.img} target="_blank" alt='Material image'>
-                        <Image
-                            src={element.img}
-                            height="100%"
-                            width="100%"
-                            sx={{
-                                "@media screen and (min-width: 1200px)": {
-                                    height: "110px",
-                                    width: "110px"
-                                }
-                            }}
-                        />
-                    </Link>
+                  <Link href={element.img} target="_blank" alt="Material image">
+                    <Image
+                      src={element.img}
+                      height="100%"
+                      width="100%"
+                      sx={{
+                        "@media screen and (min-width: 1200px)": {
+                          height: "110px",
+                          width: "110px"
+                        }
+                      }}
+                    />
+                  </Link>
                 </Box>
 
                 <Flex
@@ -609,7 +634,7 @@ const MaterialsContainer = ({
                     setChatPopup={setChatPopup}
                     deleteMaterial={deleteMaterial}
                     material={element}
-                    customerId={customerId} 
+                    customerId={customerId}
                     campaignId={campaignId}
                   />
                 </Flex>
@@ -628,10 +653,14 @@ const MaterialStatusIcon = ({ status }) => {
     return <Box height="20px" width="20px" />;
   }
   if (status === BUTTON_STATUS.ACCEPTED) {
-    return <CheckmarkIcon height="20px" width="20px" fill={theme.colors.orange200} />
+    return (
+      <CheckmarkIcon height="20px" width="20px" fill={theme.colors.orange200} />
+    );
   }
   if (status === BUTTON_STATUS.RELEASED) {
-    return <DoneIcon height="20px" width="20px" fill={theme.colors.orange200} />
+    return (
+      <DoneIcon height="20px" width="20px" fill={theme.colors.orange200} />
+    );
   }
 };
 
@@ -676,12 +705,16 @@ const CTAButton = ({ element }) => {
         />
       )}
 
-      <Text as="span" sx={{
+      <Text
+        as="span"
+        sx={{
           "@media screen and (max-width: 768px)": {
-              fontSize: '13px'
+            fontSize: "13px"
           }
-      }}>{getText(element.status)}</Text>
+        }}
+      >
+        {getText(element.status)}
+      </Text>
     </Button>
   );
 };
-

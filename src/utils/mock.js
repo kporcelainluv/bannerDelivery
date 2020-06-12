@@ -39,7 +39,7 @@ export const customersList2 = [
               {
                 id: "T9f7bBdZz350zUrZkRJNq",
                 text:
-                    "banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
+                  "banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
                 time: "12:28",
                 type: "outcome"
               },
@@ -47,14 +47,14 @@ export const customersList2 = [
               {
                 id: "PeK_B8dYNxRnuCkxcfOpc",
                 text:
-                    "Implement 1 HTML and 2 images banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
+                  "Implement 1 HTML and 2 images banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
                 time: "12:28",
                 type: "income"
               },
               {
                 id: "hmiy7xCwz3lYzfHiRFkTw",
                 text:
-                    "Implement 1 HTML and 2 images banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
+                  "Implement 1 HTML and 2 images banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
                 time: "12:29",
                 type: "outcome"
               }
@@ -103,7 +103,7 @@ export const customersList2 = [
               {
                 id: "T9f7bBdZz350zUrZkRJNq",
                 text:
-                    "banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
+                  "banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
                 time: "12:28",
                 type: "outcome"
               },
@@ -111,14 +111,14 @@ export const customersList2 = [
               {
                 id: "PeK_B8dYNxRnuCkxcfOpc",
                 text:
-                    "Implement 1 HTML and 2 images banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
+                  "Implement 1 HTML and 2 images banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
                 time: "12:28",
                 type: "income"
               },
               {
                 id: "hmiy7xCwz3lYzfHiRFkTw",
                 text:
-                    "Implement 1 HTML and 2 images banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
+                  "Implement 1 HTML and 2 images banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
                 time: "12:29",
                 type: "outcome"
               }
@@ -212,7 +212,7 @@ export const customersList2 = [
               {
                 id: "z2ZYf2WUe93uM3gFKPCPr",
                 text:
-                    "banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
+                  "banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
                 time: "12:28",
                 type: "outcome"
               },
@@ -220,14 +220,14 @@ export const customersList2 = [
               {
                 id: "zHaWCGcWBGLmS1DV1lAlF",
                 text:
-                    "Implement 1 HTML and 2 images banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
+                  "Implement 1 HTML and 2 images banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
                 time: "12:28",
                 type: "income"
               },
               {
                 id: "uS1KGakU6N6IC0XcwC6EH",
                 text:
-                    "Implement 1 HTML and 2 images banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
+                  "Implement 1 HTML and 2 images banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
                 time: "12:29",
                 type: "outcome"
               }
@@ -353,7 +353,7 @@ export const customersList2 = [
               {
                 id: "S2ct6FRV4A0jY70gzrThq",
                 text:
-                    "banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
+                  "banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
                 time: "12:28",
                 type: "outcome"
               },
@@ -361,14 +361,14 @@ export const customersList2 = [
               {
                 id: "_D-IsV4L-F1cMyiS0eT4b",
                 text:
-                    "Implement 1 HTML and 2 images banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
+                  "Implement 1 HTML and 2 images banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
                 time: "12:28",
                 type: "income"
               },
               {
                 id: "3cjnL5_dDigmMv34LrBSB",
                 text:
-                    "Implement 1 HTML and 2 images banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
+                  "Implement 1 HTML and 2 images banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
                 time: "12:29",
                 type: "outcome"
               }
@@ -385,7 +385,7 @@ export const customersList2 = [
               {
                 id: "S2ct6FRV4A0jY70gzrThq",
                 text:
-                    "banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
+                  "banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
                 time: "12:28",
                 type: "outcome"
               },
@@ -393,14 +393,14 @@ export const customersList2 = [
               {
                 id: "_D-IsV4L-F1cMyiS0eT4b",
                 text:
-                    "Implement 1 HTML and 2 images banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
+                  "Implement 1 HTML and 2 images banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
                 time: "12:28",
                 type: "income"
               },
               {
                 id: "3cjnL5_dDigmMv34LrBSB",
                 text:
-                    "Implement 1 HTML and 2 images banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
+                  "Implement 1 HTML and 2 images banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
                 time: "12:29",
                 type: "outcome"
               }
@@ -536,7 +536,7 @@ export const customersList2 = [
               {
                 id: "rdZ5Pxt0pdAaMGdcxpO8V",
                 text:
-                    "banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
+                  "banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
                 time: "12:28",
                 type: "outcome"
               },
@@ -544,14 +544,14 @@ export const customersList2 = [
               {
                 id: "PPnpOVSFoe1-PAMAyrtu8",
                 text:
-                    "Implement 1 HTML and 2 images banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
+                  "Implement 1 HTML and 2 images banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
                 time: "12:28",
                 type: "income"
               },
               {
                 id: "5fQOVtAPPIYvkKf8_y-Jz",
                 text:
-                    "Implement 1 HTML and 2 images banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
+                  "Implement 1 HTML and 2 images banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
                 time: "12:29",
                 type: "outcome"
               }
@@ -677,7 +677,7 @@ export const customersList2 = [
               {
                 id: "flqc5IttAaXp24AHivf2O",
                 text:
-                    "banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
+                  "banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
                 time: "12:28",
                 type: "outcome"
               },
@@ -685,7 +685,7 @@ export const customersList2 = [
               {
                 id: "g_fVkNFYIy9u3HEOTDp_z",
                 text:
-                    "Implement 1 HTML and 2 images banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
+                  "Implement 1 HTML and 2 images banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
                 time: "12:28",
                 type: "income"
               },
@@ -693,7 +693,7 @@ export const customersList2 = [
               {
                 id: "h2KbiQfodLnMu78JaZDtD",
                 text:
-                    "Implement 1 HTML and 2 images banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
+                  "Implement 1 HTML and 2 images banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
                 time: "12:29",
                 type: "outcome"
               }
@@ -821,7 +821,7 @@ export const customersList2 = [
               {
                 id: "0dDB5M4wj0jT8I7dP5feY",
                 text:
-                    "banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
+                  "banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
                 time: "12:28",
                 type: "outcome"
               },
@@ -829,14 +829,14 @@ export const customersList2 = [
               {
                 id: "keuiP__Am5THDHN-SSrSZ",
                 text:
-                    "Implement 1 HTML and 2 images banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
+                  "Implement 1 HTML and 2 images banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
                 time: "12:28",
                 type: "income"
               },
               {
                 id: "VGMc6lD4roZsIt6DH1h8i",
                 text:
-                    "Implement 1 HTML and 2 images banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
+                  "Implement 1 HTML and 2 images banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
                 time: "12:29",
                 type: "outcome"
               }
@@ -970,7 +970,7 @@ export const customersList2 = [
               {
                 id: "-COiZrkf2JxTvUHAyNjVg",
                 text:
-                    "banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
+                  "banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
                 time: "12:28",
                 type: "outcome"
               },
@@ -978,14 +978,14 @@ export const customersList2 = [
               {
                 id: "yrFk98WtxjfTZ4aoaUV20",
                 text:
-                    "Implement 1 HTML and 2 images banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
+                  "Implement 1 HTML and 2 images banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
                 time: "12:28",
                 type: "income"
               },
               {
                 id: "czWw7O2cGwfWks9GMxAEU",
                 text:
-                    "Implement 1 HTML and 2 images banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
+                  "Implement 1 HTML and 2 images banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
                 time: "12:29",
                 type: "outcome"
               }
@@ -1112,7 +1112,7 @@ export const customersList2 = [
               {
                 id: "MGm5dC622QUPNUGrVTIqj",
                 text:
-                    "banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
+                  "banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
                 time: "12:28",
                 type: "outcome"
               },
@@ -1120,14 +1120,14 @@ export const customersList2 = [
               {
                 id: "_8_4ZyCYMzDjFPSsKaESz",
                 text:
-                    "Implement 1 HTML and 2 images banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
+                  "Implement 1 HTML and 2 images banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
                 time: "12:28",
                 type: "income"
               },
               {
                 id: "OpWNxwMUt-7bpQTTtMCRq",
                 text:
-                    "Implement 1 HTML and 2 images banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
+                  "Implement 1 HTML and 2 images banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
                 time: "12:29",
                 type: "outcome"
               }
@@ -1254,7 +1254,7 @@ export const customersList2 = [
               {
                 id: "YdaBv29NKErJdzEcuY1aT",
                 text:
-                    "banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
+                  "banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
                 time: "12:28",
                 type: "outcome"
               },
@@ -1262,14 +1262,14 @@ export const customersList2 = [
               {
                 id: "-yhJIBR_bl4yAUicu51AA",
                 text:
-                    "Implement 1 HTML and 2 images banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
+                  "Implement 1 HTML and 2 images banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
                 time: "12:28",
                 type: "income"
               },
               {
                 id: "pqCWzjkQHCAcyTiGCR_E6",
                 text:
-                    "Implement 1 HTML and 2 images banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
+                  "Implement 1 HTML and 2 images banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
                 time: "12:29",
                 type: "outcome"
               }
@@ -1403,7 +1403,7 @@ export const customersList2 = [
               {
                 id: "w5BS6ViohjSbk83t_hPVB",
                 text:
-                    "banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
+                  "banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
                 time: "12:28",
                 type: "outcome"
               },
@@ -1411,14 +1411,14 @@ export const customersList2 = [
               {
                 id: "JSDk2XmF46ltt9u576-1D",
                 text:
-                    "Implement 1 HTML and 2 images banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
+                  "Implement 1 HTML and 2 images banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
                 time: "12:28",
                 type: "income"
               },
               {
                 id: "5baVnhS9YTXK8gQMcBK4Q",
                 text:
-                    "Implement 1 HTML and 2 images banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
+                  "Implement 1 HTML and 2 images banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
                 time: "12:29",
                 type: "outcome"
               }
@@ -1544,7 +1544,7 @@ export const customersList2 = [
               {
                 id: "TDxyYIvSn0u-uthnqWTG0",
                 text:
-                    "banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
+                  "banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
                 time: "12:28",
                 type: "outcome"
               },
@@ -1552,14 +1552,14 @@ export const customersList2 = [
               {
                 id: "oM-rlxMlLr__MboiRNBR-",
                 text:
-                    "Implement 1 HTML and 2 images banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
+                  "Implement 1 HTML and 2 images banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
                 time: "12:28",
                 type: "income"
               },
               {
                 id: "np4_B3jU7eKWOkymO_B9F",
                 text:
-                    "Implement 1 HTML and 2 images banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
+                  "Implement 1 HTML and 2 images banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
                 time: "12:29",
                 type: "outcome"
               }
@@ -1685,7 +1685,7 @@ export const customersList2 = [
               {
                 id: "emfVLw9OjgisNOuPVT9ke",
                 text:
-                    "banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
+                  "banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
                 time: "12:28",
                 type: "outcome"
               },
@@ -1693,14 +1693,14 @@ export const customersList2 = [
               {
                 id: "t9U70bBCCp2QWw3Ph2Rcm",
                 text:
-                    "Implement 1 HTML and 2 images banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
+                  "Implement 1 HTML and 2 images banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
                 time: "12:28",
                 type: "income"
               },
               {
                 id: "lvst-yQ_EWt6D144BkHdN",
                 text:
-                    "Implement 1 HTML and 2 images banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
+                  "Implement 1 HTML and 2 images banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
                 time: "12:29",
                 type: "outcome"
               }

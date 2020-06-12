@@ -15,7 +15,7 @@ export const BUTTON_STATUS = {
   PENDING: "pending",
   ACCEPTED: "accepted",
   RELEASED: "released",
-  ADDED: 'added'
+  ADDED: "added"
 };
 
 export const accessFields = [
