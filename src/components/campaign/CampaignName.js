@@ -28,35 +28,31 @@ export const CampaignName = ({
   const theme = useTheme();
   return (
     <Box maxWidth="1136px" width="100%" margin="40px auto 0">
-      <Flex
-        sx={{
-          "@media screen and (min-width: 1200px)": {
-            display: "none"
-          }
-        }}
-      >
-        <Heading as="h2" fontSize={2} color={theme.colors.grey000}>
+        <Box
+            as="form"
+        >
+        <Heading as="h2" fontSize={2} color={theme.colors.grey000} sx={{
+            "@media screen and (min-width: 1200px)": {
+                display: "none"
+            }
+        }}>
           {name}
         </Heading>
-      </Flex>
-      <Box
-        display="none"
-        as="form"
-        sx={{
-          position: "relative",
-          "@media screen and (min-width: 1200px)": {
-            display: "flex",
-            alignItems: "center"
-          }
-        }}
-      >
-        <StyledInput
-          value={name}
-          onChange={e => {
-            setName(e.target.value);
-            updateCampaign(campaign, customer, "name", e.target.value);
+     
+        <StyledInput 
+            display={"none"} 
+            value={name} 
+            onChange={e => {
+                setName(e.target.value);
+                updateCampaign(campaign, customer, "name", e.target.value);
           }}
+            sx={{
+                "@media screen and (min-width: 1200px)": {
+                    display: "flex"
+                }
+            }}
         />
+        
       </Box>
     </Box>
   );
