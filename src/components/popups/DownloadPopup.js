@@ -28,7 +28,7 @@ export const DownloadPopup = ({closeDownloadPopup, tabsList}) => {
         height='300px'
         closePopup={closeDownloadPopup}
     >
-        <Box p='20px 0'
+        <Box p='20px 0 40px'
              sx={{overflowX: 'auto'}}>
             <StyledDownload>{ALL}</StyledDownload>
             {tabsList.map((tab, index) => {
