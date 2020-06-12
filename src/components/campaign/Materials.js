@@ -36,6 +36,7 @@ const StyledButton = styled(Button)`
   @media (min-width: ${p => p.theme.breakpoints[1]}) {
     margin: 0 0 0 10px;
   }
+  position: relative;
 `;
 
 const StyledTab = styled(Button)`
@@ -88,6 +89,18 @@ const StyledAddIcon = styled(AddIcon)`
   &&:hover,
   &&:focus {
     fill: ${p => p.theme.colors.orange200};
+  }
+`;
+const UnreadMessagesIndicator = styled.div`
+  &:before {
+    content: '';
+    height: 10px;
+    width: 10px;
+    background-color: ${p => p.theme.colors.red100};
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-radius: 50%;
   }
 `;
 
@@ -403,6 +416,7 @@ const ActionButtons = ({
           Chat
         </Text>
           <Icon name={"discuss"} width="32" height="32" />
+          {material.messagesList.length > 0 &&  <UnreadMessagesIndicator/>}
       </StyledButton>
       <StyledButton
         variant="none"
