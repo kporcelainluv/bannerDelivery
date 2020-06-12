@@ -17,6 +17,8 @@ import { CheckmarkOutline as CheckmarkIcon } from "@styled-icons/evaicons-outlin
 import { DeleteOutline as CancelIcon } from "@styled-icons/typicons/DeleteOutline";
 import { DoneAll as DoneIcon } from "@styled-icons/evaicons-solid/DoneAll";
 import styled, { useTheme } from "styled-components";
+import {nanoid} from "nanoid";
+import moment from 'moment';
 
 import { Chat } from "../popups/Chat";
 import { BUTTON_STATUS, BUTTON_TEXT } from "../../utils/consts";
@@ -120,7 +122,7 @@ const StyledMaterialWrap = styled(Box)`
 }
 `
 
-export const Materials = ({ campaign, customer, addMessage }) => {
+export const Materials = ({ campaign, customer, addMessage, addMaterial, deleteMaterial }) => {
   const theme = useTheme();
   const [tabsList, setTabsList] = useState(["JPEG", "HTML"]);
   const [activeTab, setActiveTab] = useState(tabsList[0]);
@@ -130,7 +132,7 @@ export const Materials = ({ campaign, customer, addMessage }) => {
   });
   const [downloadPopup, setDownloadPopup] = useState(false);
   const [addListPopup, setAddListPopup] = useState(false);
-  const [materials, setMaterials] = useState(campaign.materials || []);
+  const materials = campaign.materials || [];
   
   const closeChat = () => {
     setChatPopup({ opened: false, id: undefined });
@@ -143,10 +145,6 @@ export const Materials = ({ campaign, customer, addMessage }) => {
     const closeAddListPopup = () => {
         setAddListPopup(false);
     };
-  const deleteMaterial = material => {
-    const updatedMaterials = materials.filter(m => m.id !== material.id);
-    setMaterials(updatedMaterials);
-  };
   
   const addList = (list) => {
       setTabsList([...tabsList, list]);
@@ -160,11 +158,13 @@ export const Materials = ({ campaign, customer, addMessage }) => {
                 setAddListPopup={setAddListPopup}
                 materialsEmpty={tabsList.length < 1}/>
           <Box as="hr" m={"0"} color={theme.colors.grey400} />
-        <UploadBanner />
+        <UploadBanner addMaterial={addMaterial} campaignId={campaign.id} customerId={customer.id}/>
         <MaterialsContainer
             setChatPopup={setChatPopup}
             materials={materials}
             deleteMaterial={deleteMaterial}
+            customerId={customer.id}
+            campaignId={campaign.id}
         />
         
         {materials.length < 1 && <Text
@@ -314,7 +314,7 @@ const Tabs = ({ tab, setTab, tabsList, setAddListPopup, materialsEmpty }) => {
   );
 };
 
-const UploadBanner = () => {
+const UploadBanner = ({customerId, campaignId, addMaterial}) => {
   const theme = useTheme();
   return (
     <Flex
@@ -367,7 +367,31 @@ const UploadBanner = () => {
             Upload Banner
           </Text>
         </Label>
-        <Input id="upload" name="upload" type="file" display="none" />
+        <Input id="upload" name="upload" type="file" display="none"
+               onChange={e => {
+                   const name = e.target.files[0].name;
+                   const date = moment(e.target.files[0].lastModified).format("DD.MM.YYYY hh:mm");
+                   const rawSize = e.target.files[0].size;
+                   
+                   let size = 0;
+                   if(rawSize < 1000000){
+                       size = Math.floor(rawSize/1000) + 'KB';
+                   }else{
+                       size = Math.floor(rawSize/1000000) + 'MB';
+                   }
+                   const material = {
+                           id: nanoid(),
+                           name: name,
+                           date: date,
+                           size: size,
+                           img: "https://via.placeholder.com/110",
+                           status: "added",
+                           messagesList: []
+                       }
+                   addMaterial({customerId, campaignId, material})
+                       
+               }}
+        />
       </Flex>
       <Text
         as="span"
@@ -441,7 +465,7 @@ const MaterialDescription = ({ element }) => {
 const ActionButtons = ({
   setChatPopup,
   deleteMaterial,
-  material
+  material, customerId, campaignId,
 }) => {
   return (
     <Flex>
@@ -476,7 +500,7 @@ const ActionButtons = ({
       <StyledButton
         variant="none"
         onClick={() => {
-          deleteMaterial(material);
+          deleteMaterial({customerId, campaignId, materialId: material.id});
         }}
       >
         <Text as="span" className="visually-hidden">
@@ -491,7 +515,8 @@ const ActionButtons = ({
 const MaterialsContainer = ({
   setChatPopup,
   materials,
-  deleteMaterial
+  deleteMaterial,
+    customerId, campaignId
 }) => {
   return (
     <Box>
@@ -584,6 +609,8 @@ const MaterialsContainer = ({
                     setChatPopup={setChatPopup}
                     deleteMaterial={deleteMaterial}
                     material={element}
+                    customerId={customerId} 
+                    campaignId={campaignId}
                   />
                 </Flex>
               </Box>

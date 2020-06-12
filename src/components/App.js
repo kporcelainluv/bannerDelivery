@@ -217,6 +217,51 @@ export const App = () => {
       })
     );
   };
+  
+  const addMaterial = ({customerId, campaignId, material}) => {
+    setCustomers(
+        customers.map(cmr => {
+          if (cmr.id === customerId) {
+            return {
+              ...cmr,
+              campaigns: cmr.campaigns.map(c => {
+                if (c.id === campaignId) {
+                  return {
+                    ...c,
+                    materials: [...c.materials, material]
+                  };
+                }
+                return c;
+              })
+            };
+          }
+          return cmr;
+        })
+    );
+  };
+  
+  const deleteMaterial = ({customerId, campaignId, materialId}) => {
+    setCustomers(
+        customers.map(cmr => {
+          if (cmr.id === customerId) {
+            return {
+              ...cmr,
+              campaigns: cmr.campaigns.map(c => {
+                if (c.id === campaignId) {
+                  return {
+                    ...c,
+                    materials: c.materials.filter(m => m.id !== materialId)
+                  };
+                }
+                return c;
+              })
+            };
+          }
+          return cmr;
+        })
+    );
+  }
+  
   return (
     <div className="App">
       <GlobalTheme />
@@ -232,6 +277,8 @@ export const App = () => {
                 updateCampaign={updateCampaign}
                 addMessage={addMessage}
                 removeCampaign={removeCampaign}
+                addMaterial={addMaterial}
+                deleteMaterial={deleteMaterial}
               />
             </Route>
             <Route path="/:id/campaigns">
