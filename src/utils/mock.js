@@ -9,6 +9,15 @@ export const customersList2 = [
     status: "active",
     campaigns: [
       {
+        id: "6wMskDOvdQBmZ36fgjaf76sd98hf",
+        name: "Burger King's day empty",
+        date: "30 Sep 2019",
+        status: "active",
+        attachments: [],
+        description: "",
+        materials: []
+      },
+      {
         id: "6wMskDOvdQBmZRcX-EnQ3",
         name: "Burger King's day",
         date: "30 Sep 2019",
