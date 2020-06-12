@@ -650,6 +650,7 @@ const EmptyMaterials = () => {
       >
         List of your materials will be here
       </Text>
+        <UploadBanner/>
     </Box>
   );
 };
