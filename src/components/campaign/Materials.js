@@ -544,18 +544,17 @@ const MaterialsContainer = ({
 
 const MaterialStatusIcon = ({ status }) => {
   const theme = useTheme();
+  if (status === BUTTON_STATUS.FOR__APPROVAL) {
+      return true;
+    }
   if (status === BUTTON_STATUS.PENDING) {
     return <Box height="20px" width="20px" />;
   }
   if (status === BUTTON_STATUS.ACCEPTED) {
-    return (
-      <CheckmarkIcon height="20px" width="20px" fill={theme.colors.orange200} />
-    );
+    return <CheckmarkIcon height="20px" width="20px" fill={theme.colors.orange200} />
   }
   if (status === BUTTON_STATUS.RELEASED) {
-    return (
-      <DoneIcon height="20px" width="20px" fill={theme.colors.orange200} />
-    );
+    return <DoneIcon height="20px" width="20px" fill={theme.colors.orange200} />
   }
 };
 
