@@ -19,8 +19,9 @@ import { DoneAll as DoneIcon } from "@styled-icons/evaicons-solid/DoneAll";
 import styled, { useTheme } from "styled-components";
 
 import { Chat } from "../popups/Chat";
-import { BUTTON_STATUS, BUTTON_TEXT, TABS, tabsList } from "../../utils/consts";
+import { BUTTON_STATUS, BUTTON_TEXT } from "../../utils/consts";
 import {Icon} from "../Icon";
+import {DownloadPopup} from "../popups/DownloadPopup";
 
 const StyledUploadIcon = styled(UploadIcon)`
   height: 24px;
@@ -120,17 +121,22 @@ const StyledMaterialWrap = styled(Box)`
 
 export const Materials = ({ campaign, customer, addMessage }) => {
   const theme = useTheme();
-  const [tab, setTab] = useState(TABS.JPEG);
+  const [tabsList, setTabsList] = useState(["JPEG", "HTML"]);
+  const [activeTab, setActiveTab] = useState('JPEG');
   const [chatPopup, setChatPopup] = useState({
     opened: false,
     id: undefined
   });
+    const [downloadPopup, setDownloadPopup] = useState(false);
   const [materials, setMaterials] = useState(campaign.materials || []);
   
   const closeChat = () => {
     setChatPopup({ opened: false, id: undefined });
   };
 
+  const closeDownloadPopup = () => {
+      setDownloadPopup(false);
+  };
   const deleteMaterial = material => {
     const updatedMaterials = materials.filter(m => m.id !== material.id);
     setMaterials(updatedMaterials);
@@ -138,10 +144,10 @@ export const Materials = ({ campaign, customer, addMessage }) => {
 
   return (
     <Box>
-      <Header />
+      <Header setDownloadPopup={setDownloadPopup} />
       {materials && materials.length > 0 && (
         <Fragment>
-          <Tabs tab={tab} setTab={setTab} />
+          <Tabs tab={activeTab} setTab={setActiveTab} tabsList={tabsList}/>
           <Box as="hr" m={"0"} color={theme.colors.grey400} />
         </Fragment>
       )}
@@ -168,11 +174,12 @@ export const Materials = ({ campaign, customer, addMessage }) => {
           id={chatPopup.id}
         />
       )}
+        {downloadPopup &&  <DownloadPopup closeDownloadPopup={closeDownloadPopup} tabsList={tabsList} />}
     </Box>
   );
 };
 
-const Header = () => {
+const Header = ({setDownloadPopup}) => {
   const theme = useTheme();
   return (
     <Flex
@@ -200,7 +207,7 @@ const Header = () => {
       >
         Materials
       </Heading>
-      <StyledDownload variant="primary">
+      <StyledDownload variant="primary" onClick={ () => setDownloadPopup(true)}>
         <DownloadIcon
           height="15px"
           width="15px"
@@ -220,7 +227,7 @@ const Header = () => {
   );
 };
 
-const Tabs = ({ tab, setTab }) => {
+const Tabs = ({ tab, setTab, tabsList }) => {
   const theme = useTheme();
   return (
     <Flex
@@ -252,7 +259,7 @@ const Tabs = ({ tab, setTab }) => {
             >
               {t}
             </Text>
-            {t === TABS.JPEG ? (
+            {index === 0  ? (
               <MoreIcon height="15px" width="15px" />
             ) : (
               <StyledNumber>{index}</StyledNumber>
