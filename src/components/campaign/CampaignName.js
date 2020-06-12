@@ -27,7 +27,7 @@ const ActionButton = styled(Button)`
   border: none;
   display: flex;
   align-items: center;
-  padding: 0 8px;
+  padding: 0 0 0 8px;
   cursor: pointer;
   &&:hover {
     svg,
@@ -59,6 +59,13 @@ export const CampaignName = ({
         <Box
             as="form"
             display='flex'
+            justifyContent='space-between'
+            maxWidth="848px"
+            sx={{
+                "@media screen and (min-width: 1200px)": {
+                    maxWidth: "100%",
+                    justifyContent: "flex-start"
+                }}}
         >
         <Heading as="h2" fontSize={2} color={theme.colors.grey000} sx={{
             "@media screen and (min-width: 1200px)": {
