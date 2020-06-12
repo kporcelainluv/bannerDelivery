@@ -5,7 +5,8 @@ import {
   Text,
   Box,
   Heading,
-  Image
+  Image, 
+    Link
 } from "rebass/styled-components";
 import { Input, Label } from "@rebass/forms/styled-components";
 import { CloudUpload as UploadIcon } from "@styled-icons/boxicons-solid/CloudUpload";
@@ -463,17 +464,19 @@ const MaterialsContainer = ({
                     }
                   }}
                 >
-                  <Image
-                    src={element.img}
-                    height="100%"
-                    width="100%"
-                    sx={{
-                      "@media screen and (min-width: 1200px)": {
-                        height: "110px",
-                        width: "110px"
-                      }
-                    }}
-                  />
+                    <Link href={element.img} target="_blank" alt='Material image'>
+                        <Image
+                            src={element.img}
+                            height="100%"
+                            width="100%"
+                            sx={{
+                                "@media screen and (min-width: 1200px)": {
+                                    height: "110px",
+                                    width: "110px"
+                                }
+                            }}
+                        />
+                    </Link>
                 </Box>
 
                 <Flex
