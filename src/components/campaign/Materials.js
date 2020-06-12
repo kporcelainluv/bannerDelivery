@@ -104,6 +104,19 @@ const UnreadMessagesIndicator = styled.div`
   }
 `;
 
+const ReplaceText = styled(Text)`
+    display: none;
+`
+const StyledMaterialWrap = styled(Box)`
+&:hover {
+    background-color: ${p => p.theme.colors.grey500};
+    ${ReplaceText} {
+     display: inline-block;
+     color: ${p => p.theme.colors.orange200};
+     margin: 5px 0;
+    }
+}
+`
 
 export const Materials = ({ campaign, customer, addMessage }) => {
   const theme = useTheme();
@@ -379,6 +392,12 @@ const MaterialDescription = ({ element }) => {
             </Text>
           );
         })}
+        <ReplaceText
+            as="span"
+            fontSize={0}
+        >
+            Drop file here to replace
+        </ReplaceText>
     </Flex>
   );
 };
@@ -443,8 +462,7 @@ const MaterialsContainer = ({
     <Box>
       {materials.map(element => {
         return (
-          <Box
-            sx={{ ":hover": { backgroundColor: theme.colors.grey500 } }}
+          <StyledMaterialWrap
             key={element.id}
           >
             <Flex
@@ -535,7 +553,7 @@ const MaterialsContainer = ({
                 </Flex>
               </Box>
             </Flex>
-          </Box>
+          </StyledMaterialWrap>
         );
       })}
     </Box>
@@ -544,10 +562,7 @@ const MaterialsContainer = ({
 
 const MaterialStatusIcon = ({ status }) => {
   const theme = useTheme();
-  if (status === BUTTON_STATUS.ADDED) {
-      return true;
-    }
-  if (status === BUTTON_STATUS.PENDING) {
+  if (status === BUTTON_STATUS.PENDING || status === BUTTON_STATUS.ADDED) {
     return <Box height="20px" width="20px" />;
   }
   if (status === BUTTON_STATUS.ACCEPTED) {
