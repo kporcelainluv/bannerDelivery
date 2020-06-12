@@ -38,7 +38,7 @@ export const Campaign = ({
   addAttachment,
   deleteAttachment,
   addMessage,
-  updateCampaign
+  updateCampaign, removeCampaign
 }) => {
   const { id, campaignId } = useParams();
   const customer = customers.filter(c => c.id === id)[0];
@@ -58,6 +58,8 @@ export const Campaign = ({
         campaign={campaign}
         customer={customer}
         updateCampaign={updateCampaign}
+        removeCampaign={removeCampaign(customer.id, campaign.id)}
+        customerId = {customer.id}
       />
       <Box
         width="100%"
