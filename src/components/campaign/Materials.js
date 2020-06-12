@@ -22,6 +22,7 @@ import { Chat } from "../popups/Chat";
 import { BUTTON_STATUS, BUTTON_TEXT } from "../../utils/consts";
 import {Icon} from "../Icon";
 import {DownloadPopup} from "../popups/DownloadPopup";
+import {AddListPopup} from "../popups/AddListPopup";
 
 const StyledUploadIcon = styled(UploadIcon)`
   height: 24px;
@@ -127,7 +128,8 @@ export const Materials = ({ campaign, customer, addMessage }) => {
     opened: false,
     id: undefined
   });
-    const [downloadPopup, setDownloadPopup] = useState(false);
+  const [downloadPopup, setDownloadPopup] = useState(false);
+  const [addListPopup, setAddListPopup] = useState(false);
   const [materials, setMaterials] = useState(campaign.materials || []);
   
   const closeChat = () => {
@@ -137,17 +139,25 @@ export const Materials = ({ campaign, customer, addMessage }) => {
   const closeDownloadPopup = () => {
       setDownloadPopup(false);
   };
+
+    const closeAddListPopup = () => {
+        setAddListPopup(false);
+    };
   const deleteMaterial = material => {
     const updatedMaterials = materials.filter(m => m.id !== material.id);
     setMaterials(updatedMaterials);
   };
+  
+  const addList = (list) => {
+      setTabsList([...tabsList, list]);
+  }
 
   return (
     <Box>
       <Header setDownloadPopup={setDownloadPopup} />
       {materials && materials.length > 0 && (
         <Fragment>
-          <Tabs tab={activeTab} setTab={setActiveTab} tabsList={tabsList}/>
+          <Tabs tab={activeTab} setTab={setActiveTab} tabsList={tabsList} setAddListPopup={setAddListPopup}/>
           <Box as="hr" m={"0"} color={theme.colors.grey400} />
         </Fragment>
       )}
@@ -175,6 +185,7 @@ export const Materials = ({ campaign, customer, addMessage }) => {
         />
       )}
         {downloadPopup &&  <DownloadPopup closeDownloadPopup={closeDownloadPopup} tabsList={tabsList} />}
+        {addListPopup && <AddListPopup closeAddListPopup={closeAddListPopup} addList={addList}/>}
     </Box>
   );
 };
@@ -227,7 +238,7 @@ const Header = ({setDownloadPopup}) => {
   );
 };
 
-const Tabs = ({ tab, setTab, tabsList }) => {
+const Tabs = ({ tab, setTab, tabsList, setAddListPopup }) => {
   const theme = useTheme();
   return (
     <Flex
@@ -239,6 +250,7 @@ const Tabs = ({ tab, setTab, tabsList }) => {
         }
       }}
     >
+        <Flex flexWrap='wrap'>
       {tabsList.map((t, index) => {
         return (
           <StyledTab
@@ -267,7 +279,7 @@ const Tabs = ({ tab, setTab, tabsList }) => {
           </StyledTab>
         );
       })}
-
+        </Flex>
       <Button
         variant="none"
         backgroundColor="transparent"
@@ -275,6 +287,9 @@ const Tabs = ({ tab, setTab, tabsList }) => {
         p={"0"}
         mr={"15px"}
         mb="5px"
+        onClick ={() => {
+            setAddListPopup(true);
+        }}
       >
         <StyledAddIcon />
         <Text as="span" className="visually-hidden">
