@@ -136,8 +136,6 @@ export const App = () => {
   const removeCampaign = (customerId, campaignId) => () => {
     setCustomers(customers.map(c => {
       if (c.id === customerId) {
-        console.log(c.id === customerId)
-        console.log({c});
         return {
           ...c,
           campaigns: c.campaigns.filter(c => c.id !== campaignId)

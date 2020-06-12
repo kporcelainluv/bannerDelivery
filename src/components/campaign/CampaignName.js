@@ -117,7 +117,9 @@ const ActionButtons = ({setAccessPopup, deleteCampaign, customerId}) => {
             </ActionButton>
             <ActionButton
                 variant="none"
-                // onClick={}
+                onClick={(e)=> {
+                    e.preventDefault();
+                }}
             >
                 <BinIcon height="14px" width="14px" fill={"white"} />
                 <Text
