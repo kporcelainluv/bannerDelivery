@@ -27,7 +27,6 @@ const StyledContainer = styled(Box)`
 const StyledMessage = styled(Flex)`
   max-height: calc(100% - 170px);
   flex-direction: column;
-  //justify-content: flex-end;
   height: 100%;
   overflow: auto;
   div:nth-child(1) {
@@ -70,7 +69,18 @@ const StyledTab = styled(Button)`
   }
 `;
 
-const tabs = ["Client", "Production", "Media / Buyer"];
+const ForwardingDecoration = styled.div`
+  content: '';
+  position: absolute;
+  top: 15px;
+  left: 8px;
+  height: 90%;
+  width: 2px;
+  background-color:  ${p => p.theme.colors.orange200};
+`
+
+const TABS = ["Client", "Production", "Media / Buyer"];
+const FORWARD__NAME = 'From #Client'
 
 export const Chat = ({ closeChat, addMessage, customer, id, campaignId }) => {
   const refId = useRef(id);
@@ -88,7 +98,7 @@ export const Chat = ({ closeChat, addMessage, customer, id, campaignId }) => {
           closeChat={closeChat}
           name={material.name}
         />
-        <Messages messages={material.messagesList} />
+        <Messages messages={material.messagesList} tab={tab}/>
         <InputField
           message={message}
           setMessage={setMessage}
@@ -157,7 +167,7 @@ const Header = ({ tab, setTab, closeChat, name }) => {
       </Flex>
 
       <Flex p="0 19px">
-        {tabs.map(t => {
+        {TABS.map(t => {
           return (
             <StyledTab
               key={t}
@@ -176,15 +186,65 @@ const Header = ({ tab, setTab, closeChat, name }) => {
   );
 };
 
-const Messages = ({ messages }) => {
+const Messages = ({ messages, tab }) => {
   return (
     <StyledMessage>
-      {messages.map(message => {
+      {messages.map((message, index) => {
         const margin =
           message.type === "income"
             ? "16px auto 16px 16px"
             : "16px 16px 16px auto";
         const background = message.type === "income" ? "#3F4C5C" : "#43414D";
+        
+        if (tab === 'Production' && index === 0){
+          return <Box
+              key={message.id}
+              backgroundColor={background}
+              width="240px"
+              margin={margin}
+              sx={{
+                "@media screen and (min-width: 1200px)": {
+                  width: "540px"
+                }
+              }}
+          >
+            <Box 
+                p={'16px 10px 0'}
+                sx={{ position: 'relative',
+            }}>
+              <Text
+                  fontWeight={'700'}
+                  as="p"
+                  p="0 16px"
+                  fontSize={1}
+                  color="orange200"
+                  sx={{ lineHeight: "20px" }}
+              >
+                {FORWARD__NAME}
+              </Text>
+              <ForwardingDecoration/>
+              <Text
+                  as="p"
+                  p="5px 16px"
+                  fontSize={1}
+                  color="grey000"
+                  sx={{ lineHeight: "20px" }}
+              >
+                {message.text}
+              </Text>
+            </Box>
+          <Text
+              as="span"
+              fontSize={0}
+              color="grey300"
+              p="0 9px 6px 0"
+              display="flex"
+              justifyContent="flex-end"
+          >
+            {message.time}
+          </Text>
+          </Box>
+        }
         return (
           <Box
             key={message.id}
