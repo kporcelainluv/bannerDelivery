@@ -544,7 +544,7 @@ const MaterialsContainer = ({
 
 const MaterialStatusIcon = ({ status }) => {
   const theme = useTheme();
-  if (status === BUTTON_STATUS.FOR__APPROVAL) {
+  if (status === BUTTON_STATUS.ADDED) {
       return true;
     }
   if (status === BUTTON_STATUS.PENDING) {
@@ -567,7 +567,7 @@ const CTAButton = ({ element }) => {
   return (
     <Button
       height="36px"
-      maxWidth="133px"
+      maxWidth="148px"
       width="100%"
       display="flex"
       alignItems="center"

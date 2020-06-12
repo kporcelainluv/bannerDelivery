@@ -15,7 +15,7 @@ export const BUTTON_STATUS = {
   PENDING: "pending",
   ACCEPTED: "accepted",
   RELEASED: "released",
-  ADDED: 'for approval'
+  ADDED: 'added'
 };
 export const TABS = {
   HTML: "HTML",
