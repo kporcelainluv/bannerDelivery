@@ -20,6 +20,38 @@ export const customersList2 = [
         description: "Implement HTML and PNG banners for Burger King's day",
         materials: [
           {
+            id: "lPWDjJo8mDmqZBQign76hf7e",
+            name: "Burger_king_day_1280x350",
+            date: "01.10.2019 21:43",
+            size: "135 KB",
+            img: "https://via.placeholder.com/110",
+            status: "added",
+            messagesList: [
+              {
+                id: "T9f7bBdZz350zUrZkRJNq",
+                text:
+                    "banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
+                time: "12:28",
+                type: "outcome"
+              },
+
+              {
+                id: "PeK_B8dYNxRnuCkxcfOpc",
+                text:
+                    "Implement 1 HTML and 2 images banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
+                time: "12:28",
+                type: "income"
+              },
+              {
+                id: "hmiy7xCwz3lYzfHiRFkTw",
+                text:
+                    "Implement 1 HTML and 2 images banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
+                time: "12:29",
+                type: "outcome"
+              }
+            ]
+          },
+          {
             id: "lPWDjJo8mDmqZBQiAbA4e",
             name: "Burger_king_day_1280x350",
             date: "01.10.2019 21:43",
@@ -46,6 +78,38 @@ export const customersList2 = [
                 id: "hmiy7xCwz3lYzfHiRFkTw",
                 text:
                   "Implement 1 HTML and 2 images banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
+                time: "12:29",
+                type: "outcome"
+              }
+            ]
+          },
+          {
+            id: "lPWDjJo8mDmqZBQiAbA4e",
+            name: "Burger_king_day_1280x350",
+            date: "01.10.2019 21:43",
+            size: "135 KB",
+            img: "https://via.placeholder.com/110",
+            status: "added",
+            messagesList: [
+              {
+                id: "T9f7bBdZz350zUrZkRJNq",
+                text:
+                    "banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
+                time: "12:28",
+                type: "outcome"
+              },
+
+              {
+                id: "PeK_B8dYNxRnuCkxcfOpc",
+                text:
+                    "Implement 1 HTML and 2 images banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
+                time: "12:28",
+                type: "income"
+              },
+              {
+                id: "hmiy7xCwz3lYzfHiRFkTw",
+                text:
+                    "Implement 1 HTML and 2 images banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
                 time: "12:29",
                 type: "outcome"
               }
@@ -128,6 +192,38 @@ export const customersList2 = [
           { name: "Halloween.png", id: "KofqRz1WdF7gn-PmzjgIc" }
         ],
         materials: [
+          {
+            id: "wHAtuppzrQYoW3djNUkAh",
+            name: "Burger_king_halloween_1280x350",
+            date: "01.10.2019 21:43",
+            size: "135 KB",
+            img: "https://via.placeholder.com/110",
+            status: "added",
+            messagesList: [
+              {
+                id: "z2ZYf2WUe93uM3gFKPCPr",
+                text:
+                    "banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
+                time: "12:28",
+                type: "outcome"
+              },
+
+              {
+                id: "zHaWCGcWBGLmS1DV1lAlF",
+                text:
+                    "Implement 1 HTML and 2 images banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
+                time: "12:28",
+                type: "income"
+              },
+              {
+                id: "uS1KGakU6N6IC0XcwC6EH",
+                text:
+                    "Implement 1 HTML and 2 images banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
+                time: "12:29",
+                type: "outcome"
+              }
+            ]
+          },
           {
             id: "wHAtuppzrQYoW3djNUkAh",
             name: "Burger_king_halloween_1280x350",
@@ -237,6 +333,70 @@ export const customersList2 = [
           { name: "NY.png", id: "XnljT3JVKf8WPNyiCEwx2" }
         ],
         materials: [
+          {
+            id: "YdFc70-zFrkYwMvg2YCo6",
+            name: "NY_Burger_King_1280x350",
+            date: "01.10.2019 21:43",
+            size: "135 KB",
+            img: "https://via.placeholder.com/110",
+            status: "added",
+            messagesList: [
+              {
+                id: "S2ct6FRV4A0jY70gzrThq",
+                text:
+                    "banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
+                time: "12:28",
+                type: "outcome"
+              },
+
+              {
+                id: "_D-IsV4L-F1cMyiS0eT4b",
+                text:
+                    "Implement 1 HTML and 2 images banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
+                time: "12:28",
+                type: "income"
+              },
+              {
+                id: "3cjnL5_dDigmMv34LrBSB",
+                text:
+                    "Implement 1 HTML and 2 images banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
+                time: "12:29",
+                type: "outcome"
+              }
+            ]
+          },
+          {
+            id: "YdFc70-zFrkYwMvg2YCo6",
+            name: "NY_Burger_King_1280x350",
+            date: "01.10.2019 21:43",
+            size: "135 KB",
+            img: "https://via.placeholder.com/110",
+            status: "added",
+            messagesList: [
+              {
+                id: "S2ct6FRV4A0jY70gzrThq",
+                text:
+                    "banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
+                time: "12:28",
+                type: "outcome"
+              },
+
+              {
+                id: "_D-IsV4L-F1cMyiS0eT4b",
+                text:
+                    "Implement 1 HTML and 2 images banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
+                time: "12:28",
+                type: "income"
+              },
+              {
+                id: "3cjnL5_dDigmMv34LrBSB",
+                text:
+                    "Implement 1 HTML and 2 images banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
+                time: "12:29",
+                type: "outcome"
+              }
+            ]
+          },
           {
             id: "YdFc70-zFrkYwMvg2YCo6",
             name: "NY_Burger_King_1280x350",
@@ -362,6 +522,38 @@ export const customersList2 = [
             date: "01.10.2019 21:43",
             size: "135 KB",
             img: "https://via.placeholder.com/110",
+            status: "added",
+            messagesList: [
+              {
+                id: "rdZ5Pxt0pdAaMGdcxpO8V",
+                text:
+                    "banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
+                time: "12:28",
+                type: "outcome"
+              },
+
+              {
+                id: "PPnpOVSFoe1-PAMAyrtu8",
+                text:
+                    "Implement 1 HTML and 2 images banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
+                time: "12:28",
+                type: "income"
+              },
+              {
+                id: "5fQOVtAPPIYvkKf8_y-Jz",
+                text:
+                    "Implement 1 HTML and 2 images banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
+                time: "12:29",
+                type: "outcome"
+              }
+            ]
+          },
+          {
+            id: "9fJXBkRV1M1z-5bXXFQrP",
+            name: "Mama Pizza_day_1280x350",
+            date: "01.10.2019 21:43",
+            size: "135 KB",
+            img: "https://via.placeholder.com/110",
             status: "pending",
             messagesList: [
               {
@@ -465,6 +657,39 @@ export const customersList2 = [
           { name: "Halloween_MP.png", id: "RPNM1eMFhRnHCsxZVv9CQ" }
         ],
         materials: [
+          {
+            id: "iB9ZQR1Ibqnhh98e1wiWJ",
+            name: "Halloween_Mama_Pizza_1280x350",
+            date: "01.10.2019 21:43",
+            size: "135 KB",
+            img: "https://via.placeholder.com/110",
+            status: "added",
+            messagesList: [
+              {
+                id: "flqc5IttAaXp24AHivf2O",
+                text:
+                    "banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
+                time: "12:28",
+                type: "outcome"
+              },
+
+              {
+                id: "g_fVkNFYIy9u3HEOTDp_z",
+                text:
+                    "Implement 1 HTML and 2 images banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
+                time: "12:28",
+                type: "income"
+              },
+
+              {
+                id: "h2KbiQfodLnMu78JaZDtD",
+                text:
+                    "Implement 1 HTML and 2 images banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
+                time: "12:29",
+                type: "outcome"
+              }
+            ]
+          },
           {
             id: "iB9ZQR1Ibqnhh98e1wiWJ",
             name: "Halloween_Mama_Pizza_1280x350",
@@ -576,6 +801,38 @@ export const customersList2 = [
           { name: "NY_MP.png", id: "1iw31SQYsns2PP1Z9ujHe" }
         ],
         materials: [
+          {
+            id: "192IwWPu5vTWoUaaK7p0H",
+            name: "NY_Mama_Pizza_1280x350",
+            date: "01.10.2019 21:43",
+            size: "135 KB",
+            img: "https://via.placeholder.com/110",
+            status: "added",
+            messagesList: [
+              {
+                id: "0dDB5M4wj0jT8I7dP5feY",
+                text:
+                    "banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
+                time: "12:28",
+                type: "outcome"
+              },
+
+              {
+                id: "keuiP__Am5THDHN-SSrSZ",
+                text:
+                    "Implement 1 HTML and 2 images banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
+                time: "12:28",
+                type: "income"
+              },
+              {
+                id: "VGMc6lD4roZsIt6DH1h8i",
+                text:
+                    "Implement 1 HTML and 2 images banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
+                time: "12:29",
+                type: "outcome"
+              }
+            ]
+          },
           {
             id: "192IwWPu5vTWoUaaK7p0H",
             name: "NY_Mama_Pizza_1280x350",
@@ -699,6 +956,38 @@ export const customersList2 = [
             date: "01.10.2019 21:43",
             size: "135 KB",
             img: "https://via.placeholder.com/110",
+            status: "added",
+            messagesList: [
+              {
+                id: "-COiZrkf2JxTvUHAyNjVg",
+                text:
+                    "banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
+                time: "12:28",
+                type: "outcome"
+              },
+
+              {
+                id: "yrFk98WtxjfTZ4aoaUV20",
+                text:
+                    "Implement 1 HTML and 2 images banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
+                time: "12:28",
+                type: "income"
+              },
+              {
+                id: "czWw7O2cGwfWks9GMxAEU",
+                text:
+                    "Implement 1 HTML and 2 images banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
+                time: "12:29",
+                type: "outcome"
+              }
+            ]
+          },
+          {
+            id: "YUXd3WDq-Noj5AitfSEkQ",
+            name: "Domofond_day_1280x350",
+            date: "01.10.2019 21:43",
+            size: "135 KB",
+            img: "https://via.placeholder.com/110",
             status: "pending",
             messagesList: [
               {
@@ -809,6 +1098,38 @@ export const customersList2 = [
             date: "01.10.2019 21:43",
             size: "135 KB",
             img: "https://via.placeholder.com/110",
+            status: "added",
+            messagesList: [
+              {
+                id: "MGm5dC622QUPNUGrVTIqj",
+                text:
+                    "banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
+                time: "12:28",
+                type: "outcome"
+              },
+
+              {
+                id: "_8_4ZyCYMzDjFPSsKaESz",
+                text:
+                    "Implement 1 HTML and 2 images banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
+                time: "12:28",
+                type: "income"
+              },
+              {
+                id: "OpWNxwMUt-7bpQTTtMCRq",
+                text:
+                    "Implement 1 HTML and 2 images banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
+                time: "12:29",
+                type: "outcome"
+              }
+            ]
+          },
+          {
+            id: "KDkeimAVogxe8KD94gQI5",
+            name: "Halloween_Domofond_1280x350",
+            date: "01.10.2019 21:43",
+            size: "135 KB",
+            img: "https://via.placeholder.com/110",
             status: "pending",
             messagesList: [
               {
@@ -913,6 +1234,38 @@ export const customersList2 = [
           { name: "NY.png", id: "8kU2JtdMcFaAiB5DZ8ypi" }
         ],
         materials: [
+          {
+            id: "gnjDPSCbZ7s-nOrVx3viB",
+            name: "NY_Domofond_1280x350",
+            date: "01.10.2019 21:43",
+            size: "135 KB",
+            img: "https://via.placeholder.com/110",
+            status: "added",
+            messagesList: [
+              {
+                id: "YdaBv29NKErJdzEcuY1aT",
+                text:
+                    "banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
+                time: "12:28",
+                type: "outcome"
+              },
+
+              {
+                id: "-yhJIBR_bl4yAUicu51AA",
+                text:
+                    "Implement 1 HTML and 2 images banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
+                time: "12:28",
+                type: "income"
+              },
+              {
+                id: "pqCWzjkQHCAcyTiGCR_E6",
+                text:
+                    "Implement 1 HTML and 2 images banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
+                time: "12:29",
+                type: "outcome"
+              }
+            ]
+          },
           {
             id: "gnjDPSCbZ7s-nOrVx3viB",
             name: "NY_Domofond_1280x350",
@@ -1036,6 +1389,38 @@ export const customersList2 = [
             date: "01.10.2019 21:43",
             size: "135 KB",
             img: "https://via.placeholder.com/110",
+            status: "added",
+            messagesList: [
+              {
+                id: "w5BS6ViohjSbk83t_hPVB",
+                text:
+                    "banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
+                time: "12:28",
+                type: "outcome"
+              },
+
+              {
+                id: "JSDk2XmF46ltt9u576-1D",
+                text:
+                    "Implement 1 HTML and 2 images banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
+                time: "12:28",
+                type: "income"
+              },
+              {
+                id: "5baVnhS9YTXK8gQMcBK4Q",
+                text:
+                    "Implement 1 HTML and 2 images banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
+                time: "12:29",
+                type: "outcome"
+              }
+            ]
+          },
+          {
+            id: "iK_7r-TaotNzOFVAKKiun",
+            name: "Sberbank_day_1280x350",
+            date: "01.10.2019 21:43",
+            size: "135 KB",
+            img: "https://via.placeholder.com/110",
             status: "pending",
             messagesList: [
               {
@@ -1145,6 +1530,38 @@ export const customersList2 = [
             date: "01.10.2019 21:43",
             size: "135 KB",
             img: "https://via.placeholder.com/110",
+            status: "added",
+            messagesList: [
+              {
+                id: "TDxyYIvSn0u-uthnqWTG0",
+                text:
+                    "banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
+                time: "12:28",
+                type: "outcome"
+              },
+
+              {
+                id: "oM-rlxMlLr__MboiRNBR-",
+                text:
+                    "Implement 1 HTML and 2 images banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
+                time: "12:28",
+                type: "income"
+              },
+              {
+                id: "np4_B3jU7eKWOkymO_B9F",
+                text:
+                    "Implement 1 HTML and 2 images banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
+                time: "12:29",
+                type: "outcome"
+              }
+            ]
+          },
+          {
+            id: "Bjocn49jB2zdKIp2tFGZh",
+            name: "Halloween_Sberbank_1280x350",
+            date: "01.10.2019 21:43",
+            size: "135 KB",
+            img: "https://via.placeholder.com/110",
             status: "pending",
             messagesList: [
               {
@@ -1248,6 +1665,38 @@ export const customersList2 = [
           { name: "NY.png", id: "pRr2yv5s-homE2g6BzchV" }
         ],
         materials: [
+          {
+            id: "u2pV8UN5JAHe1VI7Ck3TX",
+            name: "NY_Sberbank_1280x350",
+            date: "01.10.2019 21:43",
+            size: "135 KB",
+            img: "https://via.placeholder.com/110",
+            status: "added",
+            messagesList: [
+              {
+                id: "emfVLw9OjgisNOuPVT9ke",
+                text:
+                    "banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
+                time: "12:28",
+                type: "outcome"
+              },
+
+              {
+                id: "t9U70bBCCp2QWw3Ph2Rcm",
+                text:
+                    "Implement 1 HTML and 2 images banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
+                time: "12:28",
+                type: "income"
+              },
+              {
+                id: "lvst-yQ_EWt6D144BkHdN",
+                text:
+                    "Implement 1 HTML and 2 images banners for Mother’s day compaign. Implement 1 HTML and 2 images banners for Mother’s day compaign.",
+                time: "12:29",
+                type: "outcome"
+              }
+            ]
+          },
           {
             id: "u2pV8UN5JAHe1VI7Ck3TX",
             name: "NY_Sberbank_1280x350",
