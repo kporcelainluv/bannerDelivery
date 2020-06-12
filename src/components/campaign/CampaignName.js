@@ -1,14 +1,8 @@
 import React from "react";
 import { Box, Flex, Heading } from "rebass/styled-components";
 import styled, { useTheme } from "styled-components";
-import { CheckmarkCircle2Outline as CheckmarkIcon } from "@styled-icons/evaicons-outline/CheckmarkCircle2Outline";
 import { Input } from "@rebass/forms/styled-components";
-import { Button, Text } from "rebass";
 
-const StyledSave = styled(Button)`
-  border: none;
-  background-color: transparent;
-`;
 
 const StyledInput = styled(Input)`
   height: 56px;
@@ -63,22 +57,6 @@ export const CampaignName = ({
             updateCampaign(campaign, customer, "name", e.target.value);
           }}
         />
-        <StyledSave
-          variant="none"
-          onClick={e => {
-            e.preventDefault();
-            setName(name);
-          }}
-        >
-          <Text as="span" className="visually-hidden">
-            Save
-          </Text>
-          <CheckmarkIcon
-            height="24px"
-            width="24px"
-            fill={theme.colors.grey000}
-          />
-        </StyledSave>
       </Box>
     </Box>
   );
