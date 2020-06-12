@@ -83,7 +83,7 @@ export const AddListPopup = ({closeAddListPopup, addList}) => {
                     setWarning(true);
                 }}
             >
-                Save customer
+                Add List
             </Button>
 
             <Box
