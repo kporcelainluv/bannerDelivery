@@ -17,12 +17,6 @@ export const BUTTON_STATUS = {
   RELEASED: "released",
   ADDED: 'added'
 };
-export const TABS = {
-  HTML: "HTML",
-  JPEG: "JPEG"
-};
-
-export const tabsList = ["JPEG", "HTML"];
 
 export const accessFields = [
   { id: nanoid(), name: "Production Access Link", checked: true },
