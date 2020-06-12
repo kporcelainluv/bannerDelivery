@@ -637,7 +637,7 @@ const EmptyMaterials = () => {
               ":hover": { color: theme.colors.orange100 }
             }}
           >
-            Add Attachment
+            Add List
           </Text>
         </Label>
       </Box>
