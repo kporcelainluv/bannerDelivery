@@ -2,11 +2,10 @@ import React, {useState} from "react";
 import {Box, Button, Flex, Heading, Text} from "rebass/styled-components";
 import styled, { useTheme } from "styled-components";
 import { Input } from "@rebass/forms/styled-components";
-import {Bin as BinIcon} from "@styled-icons/icomoon/Bin";
 
 import { AccessPopup } from "../popups/AcessPopup";
-import { Redirect } from 'react-router'
 import { useHistory } from "react-router-dom";
+import {Icon} from "../Icon";
 
 const StyledInput = styled(Input)`
   height: 56px;
@@ -27,7 +26,7 @@ const ActionButton = styled(Button)`
   border: none;
   display: flex;
   align-items: center;
-  padding: 0 0 0 8px;
+  padding: 0 10px;
   cursor: pointer;
   &&:hover {
     svg,
@@ -35,6 +34,9 @@ const ActionButton = styled(Button)`
       color: ${p => p.theme.colors.orange100};
       fill: ${p => p.theme.colors.orange100};
     }
+  }
+   @media (min-width: ${p => p.theme.breakpoints[1]}) {
+    padding: 0 5px;
   }
 `;
 
@@ -107,7 +109,7 @@ const ActionButtons = ({setAccessPopup, deleteCampaign, customerId}) => {
                     history.push(`/${customerId}/campaigns/`);
                 }}
             >
-                <BinIcon height="14px" width="14px" fill={"white"} />
+                <Icon name={"delete2"} width="12" height="15" fill={"white"} viewbox={'0 0 12 14'}/>
                 <Text
                     display='none'
                     as="span"
@@ -128,7 +130,7 @@ const ActionButtons = ({setAccessPopup, deleteCampaign, customerId}) => {
                     e.preventDefault();
                 }}
             >
-                <BinIcon height="14px" width="14px" fill={"white"} />
+                <Icon name={"edit"} width="12" height="15" fill={"white"} viewbox={'0 0 14 14'}/>
                 <Text
                     display='none'
                     as="span"
@@ -150,7 +152,7 @@ const ActionButtons = ({setAccessPopup, deleteCampaign, customerId}) => {
                     setAccessPopup(true)
                 }}
             >
-                <BinIcon height="14px" width="14px" fill={"white"} />
+                <Icon name={"access"} width="20" height="30" fill={"white"} viewbox={'0 0 16 8'}/>
                 <Text
                     display='none'
                     as="span"
