@@ -13,17 +13,13 @@ import { Download as DownloadIcon } from "@styled-icons/boxicons-solid/Download"
 import { MoreVerticalOutline as MoreIcon } from "@styled-icons/evaicons-outline/MoreVerticalOutline";
 import { AddSolid as AddIcon } from "@styled-icons/zondicons/AddSolid";
 import { CheckmarkOutline as CheckmarkIcon } from "@styled-icons/evaicons-outline/CheckmarkOutline";
-import { DownArrowCircle as DownloadOutlinedIcon } from "@styled-icons/boxicons-regular/DownArrowCircle";
-import { UpArrowCircle as UploadOutlinedIcon } from "@styled-icons/boxicons-regular/UpArrowCircle";
-import { Chat3 as ChatIcon } from "@styled-icons/remix-line/Chat3";
 import { DeleteOutline as CancelIcon } from "@styled-icons/typicons/DeleteOutline";
-import { DeleteOutline as DeleteIcon } from "@styled-icons/material-twotone/DeleteOutline";
 import { DoneAll as DoneIcon } from "@styled-icons/evaicons-solid/DoneAll";
 import styled, { useTheme } from "styled-components";
 
-import { AccessPopup } from "../popups/AcessPopup";
 import { Chat } from "../popups/Chat";
 import { BUTTON_STATUS, BUTTON_TEXT, TABS, tabsList } from "../../utils/consts";
+import {Icon} from "../Icon";
 
 const StyledUploadIcon = styled(UploadIcon)`
   height: 24px;
@@ -93,54 +89,17 @@ const StyledAddIcon = styled(AddIcon)`
     fill: ${p => p.theme.colors.orange200};
   }
 `;
-const StyledUploadIcon2 = styled(UploadOutlinedIcon)`
-  height: 28px;
-  width: 28px;
-  fill: ${p => p.theme.colors.grey000};
-  &:hover {
-    fill: ${p => p.theme.colors.orange200};
-  }
-`;
-const StyledDownloadIcon = styled(DownloadOutlinedIcon)`
-  height: 28px;
-  width: 28px;
-  fill: ${p => p.theme.colors.grey000};
-  &:hover {
-    fill: ${p => p.theme.colors.orange200};
-  }
-`;
 
-const StyledChatIcon = styled(ChatIcon)`
-  height: 28px;
-  width: 28px;
-  fill: ${p => p.theme.colors.grey000};
-  &:hover {
-    fill: ${p => p.theme.colors.orange200};
-  }
-`;
-const StyledDeleteIcon = styled(DeleteIcon)`
-  height: 28px;
-  width: 28px;
-  fill: ${p => p.theme.colors.grey000};
-  &:hover {
-    fill: ${p => p.theme.colors.orange200};
-  }
-`;
 
 export const Materials = ({ campaign, customer, addMessage }) => {
   const theme = useTheme();
   const [tab, setTab] = useState(TABS.JPEG);
-  const [accessPopup, setAccessPopup] = useState(false);
   const [chatPopup, setChatPopup] = useState({
     opened: false,
     id: undefined
   });
   const [materials, setMaterials] = useState(campaign.materials || []);
-
-  const closePopup = () => {
-    setAccessPopup(false);
-  };
-
+  
   const closeChat = () => {
     setChatPopup({ opened: false, id: undefined });
   };
@@ -164,8 +123,6 @@ export const Materials = ({ campaign, customer, addMessage }) => {
         <Fragment>
           <UploadBanner />
           <MaterialsContainer
-            accessPopup={accessPopup}
-            setAccessPopup={setAccessPopup}
             setChatPopup={setChatPopup}
             materials={materials}
             deleteMaterial={deleteMaterial}
@@ -175,7 +132,6 @@ export const Materials = ({ campaign, customer, addMessage }) => {
         <EmptyMaterials />
       )}
 
-      {accessPopup && <AccessPopup closePopup={closePopup} />}
       {chatPopup.opened && (
         <Chat
           closeChat={closeChat}
@@ -414,30 +370,26 @@ const MaterialDescription = ({ element }) => {
 };
 
 const ActionButtons = ({
-  accessPopup,
-  setAccessPopup,
   setChatPopup,
   deleteMaterial,
   material
 }) => {
   return (
     <Flex>
-      <StyledButton variant="none">
+      <StyledButton variant="none" onClick={()=> {}}>
         <Text as="span" className="visually-hidden">
-          Delete
+          Download
         </Text>
-        <StyledDownloadIcon />
+          <Icon name={"download"} width="32" height="32" />
       </StyledButton>
       <StyledButton
         variant="none"
-        onClick={() => {
-          setAccessPopup(!accessPopup);
-        }}
+        onClick={() => {}}
       >
         <Text as="span" className="visually-hidden">
           Upload
         </Text>
-        <StyledUploadIcon2 />
+          <Icon name={"upload"} width="32" height="32" />
       </StyledButton>
 
       <StyledButton
@@ -449,7 +401,7 @@ const ActionButtons = ({
         <Text as="span" className="visually-hidden">
           Chat
         </Text>
-        <StyledChatIcon />
+          <Icon name={"discuss"} width="32" height="32" />
       </StyledButton>
       <StyledButton
         variant="none"
@@ -460,15 +412,13 @@ const ActionButtons = ({
         <Text as="span" className="visually-hidden">
           Delete
         </Text>
-        <StyledDeleteIcon />
+          <Icon name={"delete"} width="32" height="32" />
       </StyledButton>
     </Flex>
   );
 };
 
 const MaterialsContainer = ({
-  accessPopup,
-  setAccessPopup,
   setChatPopup,
   materials,
   deleteMaterial
@@ -561,8 +511,6 @@ const MaterialsContainer = ({
                 </Flex>
                 <Flex flexDirection="column">
                   <ActionButtons
-                    accessPopup={accessPopup}
-                    setAccessPopup={setAccessPopup}
                     setChatPopup={setChatPopup}
                     deleteMaterial={deleteMaterial}
                     material={element}
