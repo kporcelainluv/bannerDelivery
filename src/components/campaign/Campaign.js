@@ -149,7 +149,7 @@ const ReturnToDashboard = ({ customerName, campaignName, id }) => {
         }}
       >
         <Link
-          to={`/`}
+          to={`/${id}/campaigns`}
           style={{
             textDecoration: "none",
             display: "flex",
