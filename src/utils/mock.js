@@ -343,7 +343,7 @@ export const customersList2 = [
         ],
         materials: [
           {
-            id: "YdFc70-zFrkYwMvg2YCo6",
+            id: "YdFc70-zFrkYwMvg2YCtnkseuf6",
             name: "NY_Burger_King_1280x350",
             date: "01.10.2019 21:43",
             size: "135 KB",
@@ -375,7 +375,7 @@ export const customersList2 = [
             ]
           },
           {
-            id: "YdFc70-zFrkYwMvg2YCo6",
+            id: "YdFc70-zFrkfwjefyhiwo",
             name: "NY_Burger_King_1280x350",
             date: "01.10.2019 21:43",
             size: "135 KB",
