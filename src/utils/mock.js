@@ -1,5 +1,3 @@
-import { nanoid } from "nanoid";
-
 export const customersList1 = [];
 
 export const customersList2 = [

@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import GlobalTheme from "../theme/GlobalTheme";
 import { ThemeProvider } from "styled-components";
 import { nanoid } from "nanoid";
-import u from "updeep";
 
 import { darkTheme } from "../theme/dark";
 import { Header } from "./Header";
@@ -10,7 +9,7 @@ import { Dashboard } from "./Dashboard";
 import { STATUS } from "../utils/consts";
 import { Campaigns } from "./Campaigns";
 import { Campaign } from "./campaign/Campaign";
-import { customersList1, customersList2 } from "../utils/mock";
+import { customersList2 } from "../utils/mock";
 import { getDate } from "../utils/utils";
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";

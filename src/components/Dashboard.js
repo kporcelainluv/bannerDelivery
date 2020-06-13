@@ -4,7 +4,6 @@ import { Plus as PlusIcon } from "@styled-icons/boxicons-regular/Plus";
 import { Search as SearchIcon } from "@styled-icons/evaicons-solid/Search";
 import { CheckBoxOutlineBlank as OutlineIcon } from "@styled-icons/material-outlined/CheckBoxOutlineBlank";
 import { CheckBox as CheckboxIcon } from "@styled-icons/material-outlined/CheckBox";
-import { DotsVerticalRounded as DotsIcon } from "@styled-icons/boxicons-regular/DotsVerticalRounded";
 import { Bin as BinIcon } from "@styled-icons/icomoon/Bin";
 import { Edit as EditIcon } from "@styled-icons/material/Edit";
 import { Input } from "@rebass/forms";
