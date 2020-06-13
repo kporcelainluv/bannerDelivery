@@ -61,7 +61,7 @@ export const customersList2 = [
             ]
           },
           {
-            id: "lPWDjJo8mDmqZBQiAbA4e",
+            id: "lPWDjJo8mDmqZBwehb43k24bm",
             name: "Burger_king_day_1280x350",
             date: "01.10.2019 21:43",
             size: "135 KB",
@@ -526,7 +526,7 @@ export const customersList2 = [
         description: "Implement HTML and PNG banners for Mama Pizza's day",
         materials: [
           {
-            id: "9fJXBkRV1M1z-5bXXFQrP",
+            id: "9fJXBkRV1M1z-5bXXFQrPHyhYgFgIkHtr",
             name: "Mama Pizza_day_1280x350",
             date: "01.10.2019 21:43",
             size: "135 KB",
@@ -667,7 +667,7 @@ export const customersList2 = [
         ],
         materials: [
           {
-            id: "iB9ZQR1Ibqnhh98e1wiWJ",
+            id: "iB9ZQR1Ibqnhhfmsjdf6896",
             name: "Halloween_Mama_Pizza_1280x350",
             date: "01.10.2019 21:43",
             size: "135 KB",
@@ -811,7 +811,7 @@ export const customersList2 = [
         ],
         materials: [
           {
-            id: "192IwWPu5vTWoUaaK7p0H",
+            id: "192IwWPu5vTWoUmjesfg87gwe9999999",
             name: "NY_Mama_Pizza_1280x350",
             date: "01.10.2019 21:43",
             size: "135 KB",
@@ -960,7 +960,7 @@ export const customersList2 = [
         description: "Implement HTML and PNG banners for Domofond's day",
         materials: [
           {
-            id: "YUXd3WDq-Noj5AitfSEkQ",
+            id: "YUXd3WDq-Noj5AitfSEkQkK",
             name: "Domofond_day_1280x350",
             date: "01.10.2019 21:43",
             size: "135 KB",
@@ -1102,7 +1102,7 @@ export const customersList2 = [
         ],
         materials: [
           {
-            id: "KDkeimAVogxe8KD94gQI5",
+            id: "KDkeimAVogxe8KD94gQI5789",
             name: "Halloween_Domofond_1280x350",
             date: "01.10.2019 21:43",
             size: "135 KB",
@@ -1244,7 +1244,7 @@ export const customersList2 = [
         ],
         materials: [
           {
-            id: "gnjDPSCbZ7s-nOrVx3viB",
+            id: "gnjDPSCbZ7s-nOrVx3viB787745454",
             name: "NY_Domofond_1280x350",
             date: "01.10.2019 21:43",
             size: "135 KB",
@@ -1425,7 +1425,7 @@ export const customersList2 = [
             ]
           },
           {
-            id: "iK_7r-TaotNzOFVAKKiun",
+            id: "iK_7r-TaotNzOFVAmsehft6u;sdg0vsd",
             name: "Sberbank_day_1280x350",
             date: "01.10.2019 21:43",
             size: "135 KB",
@@ -1707,7 +1707,7 @@ export const customersList2 = [
             ]
           },
           {
-            id: "u2pV8UN5JAHe1VI7Ck3TX",
+            id: "u2pV8UN5JAHe1VI7kwef76yishnf",
             name: "NY_Sberbank_1280x350",
             date: "01.10.2019 21:43",
             size: "135 KB",
